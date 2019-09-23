@@ -3,6 +3,7 @@ import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import Index from './components/Index'
 import Componente from './components/Componente'
 import Servicios from './components/Servicios'
+import Areas from './components/Areas/Areas'
 
 export default function Router () {
 
@@ -13,6 +14,8 @@ export default function Router () {
         <Route exact path="/fedex" component={Servicios}/>
         <Route exact path="/dhl" component={Servicios}/>
         <Route exact path="/merq" component={Servicios}/>
+
+        <Route exact path="/dhl/10" component={Areas}/>
 
         {/* <Route exact path="/:proveedor/:servicio" component={Componente}/> */}
 
