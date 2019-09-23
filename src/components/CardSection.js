@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import {Link } from 'react-router-dom'
 const { Meta } = Card;
 
-export default function Proveedor({name, src, desc,to} ) {
+export default function CardSection({name, src='https://www.ocs-consulting.nl/wp-content/uploads/2018/04/managed-services-with-ocs-consulting-icon.png', desc,to } ) {
   return (
     <div>
       
