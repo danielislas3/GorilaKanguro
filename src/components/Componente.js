@@ -10,6 +10,7 @@ export default function Componente() {
       <h1>Componente 1
         
       </h1>
+      Primary
     </div>
   )
 }
