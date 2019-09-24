@@ -1,8 +1,9 @@
 import React from 'react'
 import { Table, Input, Button, Popconfirm, Form } from 'antd';
 import ReactDOM from 'react-dom';
-
+var prueba= false
 const EditableContext = React.createContext();
+
 //hook
 const EditableRow = ({ form, index, ...props }) => (
   <EditableContext.Provider value={form}>
@@ -51,7 +52,7 @@ class EditableCell extends React.Component {
             },
           ],
           initialValue: record[dataIndex],
-        })(<Input ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
+        })(<Input type="number" min={this.count} ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
       </Form.Item>
     ) : (
       <div
@@ -99,20 +100,26 @@ export default class EditableTable extends React.Component {
         editable: true,
       },
       {
-        title: 'PRECIO',
-        dataIndex: 'precio',
+        title: 'Subtotal',
+        dataIndex: 'sub',
         editable: true,
       },
       {
-        title: 'operation',
-        dataIndex: 'operation',
-        render: (text, record) =>
-          this.state.dataSource.length >= 1 ? (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
-              <a>Delete</a>
-            </Popconfirm>
-          ) : null,
+        title: 'Precio/Kg extra',
+        dataIndex: 'preKgExtra',
+        editable: true,
       },
+      
+      // {
+      //   title: 'operation',
+      //   dataIndex: 'operation',
+      //   render: (text, record) =>
+      //     this.state.dataSource.length >= 1 ? (
+      //       <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+      //         <a>Delete</a>
+      //       </Popconfirm>
+      //     ) : null,
+      // },
     ];
 
     this.state = {
@@ -121,17 +128,20 @@ export default class EditableTable extends React.Component {
           key: '0',
           desde: '0',
           hasta: '1',
-          precio: '86.81',
+          sub: '86.81',
+          preKgExtra:'0',
         },
         {
           key: '1',
-          desde: '1',
+          desde: '1.01',
           hasta: '2',
-          precio: '94.85',
+          sub: '94.85',
+          preKgExtra:'0',
         },
       ],
       count: 2,
-      precio:94.85
+      sub:94.85,
+
     };
   }
 
@@ -141,18 +151,24 @@ export default class EditableTable extends React.Component {
   };
 
   handleAdd = () => {
-    const { count, dataSource,precio } = this.state;
+    const { count, dataSource,sub } = this.state;
     
     const newData = {
       key: count,
-      desde: `${count} `,
-      hasta: `${count} `,
-      precio: `${precio+8.4}`,
+      desde: `${count}.01 `,
+      hasta: `${Number(count)+1}`,
+      sub: `${sub+8.4}`,
+      preKgExtra:'0',
+      
+      editableKgExtra:count>5? true: false
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
-      precio:precio+8.4
+      sub:sub+8.4,
+      
+      // editableKgExtra: this.state.count>5? true: false
+      
     });
   };
 
