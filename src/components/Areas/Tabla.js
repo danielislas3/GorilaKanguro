@@ -108,8 +108,7 @@ export default class EditableTable extends React.Component {
         title: 'Precio/Kg extra',
         dataIndex: 'preKgExtra',
         editable: true,
-      },
-      
+      }
       // {
       //   title: 'operation',
       //   dataIndex: 'operation',
@@ -171,6 +170,27 @@ export default class EditableTable extends React.Component {
       
     });
   };
+  handleAddRight = () => {
+    const { count, dataSource,sub } = this.state;
+    
+    const newData = {
+      key: count,
+      desde: `${count}.01 `,
+      hasta: `${Number(count)+1}`,
+      sub: `${sub+8.4}`,
+      preKgExtra:'0',
+      
+      editableKgExtra:count>5? true: false
+    };
+    this.setState({
+      dataSource: [...dataSource, newData],
+      count: count + 1,
+      sub:sub+8.4,
+      
+      // editableKgExtra: this.state.count>5? true: false
+      
+    });
+  };
 
   handleSave = row => {
     const newData = [...this.state.dataSource];
@@ -210,6 +230,9 @@ export default class EditableTable extends React.Component {
       <div>
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
+        </Button>
+        <Button onClick={this.handleAddRight} type="primary" style={{ marginBottom: 16 }}>
+          Nueva Tarifa
         </Button>
         <Table
           components={components}
