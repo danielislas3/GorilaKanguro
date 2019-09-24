@@ -4,13 +4,7 @@ import ReactDOM from 'react-dom';
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
-
-function callback(key) {
-  console.log(key);
-}
-
-
-//hook
+//context
 const EditableRow = ({ form, index, ...props }) => (
   <EditableContext.Provider value={form}>
     <tr {...props} />
@@ -155,15 +149,12 @@ export default class EditableTable extends React.Component {
       sub: `${sub+8.4}`,
       preKgExtra:'0',
       
-      editableKgExtra:count>5? true: false
+      // editableKgExtra:count>5? true: false
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
-      sub:sub+8.4,
-      
-      // editableKgExtra: this.state.count>5? true: false
-      
+      sub:sub+8.4,      
     });
   };
 
@@ -173,15 +164,22 @@ export default class EditableTable extends React.Component {
     const newColumns = 
       [
         {
-          title: 'Subtotal',
-          dataIndex: 'sub',
+          title: 'A',
+          dataIndex: 'areaA',
           editable: true,
-        },
-        {
-          title: 'Precio/Kg extra',
-          dataIndex: 'preKgExtra',
-          editable: true,
-        },
+          children: [
+            {
+              title: 'Subtotal',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            },
+          ]
+        }
       ]
 
     this.setState({
@@ -200,6 +198,19 @@ export default class EditableTable extends React.Component {
     this.setState({ dataSource: newData });
   };
 
+  handleEditable = (col) => {
+    return {
+      ...col,
+      onCell: record => ({
+        record,
+        editable: col.editable,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        handleSave: this.handleSave,
+      }),
+    };
+  }
+
   render() {
     const { dataSource } = this.state;
     const components = {
@@ -209,20 +220,38 @@ export default class EditableTable extends React.Component {
       },
     };
 
+    
     const columns = this.state.columns.map(col => {
       if (!col.editable) {
         return col;
       }
-      return {
-        ...col,
-        onCell: record => ({
-          record,
-          editable: col.editable,
-          dataIndex: col.dataIndex,
-          title: col.title,
-          handleSave: this.handleSave,
-        }),
-      };
+      // if (col.children) {
+      //   console.log('evaluando')
+      //   col.children.forEach(element => {
+      //     if (element.editable) {
+      //       console.log(col)
+      //       return {
+      //         ...col.children,
+      //         onCell: record => ({
+      //           record,
+      //         }),
+      //       };
+      //     };
+      //   });
+      // }
+      console.table(col)
+
+      handleEditable(col);
+      // return {
+      //   ...col,
+      //   onCell: record => ({
+      //     record,
+      //     editable: col.editable,
+      //     dataIndex: col.dataIndex,
+      //     title: col.title,
+      //     handleSave: this.handleSave,
+      //   }),
+      // };
     });
 
     return (
@@ -233,9 +262,6 @@ export default class EditableTable extends React.Component {
         <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
         </Button>
-        <Button onClick={callback(23)} type="primary" style={{ marginBottom: 16 }}>
-          Callback
-         </Button>
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
