@@ -275,10 +275,9 @@ export default class EditableTable extends React.Component {
           Nuevo peso
         </Button>
         <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
-        </Button>
-        <Button onClick={callback(23)} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
-         </Button>
+        </Button>
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}

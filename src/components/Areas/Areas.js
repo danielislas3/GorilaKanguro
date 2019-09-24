@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Badge, Button, Icon, Switch, Collapse } from 'antd';
-import { Descriptions } from 'antd';
+import { Descriptions,Breadcrumb } from 'antd';
+
 import EditableTable from '../Areas/Tabla';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
@@ -64,7 +65,19 @@ export default class Areas extends Component {
         <Link to="/">
           Home
         </Link>
-        <h1>Areas</h1>
+       <h1>Areas</h1>
+       <Breadcrumb>
+          <Breadcrumb.Item>
+            <Link to='/'>
+              Proveedores
+            </Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to="/dhl">DHL</Link>
+          </Breadcrumb.Item>
+
+          <Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
+        </Breadcrumb>,
         {/* <h3>{this.state.currentService}</h3> */}
         
               {this.state.data.map(area =>
