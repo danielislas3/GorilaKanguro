@@ -119,12 +119,12 @@ export default class EditableTable extends React.Component {
         },
         {
           title: 'Subtotal',
-          dataIndex: 'sub',
+          dataIndex: 'sub0',
           editable: true,
         },
         {
           title: 'Precio/Kg extra',
-          dataIndex: 'preKgExtra',
+          dataIndex: 'preKgExtra0',
           editable: true,
         }
       ],
@@ -253,6 +253,9 @@ export default class EditableTable extends React.Component {
         }),
       };
     });
+
+    console.log('columns')
+    console.log(columns)
 
     return (
       <div>
