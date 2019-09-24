@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Badge, Button, Icon, Switch, Collapse } from 'antd';
 import { Descriptions } from 'antd';
+import EditableTable from '../Areas/Tabla';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 
@@ -64,7 +65,7 @@ export default class Areas extends Component {
           Home
         </Link>
         <h1>Areas</h1>
-        <h3>{this.state.currentService}</h3>
+        {/* <h3>{this.state.currentService}</h3> */}
         
               {this.state.data.map(area =>
                 <>
@@ -83,6 +84,8 @@ export default class Areas extends Component {
               )}
               <div>
                 <h2>Tarifas</h2>
+                <br/>
+                <EditableTable/>
               </div>
         </>
    
