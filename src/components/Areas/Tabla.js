@@ -93,40 +93,6 @@ class EditableCell extends React.Component {
 export default class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    this.columns = [
-      // {
-      //   title: 'KG Desde',
-      //   dataIndex: 'desde',
-      //   width: '20%',
-      //   editable: true,
-      // },
-      // {
-      //   title: 'KG Hasta',
-      //   dataIndex: 'hasta',
-      //   editable: true,
-      // },
-      // {
-      //   title: 'Subtotal',
-      //   dataIndex: 'sub',
-      //   editable: true,
-      // },
-      // {
-      //   title: 'Precio/Kg extra',
-      //   dataIndex: 'preKgExtra',
-      //   editable: true,
-      // }
-
-      // {
-      //   title: 'operation',
-      //   dataIndex: 'operation',
-      //   render: (text, record) =>
-      //     this.state.dataSource.length >= 1 ? (
-      //       <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
-      //         <a>Delete</a>
-      //       </Popconfirm>
-      //     ) : null,
-      // },
-    ];
 
     this.state = {
       dataSource: [
@@ -200,38 +166,26 @@ export default class EditableTable extends React.Component {
       
     });
   };
-  handleAddRight = () => {
-    const { count, dataSource,sub } = this.state;
-    
-    const newData = {
-      key: count,
-      desde: `${count}.01 `,
-      hasta: `${Number(count)+1}`,
-      sub: `${sub+8.4}`,
-      preKgExtra:'0',
-      
-      editableKgExtra:count>5? true: false
-    };
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
-      sub:sub+8.4,
-      
-      // editableKgExtra: this.state.count>5? true: false
-      
-    });
-  };
 
   // Event to add new column
   handleAddColumn = () => {
     const { columns } = this.state;
-    const newColumn = {
-      title: 'age',
-      dataIndex: 'age',
-    };
+    const newColumns = 
+      [
+        {
+          title: 'Subtotal',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        },
+      ]
 
     this.setState({
-      columns: [...columns, newColumn]
+      columns: [...columns, ...newColumns]
     });
   }
 
@@ -247,28 +201,30 @@ export default class EditableTable extends React.Component {
   };
 
   render() {
-    const { dataSource, columns } = this.state;
+    const { dataSource } = this.state;
     const components = {
       body: {
         row: EditableFormRow,
         cell: EditableCell,
       },
     };
-    // const columns = this.columns.map(col => {
-    //   if (!col.editable) {
-    //     return col;
-    //   }
-    //   return {
-    //     ...col,
-    //     onCell: record => ({
-    //       record,
-    //       editable: col.editable,
-    //       dataIndex: col.dataIndex,
-    //       title: col.title,
-    //       handleSave: this.handleSave,
-    //     }),
-    //   };
-    // });
+
+    const columns = this.state.columns.map(col => {
+      if (!col.editable) {
+        return col;
+      }
+      return {
+        ...col,
+        onCell: record => ({
+          record,
+          editable: col.editable,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          handleSave: this.handleSave,
+        }),
+      };
+    });
+
     return (
       <div>
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
@@ -277,7 +233,9 @@ export default class EditableTable extends React.Component {
         <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
         </Button>
-
+        <Button onClick={callback(23)} type="primary" style={{ marginBottom: 16 }}>
+          Callback
+         </Button>
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
