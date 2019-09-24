@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Badge, Button, Icon, Switch, Collapse } from 'antd';
 import { Descriptions,Breadcrumb } from 'antd';
+import NuevaTarifa from './NuevaTarifa'
 
 import EditableTable from '../Areas/Tabla';
 const { Panel } = Collapse;
@@ -98,8 +99,11 @@ export default class Areas extends Component {
               <div>
                 <h2>Tarifas</h2>
                 <br/>
-                <EditableTable />
+                <EditableTable/>
+                  
 
+                <NuevaTarifa/>
+             
               </div>
         </>
    
