@@ -241,17 +241,17 @@ export default class EditableTable extends React.Component {
       // }
       console.table(col)
 
-      handleEditable(col);
-      // return {
-      //   ...col,
-      //   onCell: record => ({
-      //     record,
-      //     editable: col.editable,
-      //     dataIndex: col.dataIndex,
-      //     title: col.title,
-      //     handleSave: this.handleSave,
-      //   }),
-      // };
+      // handleEditable(col);
+      return {
+        ...col,
+        onCell: record => ({
+          record,
+          editable: col.editable,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          handleSave: this.handleSave,
+        }),
+      };
     });
 
     return (
