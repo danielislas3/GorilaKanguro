@@ -1,8 +1,14 @@
 import React from 'react'
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
 import ReactDOM from 'react-dom';
-var prueba= false
+const { TabPane } = Tabs;
 const EditableContext = React.createContext();
+
+
+function callback(key) {
+  console.log(key);
+}
+
 
 //hook
 const EditableRow = ({ form, index, ...props }) => (
@@ -231,7 +237,7 @@ export default class EditableTable extends React.Component {
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
-        <Button onClick={this.handleAddRight} type="primary" style={{ marginBottom: 16 }}>
+        <Button onClick={callback(23)} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
         </Button>
         <Table
