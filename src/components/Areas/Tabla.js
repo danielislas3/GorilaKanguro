@@ -81,6 +81,7 @@ class EditableCell extends React.Component {
     return (
       <td {...restProps}>
         {editable ? (<EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>) : (children)}
+
       </td>
     );
   }
@@ -160,6 +161,7 @@ export default class EditableTable extends React.Component {
           dataIndex: 'areaA',
           editable: true,
           children: [
+            
             {
               title: 'Subtotal',
               dataIndex: 'sub',
@@ -217,40 +219,17 @@ export default class EditableTable extends React.Component {
       if (!col.editable) {
         return col;
       }
-      // if (col.children) {
-      //   console.log('evaluando')
-      //   col.children.forEach(element => {
-      //     if (element.editable) {
-      //       console.log(col)
-      //       return {
-      //         ...col.children,
-      //         onCell: record => ({
-      //           record,
-      //         }),
-      //       };
-      //     };
-      //   });
-      // }
-      console.table(col)
-
-      // handleEditable(col);
       return {
         ...col,
         onCell: record => ({
           record,
-          editable: col.editable,
+          editable: true,
           dataIndex: col.dataIndex,
           title: col.title,
           handleSave: this.handleSave,
         }),
       };
     }); 
-
-    console.log('columns')
-    console.log(columns)
-    
-    console.log('ds')
-    console.log(dataSource) 
 
     return (
       <div>
