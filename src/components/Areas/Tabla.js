@@ -132,7 +132,47 @@ export default class EditableTable extends React.Component {
       ],
       count: 2,
       sub:94.85,
-
+      dataSource2: [
+        {
+          key: '0',
+          desde: '0',
+          hasta: '1',
+          sub: '80.00',
+          preKgExtra:'0',
+        },
+        {
+          key: '1',
+          desde: '1.01',
+          hasta: '2',
+          sub: '95.00',
+          preKgExtra:'0',
+        },
+      ], 
+      columns: [
+        {
+          title: 'KG Desde',
+          dataIndex: 'desde',
+          width: '20%',
+          editable: true,
+        },
+        {
+          title: 'KG Hasta',
+          dataIndex: 'hasta',
+          editable: true,
+        },
+        {
+          title: 'Subtotal0',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra0',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        }
+      ],
+      count1: 3,
+      sub1: 100.09,
     };
   }
 
@@ -216,7 +256,7 @@ export default class EditableTable extends React.Component {
   }
 
   render() {
-    const { dataSource } = this.state;
+    const { dataSource, dataSource2} = this.state;
     const components = {
       body: {
         row: EditableFormRow,
@@ -224,13 +264,8 @@ export default class EditableTable extends React.Component {
       },
     };
 
-    
-    const columns = this.state.columns.map(col => {
-      if (!col.editable) {
-        return col;
-      }
-
-      // if (!col.children) {
+    const nestedColumns = this.state.columns.map(col => {
+       // if (!col.children) {
       //   console.log('evaluando')
       //   col.children.forEach(element => {
       //     if (element.editable) {
@@ -244,12 +279,63 @@ export default class EditableTable extends React.Component {
       //     };
       //   });
       // }
+      if (!col.editable) {
+        return col;
+      }
+
       console.log(col)
 
       if(flag) {
+        
         console.log('la especial')
-        console.log(col.children[0])
+        // console.log(col.children)
+        if (col.children) {
+          console.log(79798);
+            
+          col.children.forEach(function (colChild) {
+            console.log('colChild.editable');
+            console.log(colChild.editable);
+            console.log('col');
+            console.log(col);
+            console.log('...col');
+            console.log([...col.children]);
+
+            return {
+              ...col.children,
+              onCell: record => ({
+                record,
+                editable: col.children.editable,
+                dataIndex: col.children.dataIndex,
+                title: col.children.title,
+                handleSave: this.handleSave,
+              }),
+            };
+          })
+        }
+      } else {
+        return {
+          ...col,
+          onCell: record => ({
+            record,
+            editable: col.editable,
+            dataIndex: col.dataIndex,
+            title: col.title,
+            handleSave: this.handleSave,
+          }),
+        };
       }
+
+
+
+    })
+    
+    const columns = this.state.columns.map(col => {
+      if (!col.editable) {
+        return col;
+      }
+
+    //   console.log('...col original')
+    // console.log([...col]) 
 
       // handleEditable(col);
       return {
@@ -270,6 +356,8 @@ export default class EditableTable extends React.Component {
     console.log('ds')
     console.log(dataSource) 
 
+    
+
     return (
       <div>
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
@@ -284,6 +372,13 @@ export default class EditableTable extends React.Component {
           bordered
           dataSource={dataSource}
           columns={columns}
+        />
+        <Table
+          components={components}
+          rowClassName={() => 'editable-row'}
+          bordered
+          dataSource={dataSource2}
+          columns={nestedColumns}
         />
       </div>
     );
