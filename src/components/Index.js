@@ -17,7 +17,7 @@ export default function index() {
   
       {/* MERQ */}
       <CardSection src="http://merq.com.mx/wp-content/uploads/2016/09/LOGO.png" name='MERQ' desc="descripcion merq" to="merq"/> 
-
+  
 
 
 

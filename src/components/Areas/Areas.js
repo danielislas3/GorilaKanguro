@@ -32,7 +32,7 @@ export default class Areas extends Component {
          name:'C',
          count:543,
          states:['CDMX','Aguascalientes', 'Baja', 'California', 'Mexicali', 'Baja', 'California', 'Sur', 'La Paz', 'Campeche', 'Chihuahua', 'Tuxtla' ,'Gutiérrez','Coahuila', 'Saltillo', 'Colima', 'Colima'],
-
+ 
        },
       ],
     currentService: 'EXPRESS DOMESTIC',
@@ -100,8 +100,6 @@ export default class Areas extends Component {
                 <h2>Tarifas</h2>
                 <br/>
                 <EditableTable/>
-                  
-
                 <NuevaTarifa/>
              
               </div>

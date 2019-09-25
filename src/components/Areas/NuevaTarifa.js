@@ -16,7 +16,7 @@ export default class  NuevaTarifa extends React.Component {
     this.state = {
       activeKey: panes[0].key,
       panes,
-    };
+    };x
   }
 
   onChange = activeKey => {
@@ -68,7 +68,7 @@ export default class  NuevaTarifa extends React.Component {
         >
           {this.state.panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key}>
-                <EditableTable/>
+                <EditableTable />
               {/* {pane.content} */}
             </TabPane>
           ))}
