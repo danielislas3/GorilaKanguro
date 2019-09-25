@@ -99,7 +99,10 @@ export default class Areas extends Component {
               <div>
                 <h2>Tarifas</h2>
                 <br/>
+
                 <EditableTable/>
+
+
                 <NuevaTarifa/>
              
               </div>

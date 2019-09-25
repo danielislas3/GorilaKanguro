@@ -16,7 +16,7 @@ export default class  NuevaTarifa extends React.Component {
     this.state = {
       activeKey: panes[0].key,
       panes,
-    };x
+    };
   }
 
   onChange = activeKey => {

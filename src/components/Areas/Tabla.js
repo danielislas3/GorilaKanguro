@@ -169,6 +169,16 @@ export default class EditableTable extends React.Component {
           editable: true,
           children: [
             {
+              title: 'Subtotal (Prov)',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra (Prov)',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            },
+            {
               title: 'Subtotal',
               dataIndex: 'sub',
               editable: true,
