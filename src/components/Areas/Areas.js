@@ -4,7 +4,8 @@ import { Badge, Button, Icon, Switch, Collapse } from 'antd';
 import { Descriptions,Breadcrumb } from 'antd';
 import NuevaTarifa from './NuevaTarifa'
 
-import EditableTable from '../Areas/Tabla';
+import Tabla from '../Areas/Tabla';
+import TablaAnidada from '../Areas/TablaAnidada';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 
@@ -99,8 +100,9 @@ export default class Areas extends Component {
               <div>
                 <h2>Tarifas</h2>
                 <br/>
-                <EditableTable/>
-                <NuevaTarifa/>
+                {/* <Tabla/> */}
+                <TablaAnidada/>
+                {/* <NuevaTarifa/> */}
              
               </div>
         </>
