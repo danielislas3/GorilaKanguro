@@ -94,7 +94,7 @@ export default class TablaAnidada extends React.Component {
           key: '0',
           desde: '0',
           hasta: '1',
-          sub: '86.81',
+          sub: '90',
           preKgExtra:'0',
         },
         {
@@ -106,14 +106,23 @@ export default class TablaAnidada extends React.Component {
         },
       ], 
       columns: [
-
         {
-          title: 'Subtotal0',
+          title: 'Subtotal Normal',
           dataIndex: 'sub',
           editable: true,
         },
         {
-          title: 'Precio/Kg extra0',
+          title: 'Precio/Kg extra Normal',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        },
+        {
+          title: 'Subtotal1',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra1',
           dataIndex: 'preKgExtra',
           editable: true,
         }

@@ -5,7 +5,8 @@ import { Descriptions,Breadcrumb } from 'antd';
 import NuevaTarifa from './NuevaTarifa'
 
 import Tabla from '../Areas/Tabla';
-import TablaAnidada from '../Areas/TablaAnidada';
+import TablaEditable from './TablaEditable';
+// import TablaAnidada from '../Areas/TablaAnidada';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 
@@ -101,7 +102,34 @@ export default class Areas extends Component {
                 <h2>Tarifas</h2>
                 <br/>
                 {/* <Tabla/> */}
-                <TablaAnidada/>
+                <TablaEditable name="sdfsdf" data={[
+                  {
+                    address: "London Park no. 0",
+                    age: 32,
+                    key: "0",
+                    name: "Edrward 0",
+                  },
+                  {
+                    address: "London Park no. 1",
+                    age: 32,
+                    key: "1",
+                    name: "Edrward 1",
+                  },
+                  {
+                    address: "London Park no. 2",
+                    age: 32,
+                    key: "2",
+                    name: "Edrwar 2",
+                  },
+                  {
+                    address: "London Park no. 3",
+                    age: 32,
+                    key: "3",
+                    name: "Edrward 3",
+                  }
+                ]}>
+                  
+                </TablaEditable>
                 {/* <NuevaTarifa/> */}
              
               </div>

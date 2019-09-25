@@ -1,8 +1,10 @@
 import React from 'react'
 import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
+import TablaAnidada from '../Areas/TablaAnidada';
 import ReactDOM from 'react-dom';
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
+
 
 //context
 const EditableRow = ({ form, index, ...props }) => (
@@ -115,16 +117,6 @@ export default class EditableTable extends React.Component {
         {
           title: 'KG Hasta',
           dataIndex: 'hasta',
-          editable: true,
-        },
-        {
-          title: 'Subtotal0',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra0',
-          dataIndex: 'preKgExtra',
           editable: true,
         }
       ],
@@ -275,6 +267,8 @@ export default class EditableTable extends React.Component {
           dataSource={dataSource}
           columns={columns}
         />
+        
+
       </div>
     );
   }
