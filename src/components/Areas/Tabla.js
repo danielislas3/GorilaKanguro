@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
+var flag = false;
+
 //context
 const EditableRow = ({ form, index, ...props }) => (
   <EditableContext.Provider value={form}>
@@ -185,6 +187,8 @@ export default class EditableTable extends React.Component {
     this.setState({
       columns: [...columns, ...newColumns]
     });
+
+    flag = true;
   }
 
   handleSave = row => {
@@ -225,7 +229,8 @@ export default class EditableTable extends React.Component {
       if (!col.editable) {
         return col;
       }
-      // if (col.children) {
+
+      // if (!col.children) {
       //   console.log('evaluando')
       //   col.children.forEach(element => {
       //     if (element.editable) {
@@ -239,7 +244,12 @@ export default class EditableTable extends React.Component {
       //     };
       //   });
       // }
-      console.table(col)
+      console.log(col)
+
+      if(flag) {
+        console.log('la especial')
+        console.log(col.children[0])
+      }
 
       // handleEditable(col);
       return {
