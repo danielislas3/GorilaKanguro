@@ -7,7 +7,7 @@ export default class AreasContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'ltopeft',
+      mode: 'left',
     };
   }
 
@@ -24,13 +24,14 @@ export default class AreasContainer extends React.Component {
           <Radio.Button value="top">Horizontal</Radio.Button>
           <Radio.Button value="left">Vertical</Radio.Button>
         </Radio.Group> */}
-        <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 220 }}>
+        <Tabs  defaultActiveKey="1" tabPosition={mode} >
           {/* {[...Array(30).keys()].map(i => (
             <TabPane tab={`Tab-${i}`} key={i}>
               Content of tab {i}
             </TabPane>
           ))} */}
            <TabPane tab={'Tarifa A'} key="0" > 
+            <div>
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
                     key: '0',
@@ -47,8 +48,10 @@ export default class AreasContainer extends React.Component {
                     preKgExtra:'0',
                   },
              ] }/>
+            </div>
+
            </TabPane>
-           <TabPane tab={'Tarifa B'} key='1'> 
+           <TabPane  tab={'Tarifa B'} key='1'> 
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
                     key: '0',
