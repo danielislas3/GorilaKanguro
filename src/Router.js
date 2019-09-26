@@ -4,6 +4,7 @@ import Index from './components/Index'
 import Componente from './components/Componente'
 import Servicios from './components/Servicios'
 import Areas from './components/Areas/Areas'
+import NotFound from './components/NotFound'
 
 export default function Router () {
   return (
@@ -19,6 +20,8 @@ export default function Router () {
         {/* <Route exact path="/:proveedor/:servicio" component={Componente}/> */}
 
         <Route exact path="/ruta" component={Componente}/>
+      
+        <Route exact path='*' component={NotFound} />
 
       </Switch>
     </BrowserRouter>
