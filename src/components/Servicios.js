@@ -31,7 +31,7 @@ export default function Servicios() {
 	return (
 		<div>
 
-			{console.log(services)}
+			{/* {console.log(services)} */}
 			<h1>Servicios</h1>
 
 			{services.map(item =>

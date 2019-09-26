@@ -5,8 +5,27 @@ import { Descriptions, Breadcrumb } from 'antd';
 import TablaPesoTarifa from './TablaPesoTarifa';
 import TabsArea from './TabsArea';
 import TablaNuevaTarifa from './TablaNuevaTarifa'
+import Test from '../Test';
+import { AppContextProvider, AppContextConsumer } from '../../components/Context/AppContext';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
+
+// class Test extends Component {
+// 	render() {
+// 		return(
+// 			<AppContextConsumer>
+// 				{value => {
+// 					console.log('value')
+// 					console.log(value)
+// 					return(	
+// 						// <p>{value.titulo}</p>
+// 						<div></div>
+// 					);
+// 				}}
+// 			</AppContextConsumer>
+// 		);
+// 	}
+// }
 
 export default class Areas extends Component {
 
@@ -103,8 +122,9 @@ export default class Areas extends Component {
 					<br />
 					<h2>Tarifas</h2>
 
-					<TablaPesoTarifa />
-					<TabsArea /> {/* pasar los datos que conformaran las tablas de nueva Tarifa como:
+					{/* <TablaPesoTarifa />
+					<TabsArea />  */}
+					{/* pasar los datos que conformaran las tablas de nueva Tarifa como:
 						<TabsArea data={bunchOfAllAreasData} /> 
 					y sino pasarlo como:
 						<TabsArea>
@@ -112,6 +132,16 @@ export default class Areas extends Component {
 							<TablaNuevaTarifa data={datosB} />
 						</TabsArea>
 					*/}
+					
+					{/* <AppContextProvider>
+						<TablaPesoTarifa />
+						<TabsArea /> 
+					</AppContextProvider> */}
+				
+					<AppContextProvider>
+						<Test />
+					</AppContextProvider>
+
 				</div>
 			</>
 		)
