@@ -101,7 +101,7 @@ export default class TablaAnidada extends React.Component {
           desde: '1.01',
           hasta: '2',
           sub: '94.85',
-          preKgExtra:'0',
+          preKgExtra:'1',
         },
       ], 
       columns: [
@@ -145,7 +145,7 @@ export default class TablaAnidada extends React.Component {
       desde: `${count}.01 `,
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
-      preKgExtra:'0',
+      preKgExtra:'2',
       
       // editableKgExtra:count>5? true: false
     };
@@ -156,35 +156,7 @@ export default class TablaAnidada extends React.Component {
     });
   };
 
-  // Event to add new column
-  // handleAddColumn = () => {
-  //   const { columns } = this.state;
-  //   const newColumns = 
-  //     [
-  //       {
-  //         title: 'A',
-  //         dataIndex: 'areaA',
-  //         editable: true,
-  //         children: [
-  //           {
-  //             title: 'Subtotal',
-  //             dataIndex: 'sub',
-  //             editable: true,
-  //           },
-  //           {
-  //             title: 'Precio/Kg extra',
-  //             dataIndex: 'preKgExtra',
-  //             editable: true,
-  //           },
-  //         ]
-  //       }
-  //     ]
-
-  //   this.setState({
-  //     columns: [...columns, ...newColumns]
-  //   });
-  // }
-
+  
   handleSave = row => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);

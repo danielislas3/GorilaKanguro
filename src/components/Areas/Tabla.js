@@ -102,7 +102,7 @@ export default class Tabla extends React.Component {
           desde: '1.01',
           hasta: '2',
           sub: '94.85',
-          preKgExtra:'0',
+          preKgExtra:'1',
         },
       ], 
       columns: [
@@ -147,7 +147,7 @@ export default class Tabla extends React.Component {
       desde: `${count}.01 `,
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
-      preKgExtra:'0',
+      preKgExtra:'2',
       
       // editableKgExtra:count>5? true: false
     };

@@ -45,7 +45,7 @@ export default class AreasContainer extends React.Component {
                     desde: '1.01',
                     hasta: '2',
                     sub: '95',
-                    preKgExtra:'0',
+                    preKgExtra:'1',
                   },
              ] }/>
             </div>
@@ -58,14 +58,14 @@ export default class AreasContainer extends React.Component {
                     desde: '0',
                     hasta: '1',
                     sub: '99',
-                    preKgExtra:'0',
+                    preKgExtra:'3',
                   },
                   {
                     key: '1',
                     desde: '1.01',
                     hasta: '2',
                     sub: '95',
-                    preKgExtra:'0',
+                    preKgExtra:'4',
                   },
              ] }/>
            </TabPane>

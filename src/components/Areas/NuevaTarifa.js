@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, Button } from 'antd';
+import { Tabs, Button, Input} from 'antd';
 import TablaAnidada from '../Areas/TablaAnidada'
 
 const { TabPane } = Tabs;
@@ -17,9 +17,12 @@ export default class  NuevaTarifa extends React.Component {
      
       activeKey: panes[0].key,
       panes,
+      newName:null
     };
   }
-
+  handleInput = (e) => {
+    this.setState({newName: e.target.value})
+  }
   onChange = activeKey => {
     this.setState({ activeKey });
   };
@@ -28,11 +31,12 @@ export default class  NuevaTarifa extends React.Component {
     this[action](targetKey);
   };
 
+
   add = () => {
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
-    panes.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
-    this.setState({ panes, activeKey });
+    panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey });
+    this.setState({ panes, activeKey,newName:'' });
   };
 
   remove = targetKey => {
@@ -58,15 +62,19 @@ export default class  NuevaTarifa extends React.Component {
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
-          <Button onClick={this.add}>ADD</Button>
+          <Button onClick={this.add}>Crear tarifa</Button>
+          <Input placeholder="Nombre de tarifa" style={{marginLeft:20,width:200}} onChange={this.handleInput}
+           value={this.state.newName}/>
         </div>
         <Tabs
-          hideAdd
+          closable={false}
+          hideAdd={false}
           onChange={this.onChange}
           activeKey={this.state.activeKey}
           type="editable-card"
           onEdit={this.onEdit}
         >
+          
           {this.state.panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key}>
                 <TablaAnidada  />
