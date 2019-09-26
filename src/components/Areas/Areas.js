@@ -101,9 +101,23 @@ export default class Areas extends Component {
                 <br/>
 
                 <EditableTable/>
-
-
-                <NuevaTarifa/>
+                {/* Crear nueva tarida, añadir ventana */}
+                <NuevaTarifa name="tarifa kanguro A" data={[
+                  {
+                    key: '0',
+                    desde: '0',
+                    hasta: '1',
+                    sub: '99',
+                    preKgExtra:'0',
+                  },
+                  {
+                    key: '1',
+                    desde: '1.01',
+                    hasta: '2',
+                    sub: '95',
+                    preKgExtra:'0',
+                  },
+      ] }/>
              
               </div>
         </>
