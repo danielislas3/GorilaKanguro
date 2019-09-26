@@ -1,7 +1,5 @@
 import React from 'react'
 import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
-import ReactDOM from 'react-dom';
-const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
 //context
@@ -116,21 +114,10 @@ export default class Tabla extends React.Component {
           title: 'KG Hasta',
           dataIndex: 'hasta',
           editable: true,
-        },
-        {
-          title: 'Subtotal0',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra0',
-          dataIndex: 'preKgExtra',
-          editable: true,
         }
       ],
       count: 2,
-      sub:94.85,
-
+      sub: 100,
     };
   }
 
@@ -148,8 +135,6 @@ export default class Tabla extends React.Component {
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
       preKgExtra:'2',
-      
-      // editableKgExtra:count>5? true: false
     };
     this.setState({
       dataSource: [...dataSource, newData],
@@ -235,23 +220,7 @@ export default class Tabla extends React.Component {
       if (!col.editable) {
         return col;
       }
-      // if (col.children) {
-      //   console.log('evaluando')
-      //   col.children.forEach(element => {
-      //     if (element.editable) {
-      //       console.log(col)
-      //       return {
-      //         ...col.children,
-      //         onCell: record => ({
-      //           record,
-      //         }),
-      //       };
-      //     };
-      //   });
-      // }
-      console.table(col)
 
-      // handleEditable(col);
       return {
         ...col,
         onCell: record => ({
@@ -263,12 +232,6 @@ export default class Tabla extends React.Component {
         }),
       };
     }); 
-
-    console.log('columns')
-    console.log(columns)
-    
-    console.log('ds')
-    console.log(dataSource) 
 
     return (
       <div>
