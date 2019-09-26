@@ -1,6 +1,5 @@
 import React from 'react'
 import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
-import ReactDOM from 'react-dom';
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
@@ -84,7 +83,7 @@ class EditableCell extends React.Component {
   }
 }
 
-export default class Tabla extends React.Component {
+export default class TablaAnidada extends React.Component {
   constructor(props) {
     super(props);
 
@@ -94,7 +93,7 @@ export default class Tabla extends React.Component {
           key: '0',
           desde: '0',
           hasta: '1',
-          sub: '86.81',
+          sub: '90',
           preKgExtra:'0',
         },
         {
@@ -107,23 +106,22 @@ export default class Tabla extends React.Component {
       ], 
       columns: [
         {
-          title: 'KG Desde',
-          dataIndex: 'desde',
-          width: '20%',
-          editable: true,
-        },
-        {
-          title: 'KG Hasta',
-          dataIndex: 'hasta',
-          editable: true,
-        },
-        {
-          title: 'Subtotal0',
+          title: 'Subtotal Normal',
           dataIndex: 'sub',
           editable: true,
         },
         {
-          title: 'Precio/Kg extra0',
+          title: 'Precio/Kg extra Normal',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        },
+        {
+          title: 'Subtotal1',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra1',
           dataIndex: 'preKgExtra',
           editable: true,
         }
@@ -159,43 +157,33 @@ export default class Tabla extends React.Component {
   };
 
   // Event to add new column
-  handleAddColumn = () => {
-    const { columns } = this.state;
-    const newColumns = 
-      [
-        {
-          title: 'A',
-          dataIndex: 'areaA',
-          editable: true,
-          children: [
-            {
-              title: 'Subtotal (Prov)',
-              dataIndex: 'sub',
-              editable: true,
-            },
-            {
-              title: 'Precio/Kg extra (Prov)',
-              dataIndex: 'preKgExtra',
-              editable: true,
-            },
-            {
-              title: 'Subtotal',
-              dataIndex: 'sub',
-              editable: true,
-            },
-            {
-              title: 'Precio/Kg extra',
-              dataIndex: 'preKgExtra',
-              editable: true,
-            },
-          ]
-        }
-      ]
+  // handleAddColumn = () => {
+  //   const { columns } = this.state;
+  //   const newColumns = 
+  //     [
+  //       {
+  //         title: 'A',
+  //         dataIndex: 'areaA',
+  //         editable: true,
+  //         children: [
+  //           {
+  //             title: 'Subtotal',
+  //             dataIndex: 'sub',
+  //             editable: true,
+  //           },
+  //           {
+  //             title: 'Precio/Kg extra',
+  //             dataIndex: 'preKgExtra',
+  //             editable: true,
+  //           },
+  //         ]
+  //       }
+  //     ]
 
-    this.setState({
-      columns: [...columns, ...newColumns]
-    });
-  }
+  //   this.setState({
+  //     columns: [...columns, ...newColumns]
+  //   });
+  // }
 
   handleSave = row => {
     const newData = [...this.state.dataSource];
@@ -235,23 +223,8 @@ export default class Tabla extends React.Component {
       if (!col.editable) {
         return col;
       }
-      // if (col.children) {
-      //   console.log('evaluando')
-      //   col.children.forEach(element => {
-      //     if (element.editable) {
-      //       console.log(col)
-      //       return {
-      //         ...col.children,
-      //         onCell: record => ({
-      //           record,
-      //         }),
-      //       };
-      //     };
-      //   });
-      // }
       console.table(col)
 
-      // handleEditable(col);
       return {
         ...col,
         onCell: record => ({
@@ -264,20 +237,14 @@ export default class Tabla extends React.Component {
       };
     }); 
 
-    console.log('columns')
-    console.log(columns)
-    
-    console.log('ds')
-    console.log(dataSource) 
-
     return (
       <div>
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
-        <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
+        {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
-        </Button>
+        </Button> */}
         <Table
           components={components}
           rowClassName={() => 'editable-row'}

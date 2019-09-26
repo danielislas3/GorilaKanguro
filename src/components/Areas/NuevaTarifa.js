@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, Button } from 'antd';
-import EditableTable from '../Areas/Tabla.js'
+import TablaAnidada from '../Areas/TablaAnidada'
 
 const { TabPane } = Tabs;
 
@@ -69,7 +69,7 @@ export default class  NuevaTarifa extends React.Component {
         >
           {this.state.panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key}>
-                <EditableTable  />
+                <TablaAnidada  />
               {/* {pane.content} */}
             </TabPane>
           ))}

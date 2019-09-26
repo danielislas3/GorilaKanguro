@@ -4,7 +4,7 @@ import { Badge, Button, Icon, Switch, Collapse } from 'antd';
 import { Descriptions,Breadcrumb } from 'antd';
 import NuevaTarifa from './NuevaTarifa'
 
-import EditableTable from '../Areas/Tabla';
+import Tabla from '../Areas/Tabla';
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 
@@ -100,7 +100,7 @@ export default class Areas extends Component {
                 <h2>Tarifas</h2>
                 <br/>
 
-                <EditableTable/>
+                <Tabla/>
                 {/* Crear nueva tarida, añadir ventana */}
                 <NuevaTarifa name="tarifa kanguro A" data={[
                   {
