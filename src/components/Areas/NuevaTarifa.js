@@ -10,7 +10,7 @@ export default class  NuevaTarifa extends React.Component {
     super(props);
     this.newTabIndex = 0;
     const panes = [
-      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1' },
+      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1'},
       { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2' },
     ];
     this.state = {
@@ -35,7 +35,7 @@ export default class  NuevaTarifa extends React.Component {
   add = () => {
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
-    panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey });
+    panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey});
     this.setState({ panes, activeKey,newName:'' });
   };
 
@@ -67,7 +67,7 @@ export default class  NuevaTarifa extends React.Component {
            value={this.state.newName}/>
         </div>
         <Tabs
-          closable={false}
+          
           hideAdd={false}
           onChange={this.onChange}
           activeKey={this.state.activeKey}

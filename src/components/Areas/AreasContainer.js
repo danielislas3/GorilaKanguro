@@ -30,7 +30,7 @@ export default class AreasContainer extends React.Component {
               Content of tab {i}
             </TabPane>
           ))} */}
-           <TabPane tab={'Tarifa A'} key="0" > 
+           <TabPane tab={'Tarifa A'} key="0"  > 
             <div>
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
@@ -39,6 +39,7 @@ export default class AreasContainer extends React.Component {
                     hasta: '1',
                     sub: '99',
                     preKgExtra:'0',
+                    
                   },
                   {
                     key: '1',
