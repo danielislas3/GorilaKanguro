@@ -6,8 +6,8 @@ export default class Test extends Component {
 		return(
 			<AppContextConsumer>
 				{value => {
-					// console.log('value')
-					// console.log(value)
+					console.log('valueSSS')
+					console.log(value)
 					return(	
 						// <p>{value.titulo}</p>
 						<div></div>

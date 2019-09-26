@@ -138,9 +138,9 @@ export default class Areas extends Component {
 						<TabsArea /> 
 					</AppContextProvider> */}
 				
-					<AppContextProvider>
+					{/* <AppContextProvider> */}
 						<Test />
-					</AppContextProvider>
+					{/* </AppContextProvider> */}
 
 				</div>
 			</>

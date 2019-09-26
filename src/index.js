@@ -14,25 +14,31 @@ console.log('withData and DataContext AFTERAFTER export')
 // console.log('DataContext')
 // console.log(DataContext)
 
-ReactDOM.render(
-    <AppContextConsumer>
-        {value => {
-            console.log('valuesss')
-            console.log(value)
-            return (
-                // <p>{value.titulo}</p>
-                <Router />
-            );
-        }}
-    </AppContextConsumer>
-    ,document.querySelector('#root')
-);
+// ReactDOM.render(
+//     <AppContextProvider>
+//         {value => {
+//             console.log('valuesss')
+//             console.log(value)
+//             return (
+//                 // <p>{value.titulo}</p>
+//                 <Router />
+//             );
+//         }}
+//     </AppContextProvider>
+//     ,document.querySelector('#root')
+// );
 
 // ReactDOM.render(
 //     <DataContext.Provider value={new Date()}>
 //         <Router />
 //     </DataContext.Provider>
 //     ,document.querySelector('#root'));
+
+ReactDOM.render(
+    <AppContextProvider>
+        <Router />
+    </AppContextProvider>
+    ,document.querySelector('#root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

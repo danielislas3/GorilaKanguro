@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const AppContext = React.createContext({
-    usuarios: [],
+    usuarios: [1,2,3],
     titulo: 'default'
 });
 
