@@ -79,71 +79,81 @@ export default class Areas extends Component {
 	};
 
 	render() {
+
 		return (
-			<>
-				<Link to="/">
-					Home
-       			 </Link>
+			<AppContextConsumer>
 
-				{/* Seccion Areas */}
-				<h1>Areas</h1>
-				<Breadcrumb>
-					<Breadcrumb.Item>
-						<Link to='/'>
-							Proveedores
-            			</Link>
-					</Breadcrumb.Item>
-					<Breadcrumb.Item>
-						<Link to="/dhl">DHL</Link>
-					</Breadcrumb.Item>
+				{value => {
+					return (
+						<>
+							<Link to="/">
+								Home
+							</Link>
 
-					<Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
-				</Breadcrumb>
+							{/* Seccion Areas */}
+							<h1>Areas</h1>
+							<Breadcrumb>
+								<Breadcrumb.Item>
+									<Link to='/'>
+										Proveedores
+								</Link>
+								</Breadcrumb.Item>
+								<Breadcrumb.Item>
+									<Link to="/dhl">DHL</Link>
+								</Breadcrumb.Item>
 
-				{this.state.data.map(area =>
-					<>
-						<Collapse defaultActiveKey="0">
-							<Panel header={area.name} key="1">
+								<Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
+							</Breadcrumb>
 
-								<Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
-									column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
-									<Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
-									<Descriptions.Item label="Codigo postales">434</Descriptions.Item>
-								</Descriptions>
+							{this.state.data.map(area =>
+								<>
+									<Collapse defaultActiveKey="0">
+										<Panel header={area.name} key="1">
 
-							</Panel>
-						</Collapse>
-					</>
-				)}
+											<Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
+												column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
+												<Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
+												<Descriptions.Item label="Codigo postales">434</Descriptions.Item>
+											</Descriptions>
 
-				{/* Seccion Tarifas (de Areas)*/}
-				<div>
-					<br />
-					<br />
-					<h2>Tarifas</h2>
+										</Panel>
+									</Collapse>
+								</>
+							)}
 
-					{/* <TablaPesoTarifa />
-					<TabsArea />  */}
-					{/* pasar los datos que conformaran las tablas de nueva Tarifa como:
-						<TabsArea data={bunchOfAllAreasData} /> 
-					y sino pasarlo como:
-						<TabsArea>
-							<TablaNuevaTarifa data={datosA} />
-							<TablaNuevaTarifa data={datosB} />
-						</TabsArea>
-					*/}
-					
-					{/* <AppContextProvider>
-						<TablaPesoTarifa />
-						<TabsArea /> 
-					</AppContextProvider> */}
-				
-					{/* <AppContextProvider> */}
-						<Test />
-					{/* </AppContextProvider> */}
+							{/* Seccion Tarifas (de Areas)*/}
+							<div>
+								<br />
+								<br />
+								<h2>Tarifas</h2>
 
-				</div>
-			</>
+								{/* <TablaPesoTarifa />
+							<TabsArea />  */}
+								{/* pasar los datos que conformaran las tablas de nueva Tarifa como:
+								<TabsArea data={bunchOfAllAreasData} /> 
+							y sino pasarlo como:
+								<TabsArea>
+									<TablaNuevaTarifa data={datosA} />
+									<TablaNuevaTarifa data={datosB} />
+								</TabsArea>
+							*/}
+
+								{/* <AppContextProvider>
+								<TablaPesoTarifa />
+								<TabsArea /> 
+							</AppContextProvider> */}
+
+								{/* <AppContextProvider> */}
+								<Test />
+								{/* </AppContextProvider> */}
+
+								<p>{value.titulo}</p>
+
+							</div>
+						</>
+					);
+				}}
+			</AppContextConsumer>
 		)
 	}
 }
