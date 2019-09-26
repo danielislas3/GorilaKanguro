@@ -7,6 +7,7 @@ export const AppContext = React.createContext({
 
 export class AppContextProvider extends React.Component {
     render() {
+        
         return(
             <AppContext.Provider value={{
                 usuarios: ['Vicente, Daniel'],
@@ -27,7 +28,8 @@ export class AppContextProvider extends React.Component {
                         provider_id: 500,
                         name: 'ECONOMY SELECT DOMESTIC'
                     }
-                ]
+                ],
+                context:''
             }}>
             
                 {this.props.children}

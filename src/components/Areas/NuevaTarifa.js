@@ -10,18 +10,22 @@ export default class  NuevaTarifa extends React.Component {
     super(props);
     this.newTabIndex = 0;
     const panes = [
-      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1'},
-      { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2' },
+      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false},
+      { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2', closable:false},
     ];
     this.state = {
      
       activeKey: panes[0].key,
       panes,
-      newName:''
+      newName:'',
+      context:''
     };
   }
   handleInput = (e) => {
     this.setState({newName: e.target.value})
+  }
+  handleInputContext = (e) => {
+    this.setState({context: e.target.value})
   }
   onChange = activeKey => {
     this.setState({ activeKey });
@@ -66,6 +70,8 @@ export default class  NuevaTarifa extends React.Component {
           <Button icon="file-add" type="primary" disabled={this.state.newName.length>0?false:true}onClick={this.add}>Crear tarifa</Button>
           <Input placeholder="Nombre de tarifa" style={{marginLeft:20,width:200}} onChange={this.handleInput}
            value={this.state.newName}/>
+          <Input placeholder="Prueba datos context" style={{marginLeft:20,width:200}} onChange={this.handleInputontext}
+           value={this.state.context}/>
         </div>
         <Tabs
           
@@ -77,7 +83,7 @@ export default class  NuevaTarifa extends React.Component {
         >
           
           {this.state.panes.map(pane => (
-            <TabPane tab={pane.title} key={pane.key}>
+            <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
                 <TablaAnidada  />
               {/* {pane.content} */}
             </TabPane>

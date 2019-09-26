@@ -30,7 +30,7 @@ export default class AreasContainer extends React.Component {
               Content of tab {i}
             </TabPane>
           ))} */}
-           <TabPane tab={'Tarifa A'} key="0"  > 
+           <TabPane tab={'Tarifa A'} key="0" closable='false'  > 
             <div>
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
@@ -52,7 +52,7 @@ export default class AreasContainer extends React.Component {
             </div>
 
            </TabPane>
-           <TabPane  tab={'Tarifa B'} key='1'> 
+           <TabPane  tab={'Tarifa B'} key='1' closable={false}> 
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
                     key: '0',
