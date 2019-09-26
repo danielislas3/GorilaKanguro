@@ -4,35 +4,7 @@ import './index.css';
 import 'antd/dist/antd.css'
 import Router from './Router';
 import * as serviceWorker from './serviceWorker';
-// import Data, { DataContext } from './components/Data';
-import { AppContextProvider, AppContextConsumer } from './components/Context/AppContext';
-
-console.log('withData and DataContext AFTERAFTER export')
-
-// console.log('Data')
-// console.log(Data)
-// console.log('DataContext')
-// console.log(DataContext)
-
-// ReactDOM.render(
-//     <AppContextProvider>
-//         {value => {
-//             console.log('valuesss')
-//             console.log(value)
-//             return (
-//                 // <p>{value.titulo}</p>
-//                 <Router />
-//             );
-//         }}
-//     </AppContextProvider>
-//     ,document.querySelector('#root')
-// );
-
-// ReactDOM.render(
-//     <DataContext.Provider value={new Date()}>
-//         <Router />
-//     </DataContext.Provider>
-//     ,document.querySelector('#root'));
+import { AppContextProvider } from './components/Context/AppContext';
 
 ReactDOM.render(
     <AppContextProvider>
