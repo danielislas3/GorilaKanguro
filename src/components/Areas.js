@@ -83,9 +83,9 @@ export default class Areas extends Component {
                   <Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
                 </Breadcrumb>
 
-                  {this.state.data.map(area =>
-                      <Collapse defaultActiveKey="0">
-                        <Panel header={area.name} key="1">
+                  {this.state.data.map((area,i) =>
+                      <Collapse defaultActiveKey="0" key={i}>
+                        <Panel header={area.name} key={i}>
 
                           <Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
                             column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>

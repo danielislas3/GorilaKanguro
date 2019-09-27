@@ -72,6 +72,7 @@ class EditableCell extends React.Component {
       index,
       handleSave,
       children,
+      key,
       ...restProps
     } = this.props;
     return (
@@ -217,7 +218,7 @@ export default class Tabla extends React.Component {
     };
 
     
-    const columns = this.state.columns.map(col => {
+    const columns = this.state.columns.map((col,i) => {
       if (!col.editable) {
         return col;
       }
