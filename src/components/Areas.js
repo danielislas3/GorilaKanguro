@@ -120,26 +120,16 @@ export default class Areas extends Component {
 									(context)  =>{
 										console.log(context)
 										return (
+										<>		
+											<h1>d {context.state.titulo}</h1>
+											<Tabla/>
 										
-									<h1>d</h1>
-								// 	<div>
-								// 		<ul>
-								// 			{dato.map(e=>(
-								// 				<li>e.nombre</li>
-								// 			))}
-								// 		</ul>
-								// 	<h1>{dato}</h1>
-
-									
-										
-								// 		<Tabla/>
-
-								// 	{/* Crear nueva tarida, añadir ventana */}
-								// 	<span>Areas Container</span>
-								// 	<AreasContainer/>
-								// </div>
-									)}
+											<span>Areas Container</span>
+											<AreasContainer/>
+										</>
+										)}
 								}
+
 							</AppContextConsumer>
 
 
