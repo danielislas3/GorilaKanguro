@@ -6,6 +6,8 @@ import NuevaTarifa from './Areas/NuevaTarifa'
 import AreasContainer from './Areas/AreasContainer'
 import Tabla from './Areas/Tabla';
 import { AppContextConsumer } from './Context/AppContext';
+import {MyContext} from './Context/Context'
+
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group; 
 
@@ -63,7 +65,7 @@ export default class Areas extends Component {
 	render() {
 
 		return (
-			<AppContextConsumer>
+			<MyContext.Consumer>
 
 				{value => {
 					console.log('Valores')
@@ -129,13 +131,11 @@ export default class Areas extends Component {
                 <span>Areas Container</span>
 								<AreasContainer/>
 
-								<p>{value.titulo}</p>
-
 							</div>
 						</>
 					);
 				}}
-			</AppContextConsumer>
+			</MyContext.Consumer>
 		)
 	}
 }
