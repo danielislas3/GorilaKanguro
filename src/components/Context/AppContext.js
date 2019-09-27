@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {Component,createContext} from 'react';
 
-export const AppContext = React.createContext({
+export const AppContext = createContext({
     usuarios: [1,2,3],
     titulo: 'default'
 });
+const {Provider,Consumer} = AppContext
 
-export class AppContextProvider extends React.Component {
+export class AppContextProvider extends Component {
     render() {
         
         return(
-            <AppContext.Provider value={{
+            <Provider value={{
                 usuarios: ['Vicente, Daniel'],
                 titulo: 'App',
                 servicios: [
@@ -33,10 +34,10 @@ export class AppContextProvider extends React.Component {
             }}>
             
                 {this.props.children}
-            </AppContext.Provider>
+            </Provider>
         );
     }
 }
 
-export const AppContextConsumer = AppContext.Consumer;
+export const AppContextConsumer = Consumer;
 

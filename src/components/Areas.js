@@ -6,7 +6,7 @@ import NuevaTarifa from './Areas/NuevaTarifa'
 import AreasContainer from './Areas/AreasContainer'
 import Tabla from './Areas/Tabla';
 import { AppContextConsumer } from './Context/AppContext';
-import {MyContext} from './Context/Context'
+//import Consumer from './Context/Context'
 
 const { Panel } = Collapse;
 const ButtonGroup = Button.Group; 
@@ -65,22 +65,11 @@ export default class Areas extends Component {
 	render() {
 
 		return (
-			<MyContext.Consumer>
-
-				{value => {
-					console.log('Valores')
-					console.log(value)
-
-					return (
 						<>
-							<Link to="/">
-								Home
-							</Link>
-
+		
+		
               {/* Seccion Areas */}
               <section>
-
-        
                 <h1>Areas</h1>
                 <Breadcrumb>
                   <Breadcrumb.Item>
@@ -95,21 +84,20 @@ export default class Areas extends Component {
                 </Breadcrumb>
 
                   {this.state.data.map(area =>
-                    <>
                       <Collapse defaultActiveKey="0">
                         <Panel header={area.name} key="1">
 
                           <Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
                             column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
+
                             <Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
                             <Descriptions.Item label="Codigo postales">434</Descriptions.Item>
                           </Descriptions>
 
                         </Panel>
                       </Collapse>
-                    </>
                   )}
-              </section>
+             		 </section>
               {/* Seccion Tarifas (de Areas)*/}
               
 							<div>
@@ -124,18 +112,39 @@ export default class Areas extends Component {
 										<TablaNuevaTarifa data={datosA} />
 										<TablaNuevaTarifa data={datosB} />
 									</TabsArea>
-                */}
-								<Tabla/>
+								*/}
+							
+							<AppContextConsumer>
+							
+								{	
+									(context)  =>{
+										console.log(context)
+										return (
+										
+									<h1>d</h1>
+								// 	<div>
+								// 		<ul>
+								// 			{dato.map(e=>(
+								// 				<li>e.nombre</li>
+								// 			))}
+								// 		</ul>
+								// 	<h1>{dato}</h1>
 
-                {/* Crear nueva tarida, añadir ventana */}
-                <span>Areas Container</span>
-								<AreasContainer/>
+									
+										
+								// 		<Tabla/>
+
+								// 	{/* Crear nueva tarida, añadir ventana */}
+								// 	<span>Areas Container</span>
+								// 	<AreasContainer/>
+								// </div>
+									)}
+								}
+							</AppContextConsumer>
+
 
 							</div>
-						</>
-					);
-				}}
-			</MyContext.Consumer>
-		)
+
+		</>)
 	}
 }
