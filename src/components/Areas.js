@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge, Button, Icon, Switch, Collapse } from 'antd';
 import { Descriptions,Breadcrumb } from 'antd';
-import NuevaTarifa from './NuevaTarifa'
-import AreasContainer from './AreasContainer'
-import Tabla from '../Areas/Tabla';
-import { AppContextConsumer } from '../../components/Context/AppContext';
+import NuevaTarifa from './Areas/NuevaTarifa'
+import AreasContainer from './Areas/AreasContainer'
+import Tabla from './Areas/Tabla';
+import { AppContextConsumer } from './Context/AppContext';
 const { Panel } = Collapse;
-const ButtonGroup = Button.Group;
+const ButtonGroup = Button.Group; 
 
 export default class Areas extends Component {
 
@@ -75,38 +75,41 @@ export default class Areas extends Component {
 								Home
 							</Link>
 
-							{/* Seccion Areas */}
-							<h1>Areas</h1>
-							<Breadcrumb>
-								<Breadcrumb.Item>
-									<Link to='/'>
-										Proveedores
-								</Link>
-								</Breadcrumb.Item>
-								<Breadcrumb.Item>
-									<Link to="/dhl">DHL</Link>
-								</Breadcrumb.Item>
+              {/* Seccion Areas */}
+              <section>
 
-								<Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
-							</Breadcrumb>
+        
+                <h1>Areas</h1>
+                <Breadcrumb>
+                  <Breadcrumb.Item>
+                    <Link to='/'>
+                      Proveedores
+                    </Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item>
+                    <Link to="/dhl">DHL</Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
+                </Breadcrumb>
 
-							{this.state.data.map(area =>
-								<>
-									<Collapse defaultActiveKey="0">
-										<Panel header={area.name} key="1">
+                  {this.state.data.map(area =>
+                    <>
+                      <Collapse defaultActiveKey="0">
+                        <Panel header={area.name} key="1">
 
-											<Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
-												column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
-												<Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
-												<Descriptions.Item label="Codigo postales">434</Descriptions.Item>
-											</Descriptions>
+                          <Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
+                            column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
+                            <Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
+                            <Descriptions.Item label="Codigo postales">434</Descriptions.Item>
+                          </Descriptions>
 
-										</Panel>
-									</Collapse>
-								</>
-							)}
-
-							{/* Seccion Tarifas (de Areas)*/}
+                        </Panel>
+                      </Collapse>
+                    </>
+                  )}
+              </section>
+              {/* Seccion Tarifas (de Areas)*/}
+              
 							<div>
 								<br />
 								<br />
@@ -119,9 +122,11 @@ export default class Areas extends Component {
 										<TablaNuevaTarifa data={datosA} />
 										<TablaNuevaTarifa data={datosB} />
 									</TabsArea>
-								*/}
+                */}
 								<Tabla/>
-								{/* Crear nueva tarida, añadir ventana */}
+
+                {/* Crear nueva tarida, añadir ventana */}
+                <span>Areas Container</span>
 								<AreasContainer/>
 
 								<p>{value.titulo}</p>

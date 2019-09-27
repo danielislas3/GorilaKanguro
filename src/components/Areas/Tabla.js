@@ -75,6 +75,7 @@ class EditableCell extends React.Component {
       ...restProps
     } = this.props;
     return (
+    
       <td {...restProps}>
         {editable ? (<EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>) : (children)}
       </td>
@@ -235,6 +236,7 @@ export default class Tabla extends React.Component {
 
     return (
       <div>
+          <span>tabla</span>
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
