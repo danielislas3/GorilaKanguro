@@ -9,7 +9,7 @@ const {Provider,Consumer} = AppContext
 export class AppContextProvider extends Component {
     state={
         usuarios: ['Vicente, Daniel'],
-        titulo: 'App',
+        titulo: 'Contexto',
             servicios: [
                 {
                     id: 10,

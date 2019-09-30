@@ -2,6 +2,7 @@ import React from 'react'
 import { Tabs, Button, Input} from 'antd';
 import TablaAnidada from '../Areas/TablaAnidada'
 
+
 const { TabPane } = Tabs;
 
 export default class  NuevaTarifa extends React.Component {
@@ -84,6 +85,8 @@ export default class  NuevaTarifa extends React.Component {
           
           {this.state.panes.map(pane => (
             <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
+
+              <p>Tabla anidada</p>
                 <TablaAnidada  />
               {/* {pane.content} */}
             </TabPane>

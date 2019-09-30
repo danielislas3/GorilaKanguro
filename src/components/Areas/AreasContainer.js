@@ -52,7 +52,7 @@ export default class AreasContainer extends React.Component {
             </div>
 
            </TabPane>
-           <TabPane  tab={'Tarifa B'} key='1' closable={false}> 
+           {/* <TabPane  tab={'Tarifa B'} key='1' closable={false}> 
             <NuevaTarifa name="tarifa kanguro A" data={[
                   {
                     key: '0',
@@ -69,7 +69,7 @@ export default class AreasContainer extends React.Component {
                     preKgExtra:'4',
                   },
              ] }/>
-           </TabPane>
+           </TabPane> */}
         </Tabs>
       </div>
     );

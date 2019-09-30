@@ -121,7 +121,7 @@ export default class Areas extends Component {
 										console.log(context)
 										return (
 										<>		
-											<h1>d {context.state.titulo}</h1>
+											<h1> {context.state.titulo}</h1>
 											<Tabla/>
 										
 											<span>Areas Container</span>

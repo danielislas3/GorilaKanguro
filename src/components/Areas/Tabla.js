@@ -1,5 +1,6 @@
 import React from 'react'
-import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
+import { Table,Tabs,Modal, Input, Button, Popconfirm, Form } from 'antd';
+
 const EditableContext = React.createContext();
 
 //context
@@ -15,6 +16,7 @@ class EditableCell extends React.Component {
   state = {
     editing: false,
   };
+
 
   toggleEdit = () => {
     const editing = !this.state.editing;
@@ -64,6 +66,7 @@ class EditableCell extends React.Component {
   };
 
   render() {
+   
     const {
       editable,
       dataIndex,
@@ -89,6 +92,9 @@ export default class Tabla extends React.Component {
     super(props);
 
     this.state = {
+      visible: false,
+      confirmLoading: false,
+
       dataSource: [
         {
           key: '0',
@@ -120,8 +126,39 @@ export default class Tabla extends React.Component {
       ],
       count: 2,
       sub: 100,
+      newNameTarifa: ""
     };
   }
+ // MODAL
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+  handleInput = e => {
+    this.setState({ newNameTarifa: e.target.value });
+  };
+  handleOk = () => {
+    this.setState({
+      ModalText: `El nombre de la nueva tarifa es : ${this.state.newNameTarifa}`,
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+      });
+    }, 1000);
+    this.handleAddColumn()
+    this.state.newNameTarifa=''
+  };
+
+  handleCancel = () => {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false,
+    });
+  };
 
   handleDelete = key => {
     const dataSource = [...this.state.dataSource];
@@ -151,7 +188,7 @@ export default class Tabla extends React.Component {
     const newColumns = 
       [
         {
-          title: 'A',
+          title: this.state.newNameTarifa,
           dataIndex: 'areaA',
           editable: true,
           children: [
@@ -209,7 +246,8 @@ export default class Tabla extends React.Component {
   }
 
   render() {
-    const { dataSource } = this.state;
+   
+    const { dataSource,visible, confirmLoading, ModalText  } = this.state;
     const components = {
       body: {
         row: EditableFormRow,
@@ -241,9 +279,29 @@ export default class Tabla extends React.Component {
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
-        <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
-          Nueva Tarifa
+        <Button type="primary" onClick={this.showModal}  style={{ marginBottom: 16 }}>
+          Nueva tarifa
         </Button>
+        <Modal
+          title="Nueva Tarifa"
+          visible={visible}
+          onOk={this.handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={this.handleCancel}
+        >
+          <Input
+            placeholder="Nombre de tarifa"
+            style={{ marginLeft: 20, width: 200 }}
+            onChange={this.handleInput}
+            value={this.state.newNameTarifa}
+          />
+          <br/>
+         {this.state.newNameTarifa.length>0? <p>El nombre de la nueva tarifa es: {this.state.newNameTarifa}</p>: <p></p>}
+        </Modal>
+        {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
+          Nueva Tarifa
+        </Button> */}
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
