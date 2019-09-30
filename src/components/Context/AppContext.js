@@ -8,9 +8,10 @@ const {Provider,Consumer} = AppContext
 
 export class AppContextProvider extends Component {
     state={
+        
         usuarios: ['Vicente, Daniel'],
         titulo: 'Contexto',
-            servicios: [
+        servicios: [
                 {
                     id: 10,
                     provider_id: 300,
@@ -26,16 +27,29 @@ export class AppContextProvider extends Component {
                     provider_id: 500,
                     name: 'ECONOMY SELECT DOMESTIC'
                 }
-            ],
-            datitos:[]
+        ],
+         datitos:[],
+        tarifas:[
+            {
+                name:'',
+                desde:'',
+                hasta:'',
+                tarifasKanguro:[]
+
+            }
+        ]
         }
-        addServices=servicios=>{
+    addServices=servicios=>{
             this.setState(prev=>({servicios:[...prev.servicios,servicios]}))
           }
-        addToDatitos=datito=>{
+    addToDatitos=datito=>{
             this.setState(prev=>({datitos:[...prev.datitos,datito]}))
         
           }
+    toggleTarifas=(nuevaTarifa)=>{
+       
+        this.setState(prev=>({tarifas:[...prev.tarifas,nuevaTarifa]}))
+    }
     render() {
         const {addServices,addToDatitos} = this
         return(

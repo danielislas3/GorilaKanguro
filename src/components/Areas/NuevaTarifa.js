@@ -71,20 +71,20 @@ export default class  NuevaTarifa extends React.Component {
           <Button icon="file-add" type="primary" disabled={this.state.newName.length>0?false:true}onClick={this.add}>Crear tarifa</Button>
           <Input placeholder="Nombre de tarifa" style={{marginLeft:20,width:200}} onChange={this.handleInput}
            value={this.state.newName}/>
-          <Input placeholder="Prueba datos context" style={{marginLeft:20,width:200}} onChange={this.handleInputontext}
-           value={this.state.context}/>
+
+          
         </div>
         <Tabs
           
-          hideAdd={false}
+          hideAdd={true}
           onChange={this.onChange}
           activeKey={this.state.activeKey}
           type="editable-card"
           onEdit={this.onEdit}
         >
           
-          {this.state.panes.map(pane => (
-            <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
+          {this.state.panes.map((pane,i) => (
+            <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable}>
 
               <p>Tabla anidada</p>
                 <TablaAnidada  />

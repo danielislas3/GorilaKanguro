@@ -67,18 +67,21 @@ class EditableTable extends React.Component {
         dataIndex: 'name',
         width: '25%',
         editable: true,
+        key:1
       },
       {
         title: 'age',
         dataIndex: 'age',
         width: '15%',
         editable: true,
+        key:2
       },
       {
         title: 'address',
         dataIndex: 'address',
         width: '40%',
         editable: true,
+        key:3
       },
       {
         title: 'operation',
@@ -91,6 +94,7 @@ class EditableTable extends React.Component {
               <EditableContext.Consumer>
                 {form => (
                   <a
+               
                     onClick={() => this.save(form, record.key)}
                     style={{ marginRight: 8 }}
                   >

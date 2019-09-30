@@ -129,7 +129,6 @@ export default class Areas extends Component {
 										</>
 										)}
 								}
-
 							</AppContextConsumer>
 
 

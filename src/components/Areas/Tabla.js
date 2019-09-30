@@ -1,5 +1,7 @@
 import React from 'react'
 import { Table,Tabs,Modal, Input, Button, Popconfirm, Form } from 'antd';
+import { AppContextConsumer } from '../Context/AppContext';
+
 
 const EditableContext = React.createContext();
 
@@ -13,6 +15,8 @@ const EditableRow = ({ form, index, ...props }) => (
 const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
+
+  static contextType = AppContextConsumer
   state = {
     editing: false,
   };
@@ -66,7 +70,7 @@ class EditableCell extends React.Component {
   };
 
   render() {
-   
+   console.log(this)
     const {
       editable,
       dataIndex,
@@ -88,6 +92,10 @@ class EditableCell extends React.Component {
 }
 
 export default class Tabla extends React.Component {
+  componentDidMount(){
+    console.log('contexto')
+    console.log(this)
+  }
   constructor(props) {
     super(props);
 
@@ -148,7 +156,7 @@ export default class Tabla extends React.Component {
         visible: false,
         confirmLoading: false,
       });
-    }, 1000);
+    }, 500);
     this.handleAddColumn()
     this.state.newNameTarifa=''
   };
@@ -246,8 +254,8 @@ export default class Tabla extends React.Component {
   }
 
   render() {
-   
-    const { dataSource,visible, confirmLoading, ModalText  } = this.state;
+ 
+    const { dataSource,visible, confirmLoading  } = this.state;
     const components = {
       body: {
         row: EditableFormRow,

@@ -17,6 +17,7 @@ export default class AreasContainer extends React.Component {
   };
 
   render() {
+   
     const { mode } = this.state;
     return (
       <div>
@@ -32,7 +33,7 @@ export default class AreasContainer extends React.Component {
           ))} */}
            <TabPane tab={'Tarifa A'} key="0" closable='false'  > 
             <div>
-            <NuevaTarifa name="tarifa kanguro A" data={[
+            <NuevaTarifa name='A' data={[
                   {
                     key: '0',
                     desde: '0',
