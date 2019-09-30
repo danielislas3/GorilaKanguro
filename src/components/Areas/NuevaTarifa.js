@@ -1,11 +1,13 @@
 import React from 'react'
 import { Tabs, Button, Input} from 'antd';
 import TablaAnidada from '../Areas/TablaAnidada'
+import { AppContextConsumer } from '../Context/AppContext';
 
 
 const { TabPane } = Tabs;
 
 export default class  NuevaTarifa extends React.Component {
+  static contextType = AppContextConsumer
 
   constructor(props) {
     super(props);
@@ -85,7 +87,7 @@ export default class  NuevaTarifa extends React.Component {
           
           {this.state.panes.map((pane,i) => (
             <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable}>
-
+                
               <p>Tabla anidada</p>
                 <TablaAnidada  />
               {/* {pane.content} */}

@@ -1,13 +1,18 @@
 import React from 'react'
 import { Tabs, Radio } from 'antd';
 import NuevaTarifa from './NuevaTarifa'
+import { AppContextConsumer } from '../Context/AppContext';
 const { TabPane } = Tabs;
 
+
 export default class AreasContainer extends React.Component {
+  static contextType = AppContextConsumer
+
   constructor(props) {
     super(props);
     this.state = {
       mode: 'left',
+      name:'nombre'
     };
   }
 
@@ -21,56 +26,37 @@ export default class AreasContainer extends React.Component {
     const { mode } = this.state;
     return (
       <div>
-        {/* <Radio.Group onChange={this.handleModeChange} value={mode} style={{ marginBottom: 8 }}>
-          <Radio.Button value="top">Horizontal</Radio.Button>
-          <Radio.Button value="left">Vertical</Radio.Button>
-        </Radio.Group> */}
+        
         <Tabs  defaultActiveKey="1" tabPosition={mode} >
           {/* {[...Array(30).keys()].map(i => (
             <TabPane tab={`Tab-${i}`} key={i}>
               Content of tab {i}
             </TabPane>
           ))} */}
-           <TabPane tab={'Tarifa A'} key="0" closable='false'  > 
+           <TabPane tab='A' key="0" closable='false'  > 
             <div>
-            <NuevaTarifa name='A' data={[
-                  {
-                    key: '0',
-                    desde: '0',
-                    hasta: '1',
-                    sub: '99',
-                    preKgExtra:'0',
+            <NuevaTarifa name='Kanguro 1' 
+            // data={[
+            //       {
+            //         key: '0',
+            //         desde: '0',
+            //         hasta: '1',
+            //         sub: '99',
+            //         preKgExtra:'0',
                     
-                  },
-                  {
-                    key: '1',
-                    desde: '1.01',
-                    hasta: '2',
-                    sub: '95',
-                    preKgExtra:'1',
-                  },
-             ] }/>
+            //       },
+            //       {
+            //         key: '1',
+            //         desde: '1.01',
+            //         hasta: '2',
+            //         sub: '95',
+            //         preKgExtra:'1',
+            //       }]}
+              />
             </div>
 
            </TabPane>
-           {/* <TabPane  tab={'Tarifa B'} key='1' closable={false}> 
-            <NuevaTarifa name="tarifa kanguro A" data={[
-                  {
-                    key: '0',
-                    desde: '0',
-                    hasta: '1',
-                    sub: '99',
-                    preKgExtra:'3',
-                  },
-                  {
-                    key: '1',
-                    desde: '1.01',
-                    hasta: '2',
-                    sub: '95',
-                    preKgExtra:'4',
-                  },
-             ] }/>
-           </TabPane> */}
+
         </Tabs>
       </div>
     );

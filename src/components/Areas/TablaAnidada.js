@@ -146,8 +146,7 @@ export default class TablaAnidada extends React.Component {
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
       preKgExtra:'2',
-      
-      // editableKgExtra:count>5? true: false
+    
     };
     this.setState({
       dataSource: [...dataSource, newData],

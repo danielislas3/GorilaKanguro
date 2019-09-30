@@ -16,7 +16,6 @@ const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
 
-  static contextType = AppContextConsumer
   state = {
     editing: false,
   };
@@ -70,7 +69,6 @@ class EditableCell extends React.Component {
   };
 
   render() {
-   console.log(this)
     const {
       editable,
       dataIndex,
@@ -92,10 +90,8 @@ class EditableCell extends React.Component {
 }
 
 export default class Tabla extends React.Component {
-  componentDidMount(){
-    console.log('contexto')
-    console.log(this)
-  }
+  static contextType = AppContextConsumer
+
   constructor(props) {
     super(props);
 
@@ -157,6 +153,7 @@ export default class Tabla extends React.Component {
         confirmLoading: false,
       });
     }, 500);
+    //Añadir columna
     this.handleAddColumn()
     this.state.newNameTarifa=''
   };
@@ -197,7 +194,7 @@ export default class Tabla extends React.Component {
       [
         {
           title: this.state.newNameTarifa,
-          dataIndex: 'areaA',
+          dataIndex:  this.state.newNameTarifa,
           editable: true,
           children: [
             {
@@ -227,6 +224,7 @@ export default class Tabla extends React.Component {
     this.setState({
       columns: [...columns, ...newColumns]
     });
+    //this.context.toggleTarifas(...newColumns)
   }
 
   handleSave = row => {
@@ -254,7 +252,9 @@ export default class Tabla extends React.Component {
   }
 
   render() {
- 
+    console.log("context")
+    console.log(this.context)
+
     const { dataSource,visible, confirmLoading  } = this.state;
     const components = {
       body: {
@@ -306,9 +306,7 @@ export default class Tabla extends React.Component {
           <br/>
          {this.state.newNameTarifa.length>0? <p>El nombre de la nueva tarifa es: {this.state.newNameTarifa}</p>: <p></p>}
         </Modal>
-        {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
-          Nueva Tarifa
-        </Button> */}
+
 
         <Table
           components={components}

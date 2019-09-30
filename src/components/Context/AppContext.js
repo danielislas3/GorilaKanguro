@@ -1,9 +1,6 @@
 import React, {Component,createContext} from 'react';
 
-export const AppContext = createContext({
-    usuarios: [1,2,3],
-    titulo: 'default'
-});
+export const AppContext = createContext();
 const {Provider,Consumer} = AppContext
 
 export class AppContextProvider extends Component {
@@ -29,16 +26,21 @@ export class AppContextProvider extends Component {
                 }
         ],
          datitos:[],
-        tarifas:[
-            {
-                name:'',
-                desde:'',
-                hasta:'',
-                tarifasKanguro:[]
-
-            }
-        ]
+        coberturas:{
+            desde:null,
+            hasta:null,
+            sub:null,
+            ext:null,
+            count:null,
+            tarifas:[
+                {title:'Default',sub:'', ext:''},
+                {title:'Kanguro 1',sub:'', ext:''},
+                {title:'Kanguro 2',sub:'', ext:''},
+                ],
+            
         }
+        }
+        
     addServices=servicios=>{
             this.setState(prev=>({servicios:[...prev.servicios,servicios]}))
           }
@@ -46,14 +48,15 @@ export class AppContextProvider extends Component {
             this.setState(prev=>({datitos:[...prev.datitos,datito]}))
         
           }
-    toggleTarifas=(nuevaTarifa)=>{
+    toggleTarifas=nuevaTarifa=>{
        
         this.setState(prev=>({tarifas:[...prev.tarifas,nuevaTarifa]}))
     }
+
     render() {
-        const {addServices,addToDatitos} = this
+        const {addServices,addToDatitos,toggleTarifas} = this
         return(
-            <Provider value={{state:this.state,addServices,addToDatitos}}>
+            <Provider value={{state:this.state,addServices,addToDatitos,toggleTarifas}}>
             
                 {this.props.children}
             </Provider>
