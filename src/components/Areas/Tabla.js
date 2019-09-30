@@ -197,6 +197,7 @@ export default class Tabla extends React.Component {
           dataIndex:  this.state.newNameTarifa,
           editable: true,
           children: [
+            //Childrens van a ser los que se van a editar en AreasContainer
             {
               title: 'Subtotal (Prov)',
               dataIndex: 'sub',
@@ -220,7 +221,7 @@ export default class Tabla extends React.Component {
           ]
         }
       ]
-
+    // this.context.coberturas.tarifas.push()
     this.setState({
       columns: [...columns, ...newColumns]
     });

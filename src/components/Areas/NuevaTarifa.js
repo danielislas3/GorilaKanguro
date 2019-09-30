@@ -71,7 +71,7 @@ export default class  NuevaTarifa extends React.Component {
       <div>
         <div style={{ marginBottom: 16 }}>
           <Button icon="file-add" type="primary" disabled={this.state.newName.length>0?false:true}onClick={this.add}>Crear tarifa</Button>
-          <Input placeholder="Nombre de tarifa" style={{marginLeft:20,width:200}} onChange={this.handleInput}
+          <Input placeholder="Nombre de tarifa canguro" style={{marginLeft:20,width:200}} onChange={this.handleInput}
            value={this.state.newName}/>
 
           

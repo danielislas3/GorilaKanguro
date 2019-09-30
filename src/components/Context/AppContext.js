@@ -26,7 +26,9 @@ export class AppContextProvider extends Component {
                 }
         ],
          datitos:[],
-        coberturas:{
+        coberturas:[
+            {
+            name:'',
             desde:null,
             hasta:null,
             sub:null,
@@ -36,9 +38,8 @@ export class AppContextProvider extends Component {
                 {title:'Default',sub:'', ext:''},
                 {title:'Kanguro 1',sub:'', ext:''},
                 {title:'Kanguro 2',sub:'', ext:''},
-                ],
-            
-        }
+                ]
+            }]
         }
         
     addServices=servicios=>{
@@ -52,7 +53,12 @@ export class AppContextProvider extends Component {
        
         this.setState(prev=>({tarifas:[...prev.tarifas,nuevaTarifa]}))
     }
+    addCobertura(cobertura){
 
+    //cobertura va a ser un array (childrends de tabla)
+        this.setState(prev=>({coberturas:[...prev.coberturas,cobertura]}))
+
+    }
     render() {
         const {addServices,addToDatitos,toggleTarifas} = this
         return(
