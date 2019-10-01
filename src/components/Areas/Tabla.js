@@ -180,12 +180,13 @@ export default class Tabla extends React.Component {
       sub: `${sub+8.4}`,
       preKgExtra:'2',
     };
-    
+
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
       sub:sub+8.4,      
     });
+    this.context.addToDatitos([dataSource])
   };
 
   // Event to add new column
@@ -198,7 +199,7 @@ export default class Tabla extends React.Component {
           dataIndex:  this.state.newNameTarifa,
           editable: true,
           children: [
-            //Childrens van a ser los que se van a editar en AreasContainer
+            //Childrens van a ser los que llenaran las columnas en AreasContainer
             {
               title: 'Subtotal (Prov)',
               dataIndex: 'sub',
@@ -286,12 +287,13 @@ export default class Tabla extends React.Component {
 
     return (
       <div>
-          <span>tabla</span>
+         
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
+        <br/>
         <Button type="primary" onClick={this.showModal}  style={{ marginBottom: 16 }}>
-          Nueva tarifa
+          Nueva Covertura (tarifa)
         </Button>
         <Modal
           title="Nueva Tarifa"

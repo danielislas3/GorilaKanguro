@@ -33,8 +33,10 @@ export default class AreasContainer extends React.Component {
               Content of tab {i}
             </TabPane>
           ))} */}
+          {/* CADA TAB PANE ES UNA "COBERTURA" QUE TIENE DENTRO TARIFAS KANGURO */}
            <TabPane tab='A' key="0" closable='false'  > 
             <div>
+
             <NuevaTarifa name='Kanguro 1' 
             // data={[
             //       {
@@ -56,6 +58,14 @@ export default class AreasContainer extends React.Component {
             </div>
 
            </TabPane>
+         
+           {/* {this.context.state.coberturas.map((area,i)=>(
+             <TabPane tab={area.name} key={i} closable='false'  > 
+                  <NuevaTarifa name='Kanguro 1'  />
+
+                 
+             </TabPane > 
+           ))} */}
 
         </Tabs>
       </div>

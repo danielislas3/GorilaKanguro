@@ -13,8 +13,9 @@ export default class  NuevaTarifa extends React.Component {
     super(props);
     this.newTabIndex = 0;
     const panes = [
+      //cada panel es una "Tarifa canguro que pertenecen a una covertura"
       { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false},
-      { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2', closable:false},
+      // { title: 'Tab 2', content: 'Content of Tab Pane 2', key: '2', closable:false},
     ];
     this.state = {
      
@@ -89,7 +90,43 @@ export default class  NuevaTarifa extends React.Component {
             <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable}>
                 
               <p>Tabla anidada</p>
-                <TablaAnidada   />
+                <TablaAnidada columns={[
+        {
+          title: 'Subtotal Normal',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra Normal',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        },
+        {
+          title: 'Subtotal1',
+          dataIndex: 'sub',
+          editable: true,
+        },
+        {
+          title: 'Precio/Kg extra1',
+          dataIndex: 'preKgExtra',
+          editable: true,
+        }
+      ]} dataSource={[
+        {
+          key: '0',
+          desde: '0',
+          hasta: '1',
+          sub: '90',
+          preKgExtra:'0',
+        },
+        {
+          key: '1',
+          desde: '1.01',
+          hasta: '2',
+          sub: '94.85',
+          preKgExtra:'1',
+        }
+      ]} />
               {/* {pane.content} */}
             </TabPane>
           ))}

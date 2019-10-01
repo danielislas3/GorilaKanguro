@@ -88,44 +88,8 @@ export default class TablaAnidada extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: [
-        {
-          key: '0',
-          desde: '0',
-          hasta: '1',
-          sub: '90',
-          preKgExtra:'0',
-        },
-        {
-          key: '1',
-          desde: '1.01',
-          hasta: '2',
-          sub: '94.85',
-          preKgExtra:'1',
-        }
-      ], 
-      columns: [
-        {
-          title: 'Subtotal Normal',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra Normal',
-          dataIndex: 'preKgExtra',
-          editable: true,
-        },
-        {
-          title: 'Subtotal1',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra1',
-          dataIndex: 'preKgExtra',
-          editable: true,
-        }
-      ],
+      dataSource: this.props.dataSource, 
+      columns: this.props.columns,
       count: 2,
       sub:94.85,
 
