@@ -89,7 +89,7 @@ export default class  NuevaTarifa extends React.Component {
             <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable}>
                 
               <p>Tabla anidada</p>
-                <TablaAnidada  />
+                <TablaAnidada   />
               {/* {pane.content} */}
             </TabPane>
           ))}

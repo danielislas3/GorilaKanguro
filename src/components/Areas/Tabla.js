@@ -180,6 +180,7 @@ export default class Tabla extends React.Component {
       sub: `${sub+8.4}`,
       preKgExtra:'2',
     };
+    
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -225,7 +226,8 @@ export default class Tabla extends React.Component {
     this.setState({
       columns: [...columns, ...newColumns]
     });
-    //this.context.toggleTarifas(...newColumns)
+    //cuando cree una nueva tarifa se la paso a la funcion del contexto
+    this.context.addCobertura(...newColumns)
   }
 
   handleSave = row => {

@@ -102,7 +102,7 @@ export default class TablaAnidada extends React.Component {
           hasta: '2',
           sub: '94.85',
           preKgExtra:'1',
-        },
+        }
       ], 
       columns: [
         {
@@ -195,7 +195,7 @@ export default class TablaAnidada extends React.Component {
       if (!col.editable) {
         return col;
       }
-      console.table(col)
+      // console.table(col)
 
       return {
         ...col,

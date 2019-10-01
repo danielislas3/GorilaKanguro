@@ -26,8 +26,7 @@ export class AppContextProvider extends Component {
                 }
         ],
          datitos:[],
-        coberturas:[
-            {
+        coberturas:{
             name:'',
             desde:null,
             hasta:null,
@@ -39,8 +38,8 @@ export class AppContextProvider extends Component {
                 {title:'Kanguro 1',sub:'', ext:''},
                 {title:'Kanguro 2',sub:'', ext:''},
                 ]
-            }]
         }
+    }
         
     addServices=servicios=>{
             this.setState(prev=>({servicios:[...prev.servicios,servicios]}))
@@ -49,20 +48,17 @@ export class AppContextProvider extends Component {
             this.setState(prev=>({datitos:[...prev.datitos,datito]}))
         
           }
-    toggleTarifas=nuevaTarifa=>{
-       
-        this.setState(prev=>({tarifas:[...prev.tarifas,nuevaTarifa]}))
-    }
-    addCobertura(cobertura){
 
+    addCobertura=(cobertura)=>{
     //cobertura va a ser un array (childrends de tabla)
-        this.setState(prev=>({coberturas:[...prev.coberturas,cobertura]}))
+         const newObj={...this.state.coberturas, tarifas:cobertura} 
+         this.setState({coberturas:newObj})
 
     }
     render() {
-        const {addServices,addToDatitos,toggleTarifas} = this
+        const {addServices,addToDatitos,toggleTarifas,addCobertura,state} = this
         return(
-            <Provider value={{state:this.state,addServices,addToDatitos,toggleTarifas}}>
+            <Provider value={{state:state,addServices,addToDatitos,toggleTarifas,addCobertura}}>
             
                 {this.props.children}
             </Provider>
