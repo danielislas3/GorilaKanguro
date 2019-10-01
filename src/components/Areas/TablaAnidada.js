@@ -1,6 +1,5 @@
 import React from 'react'
 import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
-import ReactDOM from 'react-dom';
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
@@ -89,44 +88,8 @@ export default class TablaAnidada extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: [
-        {
-          key: '0',
-          desde: '0',
-          hasta: '1',
-          sub: '90',
-          preKgExtra:'0',
-        },
-        {
-          key: '1',
-          desde: '1.01',
-          hasta: '2',
-          sub: '94.85',
-          preKgExtra:'0',
-        },
-      ], 
-      columns: [
-        {
-          title: 'Subtotal Normal',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra Normal',
-          dataIndex: 'preKgExtra',
-          editable: true,
-        },
-        {
-          title: 'Subtotal1',
-          dataIndex: 'sub',
-          editable: true,
-        },
-        {
-          title: 'Precio/Kg extra1',
-          dataIndex: 'preKgExtra',
-          editable: true,
-        }
-      ],
+      dataSource: this.props.dataSource, 
+      columns: this.props.columns,
       count: 2,
       sub:94.85,
 
@@ -146,9 +109,9 @@ export default class TablaAnidada extends React.Component {
       desde: `${count}.01 `,
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
-      preKgExtra:'0',
+      preKgExtra:'2',
       
-      // editableKgExtra:count>5? true: false
+      
     };
     this.setState({
       dataSource: [...dataSource, newData],
@@ -157,35 +120,7 @@ export default class TablaAnidada extends React.Component {
     });
   };
 
-  // Event to add new column
-  // handleAddColumn = () => {
-  //   const { columns } = this.state;
-  //   const newColumns = 
-  //     [
-  //       {
-  //         title: 'A',
-  //         dataIndex: 'areaA',
-  //         editable: true,
-  //         children: [
-  //           {
-  //             title: 'Subtotal',
-  //             dataIndex: 'sub',
-  //             editable: true,
-  //           },
-  //           {
-  //             title: 'Precio/Kg extra',
-  //             dataIndex: 'preKgExtra',
-  //             editable: true,
-  //           },
-  //         ]
-  //       }
-  //     ]
-
-  //   this.setState({
-  //     columns: [...columns, ...newColumns]
-  //   });
-  // }
-
+  
   handleSave = row => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
@@ -224,7 +159,7 @@ export default class TablaAnidada extends React.Component {
       if (!col.editable) {
         return col;
       }
-      console.table(col)
+      // console.table(col)
 
       return {
         ...col,

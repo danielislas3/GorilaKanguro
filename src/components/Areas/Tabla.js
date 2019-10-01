@@ -1,8 +1,8 @@
 import React from 'react'
-import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
-import TablaAnidada from '../Areas/TablaAnidada';
-import ReactDOM from 'react-dom';
-const { TabPane } = Tabs;
+import { Table,Tabs,Modal, Input, Button, Popconfirm, Form } from 'antd';
+import { AppContextConsumer } from '../Context/AppContext';
+
+
 const EditableContext = React.createContext();
 
 
@@ -16,9 +16,11 @@ const EditableRow = ({ form, index, ...props }) => (
 const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
+
   state = {
     editing: false,
   };
+
 
   toggleEdit = () => {
     const editing = !this.state.editing;
@@ -76,9 +78,11 @@ class EditableCell extends React.Component {
       index,
       handleSave,
       children,
+      key,
       ...restProps
     } = this.props;
     return (
+    
       <td {...restProps}>
         {editable ? (<EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>) : (children)}
 
@@ -87,11 +91,16 @@ class EditableCell extends React.Component {
   }
 }
 
-export default class EditableTable extends React.Component {
+export default class Tabla extends React.Component {
+  static contextType = AppContextConsumer
+
   constructor(props) {
     super(props);
 
     this.state = {
+      visible: false,
+      confirmLoading: false,
+
       dataSource: [
         {
           key: '0',
@@ -105,7 +114,7 @@ export default class EditableTable extends React.Component {
           desde: '1.01',
           hasta: '2',
           sub: '94.85',
-          preKgExtra:'0',
+          preKgExtra:'1',
         },
       ], 
       columns: [
@@ -122,10 +131,41 @@ export default class EditableTable extends React.Component {
         }
       ],
       count: 2,
-      sub:94.85,
-
+      sub: 100,
+      newNameTarifa: ""
     };
   }
+ // MODAL
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+  handleInput = e => {
+    this.setState({ newNameTarifa: e.target.value });
+  };
+  handleOk = () => {
+    this.setState({
+      ModalText: `El nombre de la nueva tarifa es : ${this.state.newNameTarifa}`,
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+      });
+    }, 500);
+    //Añadir columna
+    this.handleAddColumn()
+    this.state.newNameTarifa=''
+  };
+
+  handleCancel = () => {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false,
+    });
+  };
 
   handleDelete = key => {
     const dataSource = [...this.state.dataSource];
@@ -140,15 +180,15 @@ export default class EditableTable extends React.Component {
       desde: `${count}.01 `,
       hasta: `${Number(count)+1}`,
       sub: `${sub+8.4}`,
-      preKgExtra:'0',
-      
-      // editableKgExtra:count>5? true: false
+      preKgExtra:'2',
     };
+
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
       sub:sub+8.4,      
     });
+    this.context.addToDatitos([dataSource])
   };
 
   // Event to add new column
@@ -157,11 +197,21 @@ export default class EditableTable extends React.Component {
     const newColumns = 
       [
         {
-          title: 'A',
-          dataIndex: 'areaA',
+          title: this.state.newNameTarifa,
+          dataIndex:  this.state.newNameTarifa,
           editable: true,
           children: [
-            
+            //Childrens van a ser los que llenaran las columnas en AreasContainer
+            {
+              title: 'Subtotal (Prov)',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra (Prov)',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            },
             {
               title: 'Subtotal',
               dataIndex: 'sub',
@@ -175,10 +225,12 @@ export default class EditableTable extends React.Component {
           ]
         }
       ]
-
+    // this.context.coberturas.tarifas.push()
     this.setState({
       columns: [...columns, ...newColumns]
     });
+    //cuando cree una nueva tarifa se la paso a la funcion del contexto
+    this.context.addCobertura(...newColumns)
   }
 
   handleSave = row => {
@@ -206,7 +258,10 @@ export default class EditableTable extends React.Component {
   }
 
   render() {
-    const { dataSource } = this.state;
+    console.log("context")
+    console.log(this.context)
+
+    const { dataSource,visible, confirmLoading  } = this.state;
     const components = {
       body: {
         row: EditableFormRow,
@@ -215,7 +270,7 @@ export default class EditableTable extends React.Component {
     };
 
     
-    const columns = this.state.columns.map(col => {
+    const columns = this.state.columns.map((col,i) => {
       if (!col.editable) {
         return col;
       }
@@ -233,12 +288,32 @@ export default class EditableTable extends React.Component {
 
     return (
       <div>
+         
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
-        <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
-          Nueva Tarifa
+        <br/>
+        <Button type="primary" onClick={this.showModal}  style={{ marginBottom: 16 }}>
+          Nueva Covertura (tarifa)
         </Button>
+        <Modal
+          title="Nueva Tarifa"
+          visible={visible}
+          onOk={this.handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={this.handleCancel}
+        >
+          <Input
+            placeholder="Nombre de tarifa"
+            style={{ marginLeft: 20, width: 200 }}
+            onChange={this.handleInput}
+            value={this.state.newNameTarifa}
+          />
+          <br/>
+         {this.state.newNameTarifa.length>0? <p>El nombre de la nueva tarifa es: {this.state.newNameTarifa}</p>: <p></p>}
+        </Modal>
+
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
