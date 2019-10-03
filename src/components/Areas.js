@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Badge, Button, Icon, Switch, Collapse } from 'antd';
+import { Badge, Button, Icon, Switch, Collapse ,Input} from 'antd';
 import { Descriptions,Breadcrumb } from 'antd';
 import NuevaTarifa from './Areas/NuevaTarifa'
 import AreasContainer from './Areas/AreasContainer'
@@ -14,6 +14,7 @@ const ButtonGroup = Button.Group;
 export default class Areas extends Component {
 
 	state = {
+		newCobertura:'',
 		data: [
 			{
 				id: 999,
@@ -40,7 +41,11 @@ export default class Areas extends Component {
 		currentService: 'EXPRESS DOMESTIC',
 		count: 5,
 		show: true,
+
 	}
+	handleInput = (e) => {
+    this.setState({newCobertura: e.target.value})
+  }
 	increase = () => {
 		const count = this.state.count + 1;
 		this.setState({ count });
@@ -101,9 +106,20 @@ export default class Areas extends Component {
               {/* Seccion Tarifas (de Areas)*/}
               
 							<div>
+								<AppContextConsumer>
+								
+									{	
+										(context)  =>{
+								
+											console.log(context)
+											return (
+											<>		
 								<br />
 								<br />
 								<h2>Tarifas</h2>
+								<Button icon="file-add" type="primary" onClick={this.add}>Crear Cobertura</Button>
+								<Input placeholder="Nombre de tarifa canguro" style={{marginLeft:20,width:200}} onChange={this.handleInput}
+								value={this.state.newCobertura}/>
 
 								{/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
 									<TabsArea data={bunchOfAllAreasData} /> 
@@ -113,17 +129,7 @@ export default class Areas extends Component {
 										<TablaNuevaTarifa data={datosB} />
 									</TabsArea>
 								*/}
-							
-							<AppContextConsumer>
-							
-								{	
-									(context)  =>{
-										console.log(context)
-										return (
-										<>		
-											<h1> {context.state.titulo}</h1>
-											<Tabla/>
-										
+									
 											<span>Areas Container</span>
 											<AreasContainer/>
 										</>

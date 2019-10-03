@@ -41,7 +41,7 @@ export default class  NuevaTarifa extends React.Component {
 
 
   add = () => {
-
+ 
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
     panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey});
@@ -91,6 +91,16 @@ export default class  NuevaTarifa extends React.Component {
                 
               <p>Tabla anidada</p>
                 <TablaAnidada columns={[
+        {
+          title: 'Desde',
+          dataIndex: 'desde',
+          editable: true,
+        },
+        {
+          title: 'Hasta',
+          dataIndex: 'hasta',
+          editable: true,
+        },
         {
           title: 'Subtotal Normal',
           dataIndex: 'sub',

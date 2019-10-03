@@ -28,13 +28,9 @@ export default class AreasContainer extends React.Component {
       <div>
         
         <Tabs  defaultActiveKey="1" tabPosition={mode} >
-          {/* {[...Array(30).keys()].map(i => (
-            <TabPane tab={`Tab-${i}`} key={i}>
-              Content of tab {i}
-            </TabPane>
-          ))} */}
+
           {/* CADA TAB PANE ES UNA "COBERTURA" QUE TIENE DENTRO TARIFAS KANGURO */}
-           <TabPane tab='A' key="0" closable='false'  > 
+           {/* <TabPane tab='A' key="0" closable='false'  > 
             <div>
 
             <NuevaTarifa name='Kanguro 1' 
@@ -57,15 +53,17 @@ export default class AreasContainer extends React.Component {
               />
             </div>
 
-           </TabPane>
+           </TabPane> */}
          
-           {/* {this.context.state.coberturas.map((area,i)=>(
+
+         
+           {this.context.state.coberturas.map((area,i)=>(
              <TabPane tab={area.name} key={i} closable='false'  > 
                   <NuevaTarifa name='Kanguro 1'  />
-
+              
                  
              </TabPane > 
-           ))} */}
+           ))}
 
         </Tabs>
       </div>
