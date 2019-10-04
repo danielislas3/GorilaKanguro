@@ -29,6 +29,23 @@ export class AppContextProvider extends Component {
                 name:'Default',
                 selected:null,
                 precios:{
+                    desde:'',
+                    hasta:'',
+                    sub:'',
+                    extra:'',
+                },
+                tarifas:[
+                    {
+                        nombre:'',
+                        sub:'',
+                        extra:''
+                    }
+                ]  
+            },
+            {
+                name:'A',
+                selected:null,
+                precios:{
 
                     desde:'',
                     hasta:'',

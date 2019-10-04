@@ -17,8 +17,29 @@ export default class NuevaTarifa extends React.Component {
 			activeKey: panes[0].key,
 			panes,
 		};
-	}
 
+	}
+	add=(name,precios,tarifas)=>{
+	// 	{
+	// 		name:'A',
+	// 		selected:null,
+	// 		precios:{
+
+	// 				desde:'',
+	// 				hasta:'',
+	// 				sub:'',
+	// 				extra:'',
+	// 		},
+	// 		tarifas:[
+	// 				{
+	// 						nombre:'',
+	// 						sub:'',
+	// 						extra:''
+	// 				}
+	// 		]  
+	// }
+	this.context.addCobertura()
+	}
 	onChange = activeKey => {
 		this.setState({ activeKey });
 	};
