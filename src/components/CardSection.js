@@ -5,8 +5,10 @@ const { Meta } = Card;
 //{name, src='https://www.ocs-consulting.nl/wp-content/uploads/2018/04/managed-services-with-ocs-consulting-icon.png', desc,to } 
 
 
-export default function CardSection({card, src='https://www.ocs-consulting.nl/wp-content/uploads/2018/04/managed-services-with-ocs-consulting-icon.png', desc,to } ) {
-  console.log("CARD: ",card)
+
+
+
+export default function CardSection({src='https://www.ocs-consulting.nl/wp-content/uploads/2018/04/managed-services-with-ocs-consulting-icon.png', desc,to } ) {
   return (
     <div>
       

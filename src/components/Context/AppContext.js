@@ -1,11 +1,14 @@
-import React, {Component,createContext} from 'react';
+import React, { Component, createContext } from 'react';
+import Ruta from '../../model/Ruta'
+import Area from '../../model/Area'
 
 export const AppContext = createContext();
-const {Provider,Consumer} = AppContext
+const { Provider, Consumer } = AppContext
+
 
 export class AppContextProvider extends Component {
-    state={
-        name:"CONTEXTO",
+    state = {
+        name: "CONTEXTO",
         // servicios: [
         //         {
         //             id: 10,
@@ -23,42 +26,49 @@ export class AppContextProvider extends Component {
         //             name: 'ECONOMY SELECT DOMESTIC'
         //         }
         // ],
-        datitos:[],
-        coberturas:[
+        datitos: [],
+        rutas: [
+            new Ruta(
+                1, 'code', 'name', 'created_at', 'updated_at', 'deleted_at', 'origin_zone_id', 'destination_zone_id', 'provider_service_id', new Area(1)
+            ),
+            new Ruta(2, 'code', 'name', 'created_at', 'updated_at', 'deleted_at', 'origin_zone_id', 'destination_zone_id', 'provider_service_id', new Area(2)),
+            new Ruta(3, 'code', 'name', 'created_at', 'updated_at', 'deleted_at', 'origin_zone_id', 'destination_zone_id', 'provider_service_id', new Area(3)),
+        ],
+        coberturas: [
             {
-                name:'Default',
-                selected:null,
-                precios:{
-                    desde:'',
-                    hasta:'',
-                    sub:'',
-                    extra:'',
+                name: 'Default',
+                selected: null,
+                precios: {
+                    desde: '',
+                    hasta: '',
+                    sub: '',
+                    extra: '',
                 },
-                tarifas:[
+                tarifas: [
                     {
-                        nombre:'',
-                        sub:'',
-                        extra:''
+                        nombre: '',
+                        sub: '',
+                        extra: ''
                     }
-                ]  
+                ]
             },
             {
-                name:'A',
-                selected:null,
-                precios:{
+                name: 'A',
+                selected: null,
+                precios: {
 
-                    desde:'',
-                    hasta:'',
-                    sub:'',
-                    extra:'',
+                    desde: '',
+                    hasta: '',
+                    sub: '',
+                    extra: '',
                 },
-                tarifas:[
+                tarifas: [
                     {
-                        nombre:'',
-                        sub:'',
-                        extra:''
+                        nombre: '',
+                        sub: '',
+                        extra: ''
                     }
-                ]  
+                ]
             }
         ]
         // coberturas:{
@@ -69,24 +79,24 @@ export class AppContextProvider extends Component {
         //     ext:null,
         //     count:null,
         //     tarifas:[
-                
+
         //         {title:'Default',sub:'', ext:'',data:{}},
         //         {title:'Kanguro 1',sub:'', ext:'',data:{}},
         //         {title:'Kanguro 2',sub:'', ext:'',data:{}},
         //         ]
-        
+
         // }
     }
-        
-    addServices=servicios=>{
-            this.setState(prev=>({servicios:[...prev.servicios,servicios]}))
-          }
-    addToDatitos=datito=>{
-            this.setState(prev=>({datitos:[datito]}))
-        
-          }
 
-    addCobertura=(cobertura)=>{
+    addServices = servicios => {
+        this.setState(prev => ({ servicios: [...prev.servicios, servicios] }))
+    }
+    addToDatitos = datito => {
+        this.setState(prev => ({ datitos: [datito] }))
+
+    }
+
+    addCobertura = (cobertura) => {
         //
         // const newColumns= {
         //     title: string;
@@ -98,20 +108,20 @@ export class AppContextProvider extends Component {
         //         editable: boolean;
         //     }[];
         // }
-       const name= cobertura.title 
-       const precios={
-           desde:cobertura,
-           hasta:'',
-           sub:'',
-       }
+        const name = cobertura.title
+        const precios = {
+            desde: cobertura,
+            hasta: '',
+            sub: '',
+        }
 
-       const newCobertura={
-           name,
+        const newCobertura = {
+            name,
 
-       }   
-    //cobertura va a ser un array (childrends de tabla)
-         //const newObj={...this.state.coberturas, tarifas:cobertura} 
-         this.setState(prev=>({coberturas:[...prev.coberturas,cobertura]}))
+        }
+        //cobertura va a ser un array (childrends de tabla)
+        //const newObj={...this.state.coberturas, tarifas:cobertura} 
+        this.setState(prev => ({ coberturas: [...prev.coberturas, cobertura] }))
     }
 
     // addCobertura=(cobertura)=>{
@@ -120,10 +130,10 @@ export class AppContextProvider extends Component {
     //      this.setState({coberturas:newObj})
     // }
     render() {
-        const {addServices,addToDatitos,toggleTarifas,addCobertura,state} = this
-        return(
-            <Provider value={{state:state,addServices,addToDatitos,toggleTarifas,addCobertura}}>
-            
+        const { addServices, addToDatitos, toggleTarifas, addCobertura, state } = this
+        return (
+            <Provider value={{ state: state, addServices, addToDatitos, toggleTarifas, addCobertura }}>
+
                 {this.props.children}
             </Provider>
         );

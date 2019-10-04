@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Badge, Button, Icon, Switch, Collapse ,Input} from 'antd';
-import { Descriptions,Breadcrumb } from 'antd';
+import { Badge, Button, Icon, Switch, Collapse, Input } from 'antd';
+import { Descriptions, Breadcrumb } from 'antd';
 import NuevaTarifa from './Areas/NuevaTarifa'
 import AreasContainer from './Areas/AreasContainer'
 import Tabla from './Areas/Tabla';
 import { AppContextConsumer } from './Context/AppContext';
+import { importDefaultSpecifier } from '@babel/types';
 //import Consumer from './Context/Context'
 
 const { Panel } = Collapse;
-const ButtonGroup = Button.Group; 
+const ButtonGroup = Button.Group;
 
 export default class Areas extends Component {
 
 	state = {
-		newCobertura:'',
+		newCobertura: '',
 		data: [
 			{
 				id: 999,
@@ -44,8 +45,8 @@ export default class Areas extends Component {
 
 	}
 	handleInput = (e) => {
-    this.setState({newCobertura: e.target.value})
-  }
+		this.setState({ newCobertura: e.target.value })
+	}
 	increase = () => {
 		const count = this.state.count + 1;
 		this.setState({ count });
@@ -67,61 +68,76 @@ export default class Areas extends Component {
 		console.log('toggling')
 	};
 
+	conInputChange = (e, field, ruta) => {
+		ruta[field]=e.target.value;
+		console.log(e.target.value, field, ruta)
+	};
+
+
 	render() {
 
 		return (
-						<>
-		
-		
-              {/* Seccion Areas */}
-              <section>
-                <h1>Areas</h1>
-                <Breadcrumb>
-                  <Breadcrumb.Item>
-                    <Link to='/'>
-                      Proveedores
+			<>
+
+
+				{/* Seccion Areas */}
+				<section>
+					<h1>Areas</h1>
+					<Breadcrumb>
+						<Breadcrumb.Item>
+							<Link to='/'>
+								Proveedores
                     </Link>
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item>
-                    <Link to="/dhl">DHL</Link>
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
-                </Breadcrumb>
+						</Breadcrumb.Item>
+						<Breadcrumb.Item>
+							<Link to="/dhl">DHL</Link>
+						</Breadcrumb.Item>
+						<Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
+					</Breadcrumb>
 
-                  {this.state.data.map((area,i) =>
-                      <Collapse defaultActiveKey="0" key={i}>
-                        <Panel header={area.name} key={i}>
+					{this.state.data.map((area, i) =>
+						<Collapse defaultActiveKey="0" key={i}>
+							<Panel header={area.name} key={i}>
 
-                          <Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
-                            column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
+								<Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
+									column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
 
-                            <Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
-                            <Descriptions.Item label="Codigo postales">434</Descriptions.Item>
-                          </Descriptions>
+									<Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
+									<Descriptions.Item label="Codigo postales">434</Descriptions.Item>
+								</Descriptions>
 
-                        </Panel>
-                      </Collapse>
-                  )}
-             		 </section>
-              {/* Seccion Tarifas (de Areas)*/}
-              
-							<div>
-								<AppContextConsumer>
-								
-									{	
-										(context)  =>{
-								
-											console.log(context)
-											return (
-											<>		
-								<br />
-								<br />
-								<h2>Tarifas</h2>
-								<Button icon="file-add" type="primary" onClick={this.add}>Crear Cobertura</Button>
-								<Input placeholder="Nombre de tarifa canguro" style={{marginLeft:20,width:200}} onChange={this.handleInput}
-								value={this.state.newCobertura}/>
+							</Panel>
+						</Collapse>
+					)}
+				</section>
+				{/* Seccion Tarifas (de Areas)*/}
 
-								{/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
+				<div>
+					<AppContextConsumer>
+
+						{
+							(context) => {
+
+								console.log(context)
+								return (
+									<>
+										<br />
+										<ul>
+
+											{
+												context.state.rutas.map((ruta) => (
+													<input type="text" value={ruta.code} onChange={(e) => this.conInputChange(e, 'code', ruta)}></input>
+												))
+											}
+
+										</ul>
+										<br />
+										<h2>Tarifas</h2>
+										<Button icon="file-add" type="primary" onClick={this.add}>Crear Cobertura</Button>
+										<Input placeholder="Nombre de tarifa canguro" style={{ marginLeft: 20, width: 200 }} onChange={this.handleInput}
+											value={this.state.newCobertura} />
+
+										{/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
 									<TabsArea data={bunchOfAllAreasData} /> 
 									y sino pasarlo como:
 									<TabsArea>
@@ -129,17 +145,18 @@ export default class Areas extends Component {
 										<TablaNuevaTarifa data={datosB} />
 									</TabsArea>
 								*/}
-									
-											<span>Areas Container</span>
-											<AreasContainer/>
-										</>
-										)}
-								}
-							</AppContextConsumer>
+
+										<span>Areas Container</span>
+										<AreasContainer />
+									</>
+								)
+							}
+						}
+					</AppContextConsumer>
 
 
-							</div>
+				</div>
 
-		</>)
+			</>)
 	}
 }
