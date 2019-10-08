@@ -41,7 +41,10 @@ export default class  NuevaTarifa extends React.Component {
  
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
-    panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey});
+    panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey, 
+    //data para las nuevas tarifas
+    columns:this.props.columns , dataSource:this.props.precios
+    });
     this.setState({ panes, activeKey,newName:'' });
   };
 
@@ -92,7 +95,7 @@ export default class  NuevaTarifa extends React.Component {
               {/* 
               <TablaAnidada columns={this.context.state.coberturas} dataSource={[this]}>
               */}
-                <TablaAnidada columns={pane.columns}
+                <TablaAnidada columns={pane.columns} data='data'
                 dataSource={[
                   {
                     key: '0',
