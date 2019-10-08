@@ -60,8 +60,7 @@ export default class AreasContainer extends React.Component {
            {this.context.state.coberturas.map((area,i)=>(
              <TabPane tab={area.name} key={i} closable='false'  > 
                   <NuevaTarifa name='Kanguro 1'  />
-              
-                 
+
              </TabPane > 
            ))}
 

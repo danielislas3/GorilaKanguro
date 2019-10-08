@@ -79,9 +79,9 @@ export default class Areas extends Component {
 		console.log(e.target.value, field, ruta)
 
 	};
-	add=()=>{
-
-	}
+	// add=(name,precios,tarifas)=>{
+	// 	//context.addCobertura(name,precios,tarifas)
+	// }
 
 
 	render() {
@@ -128,7 +128,7 @@ export default class Areas extends Component {
 						{
 							(context) => {
 
-								console.log(context)
+								// console.log(context)
 								return (
 									<>
 										<br />
@@ -143,7 +143,8 @@ export default class Areas extends Component {
 										</ul>
 										<br />
 										<h2>Tarifas</h2>
-										<Button icon="file-add" type="primary" onClick={this.add}>Crear Cobertura</Button>
+										<Button icon="file-add" type="primary" onClick={()=>{context.addCobertura(this.state.newCobertura)}}  disabled={this.state.newCobertura.length>0?false:true}>Crear Cobertura</Button>
+										
 										<Input placeholder="Nombre Cobertura" style={{ marginLeft: 20, width: 200 }} onChange={this.handleInput}
 											value={this.state.newCobertura} />
 

@@ -3,13 +3,8 @@ export default class Cobertura{
   constructor(
     name,
     selected=false,
-    precios,
     desde,hasta,subTotal,kgExtra,
     tarifas,
-      nombreTarifa,
-      sub,
-      kgEx,
-
 
   ){
     this.name=name
@@ -20,10 +15,10 @@ export default class Cobertura{
       subTotal,
       kgExtra,
     }
-  this.tarifas=[{tarifas}]
+  this.tarifas=[tarifas]
   }
 
   newTarifa(newTarifa){
-    this.tarifas.push({newTarifa})
+    this.tarifas.push(newTarifa)
   }
 }
