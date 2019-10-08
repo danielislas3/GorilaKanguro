@@ -128,7 +128,7 @@ export default class Areas extends Component {
 						{
 							(context) => {
 
-								// console.log(context)
+								console.log(context)
 								return (
 									<>
 										<br />

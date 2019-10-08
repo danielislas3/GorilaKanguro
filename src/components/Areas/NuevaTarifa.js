@@ -14,7 +14,7 @@ export default class  NuevaTarifa extends React.Component {
     this.newTabIndex = 0;
     const panes = [
       //cada panel es una "Tarifa canguro que pertenecen a una covertura"
-      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false},
+      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false,  columns:this.props.columns , dataSource:this.props.precios},
     ];
     this.state = {
      
@@ -86,44 +86,13 @@ export default class  NuevaTarifa extends React.Component {
         >
           
           {this.state.panes.map((pane,i) => (
-            <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable}>
+            <TabPane tab={pane.title} key={pane.key} key={i} closable={pane.closable} > 
                 {/* ESTOS DASTOS SON LOS QUE LLENAN LAS TARIFAS, VA A SER HEREDADOS DESDE EL CONTEXTO */}
               <p>Tabla anidada</p>
               {/* 
               <TablaAnidada columns={this.context.state.coberturas} dataSource={[this]}>
               */}
-                <TablaAnidada columns={[
-                  {
-                    title: 'Desde',
-                    dataIndex: 'desde',
-                    editable: true,
-                  },
-                  {
-                    title: 'Hasta',
-                    dataIndex: 'hasta',
-                    editable: true,
-                  },
-                  {
-                    title: 'Subtotal Normal',
-                    dataIndex: 'sub',
-                    editable: true,
-                  },
-                  {
-                    title: 'Precio/Kg extra Normal',
-                    dataIndex: 'preKgExtra',
-                    editable: true,
-                  },
-                  {
-                    title: 'Subtotal1',
-                    dataIndex: 'sub',
-                    editable: true,
-                  },
-                  {
-                    title: 'Precio/Kg extra1',
-                    dataIndex: 'preKgExtra',
-                    editable: true,
-                  }
-                ]}
+                <TablaAnidada columns={pane.columns}
                 dataSource={[
                   {
                     key: '0',
