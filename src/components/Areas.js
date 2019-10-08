@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Badge, Button, Icon, Switch, Collapse, Input } from 'antd';
+import {  Button,  Collapse, Input } from 'antd';
 import { Descriptions, Breadcrumb } from 'antd';
-import NuevaTarifa from './Areas/NuevaTarifa'
+//import NuevaTarifa from './Areas/NuevaTarifa'
 import AreasContainer from './Areas/AreasContainer'
-import Tabla from './Areas/Tabla';
+//import Tabla from './Areas/Tabla';
 import { AppContextConsumer } from './Context/AppContext';
-import { importDefaultSpecifier } from '@babel/types';
+//import { importDefaultSpecifier } from '@babel/types';
 //import Consumer from './Context/Context'
 
 const { Panel } = Collapse;
@@ -15,6 +15,7 @@ const ButtonGroup = Button.Group;
 export default class Areas extends Component {
 
 	state = {
+		rutaCode:[],
 		newCobertura: '',
 		data: [
 			{
@@ -68,10 +69,19 @@ export default class Areas extends Component {
 		console.log('toggling')
 	};
 
-	conInputChange = (e, field, ruta) => {
-		ruta[field]=e.target.value;
+	conInputChange = (e, field, ruta,i) => {
+		let rutasCodes=[]
+		rutasCodes[i]=e.target.value
+		this.setState((prev,i)=>({rutaCode:[...rutasCodes]}))
+
+		//ruta.handleChange(e)
+		ruta[field]=e.target.value
 		console.log(e.target.value, field, ruta)
+
 	};
+	add=()=>{
+
+	}
 
 
 	render() {
@@ -125,8 +135,8 @@ export default class Areas extends Component {
 										<ul>
 
 											{
-												context.state.rutas.map((ruta) => (
-													<input type="text" value={ruta.code} onChange={(e) => this.conInputChange(e, 'code', ruta)}></input>
+												context.state.rutas.map((ruta,i) => (
+													<input type="text" value={this.state.rutaCode[i]} onChange={(e) => this.conInputChange(e, 'code', ruta,i)}></input>
 												))
 											}
 
@@ -134,7 +144,7 @@ export default class Areas extends Component {
 										<br />
 										<h2>Tarifas</h2>
 										<Button icon="file-add" type="primary" onClick={this.add}>Crear Cobertura</Button>
-										<Input placeholder="Nombre de tarifa canguro" style={{ marginLeft: 20, width: 200 }} onChange={this.handleInput}
+										<Input placeholder="Nombre Cobertura" style={{ marginLeft: 20, width: 200 }} onChange={this.handleInput}
 											value={this.state.newCobertura} />
 
 										{/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
