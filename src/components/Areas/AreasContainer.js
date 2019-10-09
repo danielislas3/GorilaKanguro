@@ -52,10 +52,11 @@ export default class AreasContainer extends React.Component {
            </TabPane> */}
 
           {this.context.state.coberturas.map((area, i) => (
+            
             <TabPane tab={area.name} key={i} closable="false">
               <NuevaTarifa
                 name="Kanguro 1"
-                coberturas={area}
+                coberturas={area.tarifas}
                 columns={[
                   {
                     title: "Desde",

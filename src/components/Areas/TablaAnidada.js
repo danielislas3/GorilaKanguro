@@ -100,7 +100,24 @@ export default class TablaAnidada extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: this.props.dataSource,
+      
+       dataSource:this.props.dataSource,
+      
+      //     [{
+      //       key: '0',
+      //       desde: '0',
+      //       hasta: '1',
+      //       sub: '86.81',
+      //       preKgExtra:'0',
+      //     },
+      //     {
+      //       key: '1',
+      //       desde: '1.01',
+      //       hasta: '2',
+      //       sub: '94.85',
+      //       preKgExtra:'1',
+      //     },
+      //   ],
       columns: this.props.columns,
       count: 2,
       sub: 94.85
@@ -122,7 +139,7 @@ export default class TablaAnidada extends React.Component {
       hasta: `${Number(count) + 1}`,
       sub: `${sub + 8.4}`,
       preKgExtra: "2"
-    };
+    };  
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -138,7 +155,7 @@ export default class TablaAnidada extends React.Component {
       ...item,
       ...row
     });
-    this.setState({ dataSource: newData });
+    this.setState({ dataSource: newData })
   };
 
   handleEditable = col => {
@@ -148,7 +165,7 @@ export default class TablaAnidada extends React.Component {
         record,
         editable: col.editable,
         dataIndex: col.dataIndex,
-        title: col.title,
+        title: col.title,         
         handleSave: this.handleSave
       })
     };
@@ -176,9 +193,10 @@ export default class TablaAnidada extends React.Component {
           dataIndex: col.dataIndex,
           title: col.title,
           handleSave: this.handleSave
-        })
+        })   
       };
     });
+    console.log('this.state.dataSource');
     console.log(this.state.dataSource);
     return (
       <div>
