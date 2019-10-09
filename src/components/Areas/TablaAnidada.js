@@ -1,5 +1,5 @@
-import React from 'react'
-import { Table,Tabs, Input, Button, Popconfirm, Form } from 'antd';
+import React from "react";
+import { Table, Tabs, Input, Button, Popconfirm, Form } from "antd";
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
@@ -14,7 +14,7 @@ const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
   state = {
-    editing: false,
+    editing: false
   };
 
   toggleEdit = () => {
@@ -47,11 +47,19 @@ class EditableCell extends React.Component {
           rules: [
             {
               required: true,
-              message: `${title} is required.`,
-            },
+              message: `${title} is required.`
+            }
           ],
-          initialValue: record[dataIndex],
-        })(<Input type="number" min={this.count} ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
+          initialValue: record[dataIndex]
+        })(
+          <Input
+            type="number"
+            min={this.count}
+            ref={node => (this.input = node)}
+            onPressEnter={this.save}
+            onBlur={this.save}
+          />
+        )}
       </Form.Item>
     ) : (
       <div
@@ -77,7 +85,11 @@ class EditableCell extends React.Component {
     } = this.props;
     return (
       <td {...restProps}>
-        {editable ? (<EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>) : (children)}
+        {editable ? (
+          <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>
+        ) : (
+          children
+        )}
       </td>
     );
   }
@@ -88,51 +100,48 @@ export default class TablaAnidada extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: this.props.dataSource, 
+      dataSource: this.props.dataSource,
       columns: this.props.columns,
       count: 2,
-      sub:94.85,
-
+      sub: 94.85
     };
   }
 
   handleDelete = key => {
     const dataSource = [...this.state.dataSource];
+
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
 
   handleAdd = () => {
-    const { count, dataSource,sub } = this.state;
-    
+    const { count, dataSource, sub } = this.state;
+
     const newData = {
       key: count,
       desde: `${count}.01 `,
-      hasta: `${Number(count)+1}`,
-      sub: `${sub+8.4}`,
-      preKgExtra:'2',
-      
-      
+      hasta: `${Number(count) + 1}`,
+      sub: `${sub + 8.4}`,
+      preKgExtra: "2"
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
-      sub:sub+8.4,      
+      sub: sub + 8.4
     });
   };
 
-  
   handleSave = row => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
     const item = newData[index];
     newData.splice(index, 1, {
       ...item,
-      ...row,
+      ...row
     });
     this.setState({ dataSource: newData });
   };
 
-  handleEditable = (col) => {
+  handleEditable = col => {
     return {
       ...col,
       onCell: record => ({
@@ -140,26 +149,24 @@ export default class TablaAnidada extends React.Component {
         editable: col.editable,
         dataIndex: col.dataIndex,
         title: col.title,
-        handleSave: this.handleSave,
-      }),
+        handleSave: this.handleSave
+      })
     };
-  }
+  };
 
   render() {
     const { dataSource } = this.state;
     const components = {
       body: {
         row: EditableFormRow,
-        cell: EditableCell,
-      },
+        cell: EditableCell
+      }
     };
 
-    
     const columns = this.state.columns.map(col => {
       if (!col.editable) {
         return col;
       }
-      // console.table(col)
 
       return {
         ...col,
@@ -168,24 +175,28 @@ export default class TablaAnidada extends React.Component {
           editable: col.editable,
           dataIndex: col.dataIndex,
           title: col.title,
-          handleSave: this.handleSave,
-        }),
+          handleSave: this.handleSave
+        })
       };
-    }); 
-
+    });
+    console.log(this.state.dataSource);
     return (
       <div>
-        <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+        <Button
+          onClick={this.handleAdd}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
           Nuevo peso
         </Button>
-        
+
         {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
         </Button> */}
 
         <Table
           components={components}
-          rowClassName={() => 'editable-row'}
+          rowClassName={() => "editable-row"}
           bordered
           dataSource={dataSource}
           columns={columns}
@@ -194,4 +205,3 @@ export default class TablaAnidada extends React.Component {
     );
   }
 }
-

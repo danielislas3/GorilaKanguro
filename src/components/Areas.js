@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import {  Button,  Collapse, Input } from 'antd';
-import { Descriptions, Breadcrumb } from 'antd';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Button, Collapse, Input } from "antd";
+import { Descriptions, Breadcrumb } from "antd";
 //import NuevaTarifa from './Areas/NuevaTarifa'
-import AreasContainer from './Areas/AreasContainer'
+import AreasContainer from "./Areas/AreasContainer";
 //import Tabla from './Areas/Tabla';
-import { AppContextConsumer } from './Context/AppContext';
+import { AppContextConsumer } from "./Context/AppContext";
 //import { importDefaultSpecifier } from '@babel/types';
 //import Consumer from './Context/Context'
 
@@ -13,142 +13,209 @@ const { Panel } = Collapse;
 const ButtonGroup = Button.Group;
 
 export default class Areas extends Component {
+  state = {
+    rutaCode: [],
+    newCobertura: "",
+    data: [
+      {
+        id: 999,
+        name: "A",
+        count: 421,
+        states: [
+          "CDMX",
+          "Aguascalientes",
+          "Baja",
+          "California",
+          "Mexicali",
+          "Baja",
+          "California",
+          "Sur",
+          "La Paz",
+          "Campeche",
+          "San",
+          "Francisco",
+          "de",
+          "Campeche",
+          "Chihuahua",
+          "Chihuahua",
+          "Tuxtla",
+          "Gutiérrez",
+          "Coahuila",
+          "Saltillo",
+          "Colima",
+          "Colima",
+          "Francisco",
+          "de",
+          "Campeche",
+          "Chihuahua",
+          "Chihuahua",
+          "Tuxtla",
+          "Gutiérrez",
+          "Coahuila",
+          "Saltillo",
+          "Colima",
+          "Colima"
+        ]
+      },
+      {
+        id: 890,
+        name: "B",
+        count: 321,
+        states: [
+          "Francisco",
+          "de",
+          "Campeche",
+          "Chihuahua",
+          "Chihuahua",
+          "Tuxtla",
+          "Gutiérrez",
+          "Coahuila",
+          "Saltillo",
+          "Colima",
+          "Colima"
+        ]
+      },
+      {
+        id: 234,
+        name: "C",
+        count: 543,
+        states: [
+          "CDMX",
+          "Aguascalientes",
+          "Baja",
+          "California",
+          "Mexicali",
+          "Baja",
+          "California",
+          "Sur",
+          "La Paz",
+          "Campeche",
+          "Chihuahua",
+          "Tuxtla",
+          "Gutiérrez",
+          "Coahuila",
+          "Saltillo",
+          "Colima",
+          "Colima"
+        ]
+      }
+    ],
+    currentService: "EXPRESS DOMESTIC",
+    count: 5,
+    show: true
+  };
+  handleInput = e => {
+    this.setState({ newCobertura: e.target.value });
+  };
+  increase = () => {
+    const count = this.state.count + 1;
+    this.setState({ count });
+  };
 
-	state = {
-		rutaCode:[],
-		newCobertura: '',
-		data: [
-			{
-				id: 999,
-				name: 'A',
-				count: 421,
-				states: ['CDMX', 'Aguascalientes', 'Baja', 'California', 'Mexicali', 'Baja', 'California', 'Sur', 'La Paz', 'Campeche', 'San', 'Francisco', 'de', 'Campeche', 'Chihuahua', 'Chihuahua', 'Tuxtla', 'Gutiérrez', 'Coahuila', 'Saltillo', 'Colima', 'Colima', 'Francisco', 'de', 'Campeche', 'Chihuahua', 'Chihuahua', 'Tuxtla', 'Gutiérrez', 'Coahuila', 'Saltillo', 'Colima', 'Colima'],
+  decline = () => {
+    let count = this.state.count - 1;
+    if (count < 0) {
+      count = 0;
+    }
+    this.setState({ count });
+  };
 
-			},
-			{
-				id: 890,
-				name: 'B',
-				count: 321,
-				states: ['Francisco', 'de', 'Campeche', 'Chihuahua', 'Chihuahua', 'Tuxtla', 'Gutiérrez', 'Coahuila', 'Saltillo', 'Colima', 'Colima'],
+  onChange = show => {
+    this.setState({ show });
+  };
 
-			},
-			{
-				id: 234,
-				name: 'C',
-				count: 543,
-				states: ['CDMX', 'Aguascalientes', 'Baja', 'California', 'Mexicali', 'Baja', 'California', 'Sur', 'La Paz', 'Campeche', 'Chihuahua', 'Tuxtla', 'Gutiérrez', 'Coahuila', 'Saltillo', 'Colima', 'Colima'],
+  toggleCollapse = () => {
+    console.log("toggling");
+  };
 
-			},
-		],
-		currentService: 'EXPRESS DOMESTIC',
-		count: 5,
-		show: true,
+  conInputChange = (e, field, ruta, i) => {
+    let rutasCodes = [];
+    rutasCodes[i] = e.target.value;
+    this.setState((prev, i) => ({ rutaCode: [...rutasCodes] }));
 
-	}
-	handleInput = (e) => {
-		this.setState({ newCobertura: e.target.value })
-	}
-	increase = () => {
-		const count = this.state.count + 1;
-		this.setState({ count });
-	};
+    //ruta.handleChange(e)
+    ruta[field] = e.target.value;
+    console.log(e.target.value, field, ruta);
+  };
+  // add=(name,precios,tarifas)=>{
+  // 	//context.addCobertura(name,precios,tarifas)
+  // }
 
-	decline = () => {
-		let count = this.state.count - 1;
-		if (count < 0) {
-			count = 0;
-		}
-		this.setState({ count });
-	};
+  render() {
+    return (
+      <>
+        {/* Seccion Areas */}
+        <section>
+          <h1>Areas</h1>
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <Link to="/">Proveedores</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link to="/dhl">DHL</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
+          </Breadcrumb>
 
-	onChange = show => {
-		this.setState({ show });
-	};
+          {this.state.data.map((area, i) => (
+            <Collapse defaultActiveKey="0" key={i}>
+              <Panel header={area.name} key={i}>
+                <Descriptions
+                  title="kanguro envio de 1 a 3 dias"
+                  layout="vertical"
+                  column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}
+                >
+                  <Descriptions.Item label="Estados">
+                    Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou,
+                    Zhejiang,Hangzhou, Zhejiang,
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Codigo postales">
+                    434
+                  </Descriptions.Item>
+                </Descriptions>
+              </Panel>
+            </Collapse>
+          ))}
+        </section>
+        {/* Seccion Tarifas (de Areas)*/}
 
-	toggleCollapse = () => {
-		console.log('toggling')
-	};
+        <div>
+          <AppContextConsumer>
+            {context => {
+              //console.log(context)
+              return (
+                <>
+                  <br />
+                  <ul>
+                    {context.state.rutas.map((ruta, i) => (
+                      <input
+                        type="text"
+                        value={this.state.rutaCode[i]}
+                        onChange={e => this.conInputChange(e, "code", ruta, i)}
+                      ></input>
+                    ))}
+                  </ul>
+                  <br />
+                  <h2>Tarifas</h2>
+                  <Button
+                    icon="file-add"
+                    type="primary"
+                    onClick={() => {
+                      context.addCobertura(this.state.newCobertura);
+                    }}
+                    disabled={this.state.newCobertura.length > 0 ? false : true}
+                  >
+                    Crear Cobertura
+                  </Button>
 
-	conInputChange = (e, field, ruta,i) => {
-		let rutasCodes=[]
-		rutasCodes[i]=e.target.value
-		this.setState((prev,i)=>({rutaCode:[...rutasCodes]}))
+                  <Input
+                    placeholder="Nombre Cobertura"
+                    style={{ marginLeft: 20, width: 200 }}
+                    onChange={this.handleInput}
+                    value={this.state.newCobertura}
+                  />
 
-		//ruta.handleChange(e)
-		ruta[field]=e.target.value
-		console.log(e.target.value, field, ruta)
-
-	};
-	// add=(name,precios,tarifas)=>{
-	// 	//context.addCobertura(name,precios,tarifas)
-	// }
-
-
-	render() {
-
-		return (
-			<>
-
-
-				{/* Seccion Areas */}
-				<section>
-					<h1>Areas</h1>
-					<Breadcrumb>
-						<Breadcrumb.Item>
-							<Link to='/'>
-								Proveedores
-                    </Link>
-						</Breadcrumb.Item>
-						<Breadcrumb.Item>
-							<Link to="/dhl">DHL</Link>
-						</Breadcrumb.Item>
-						<Breadcrumb.Item>EXPRESS WORLDWIDE</Breadcrumb.Item>
-					</Breadcrumb>
-
-					{this.state.data.map((area, i) =>
-						<Collapse defaultActiveKey="0" key={i}>
-							<Panel header={area.name} key={i}>
-
-								<Descriptions title="kanguro envio de 1 a 3 dias" layout="vertical"
-									column={{ xxl: 4, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}>
-
-									<Descriptions.Item label="Estados">Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,Hangzhou, Zhejiang,</Descriptions.Item>
-									<Descriptions.Item label="Codigo postales">434</Descriptions.Item>
-								</Descriptions>
-
-							</Panel>
-						</Collapse>
-					)}
-				</section>
-				{/* Seccion Tarifas (de Areas)*/}
-
-				<div>
-					<AppContextConsumer>
-
-						{
-							(context) => {
-
-								console.log(context)
-								return (
-									<>
-										<br />
-										<ul>
-
-											{
-												context.state.rutas.map((ruta,i) => (
-													<input type="text" value={this.state.rutaCode[i]} onChange={(e) => this.conInputChange(e, 'code', ruta,i)}></input>
-												))
-											}
-
-										</ul>
-										<br />
-										<h2>Tarifas</h2>
-										<Button icon="file-add" type="primary" onClick={()=>{context.addCobertura(this.state.newCobertura)}}  disabled={this.state.newCobertura.length>0?false:true}>Crear Cobertura</Button>
-										
-										<Input placeholder="Nombre Cobertura" style={{ marginLeft: 20, width: 200 }} onChange={this.handleInput}
-											value={this.state.newCobertura} />
-
-										{/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
+                  {/* <TablaPesoTarifa /> pasar los datos que conformaran las tablas de nueva Tarifa como:
 									<TabsArea data={bunchOfAllAreasData} /> 
 									y sino pasarlo como:
 									<TabsArea>
@@ -157,17 +224,14 @@ export default class Areas extends Component {
 									</TabsArea>
 								*/}
 
-										<span>Areas Container</span>
-										<AreasContainer />
-									</>
-								)
-							}
-						}
-					</AppContextConsumer>
-
-
-				</div>
-
-			</>)
-	}
+                  <span>Areas Container</span>
+                  <AreasContainer />
+                </>
+              );
+            }}
+          </AppContextConsumer>
+        </div>
+      </>
+    );
+  }
 }

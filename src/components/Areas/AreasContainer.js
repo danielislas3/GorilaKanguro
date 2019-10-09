@@ -1,18 +1,17 @@
-import React from 'react'
-import { Tabs, Radio } from 'antd';
-import NuevaTarifa from './NuevaTarifa'
-import { AppContextConsumer } from '../Context/AppContext';
+import React from "react";
+import { Tabs, Radio } from "antd";
+import NuevaTarifa from "./NuevaTarifa";
+import { AppContextConsumer } from "../Context/AppContext";
 const { TabPane } = Tabs;
 
-
 export default class AreasContainer extends React.Component {
-  static contextType = AppContextConsumer
+  static contextType = AppContextConsumer;
 
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'left',
-      name:'nombre'
+      mode: "left",
+      name: "nombre"
     };
   }
 
@@ -22,15 +21,12 @@ export default class AreasContainer extends React.Component {
   };
 
   render() {
-   
     const { mode } = this.state;
     return (
       <div>
-        
-        <Tabs  defaultActiveKey="1" tabPosition={mode} >
-
+        <Tabs defaultActiveKey="1" tabPosition={mode}>
           {/* CADA TAB PANE ES UNA "COBERTURA" QUE TIENE DENTRO TARIFAS KANGURO */}
-           {/* <TabPane tab='A' key="0" closable='false'  > 
+          {/* <TabPane tab='A' key="0" closable='false'  > 
             <div>
 
             <NuevaTarifa name='Kanguro 1' 
@@ -54,50 +50,49 @@ export default class AreasContainer extends React.Component {
             </div>
 
            </TabPane> */}
-         
 
-         
-           {this.context.state.coberturas.map((area,i)=>(
-             <TabPane tab={area.name} key={i} closable='false'  > 
-                  <NuevaTarifa name='Kanguro 1' columns={[
-            {
-              title: 'Desde',
-              dataIndex: 'desde',
-              editable: true,
-            },
-            {
-              title: 'Hasta',
-              dataIndex: 'hasta',
-              editable: true,
-            },
-            {
-              title: 'Subtotal Normal',
-              dataIndex: 'sub',
-              editable: true,
-            },
-            {
-              title: 'Precio/Kg extra Normal',
-              dataIndex: 'preKgExtra',
-              editable: true,
-            },
-            {
-              title: 'Subtotal1',
-              dataIndex: 'sub',
-              editable: true,
-            },
-            {
-              title: 'Precio/Kg extra1',
-              dataIndex: 'preKgExtra',
-              editable: true,
-            }
-          ]}  />
-
-             </TabPane > 
-           ))}
-
+          {this.context.state.coberturas.map((area, i) => (
+            <TabPane tab={area.name} key={i} closable="false">
+              <NuevaTarifa
+                name="Kanguro 1"
+                coberturas={area}
+                columns={[
+                  {
+                    title: "Desde",
+                    dataIndex: "desde",
+                    editable: true
+                  },
+                  {
+                    title: "Hasta",
+                    dataIndex: "hasta",
+                    editable: true
+                  },
+                  {
+                    title: "Subtotal Normal",
+                    dataIndex: "sub",
+                    editable: true
+                  },
+                  {
+                    title: "Precio/Kg extra Normal",
+                    dataIndex: "preKgExtra",
+                    editable: true
+                  },
+                  {
+                    title: "Subtotal1",
+                    dataIndex: "sub",
+                    editable: true
+                  },
+                  {
+                    title: "Precio/Kg extra1",
+                    dataIndex: "preKgExtra",
+                    editable: true
+                  }
+                ]}
+              />
+            </TabPane>
+          ))}
         </Tabs>
       </div>
     );
   }
 }
-
