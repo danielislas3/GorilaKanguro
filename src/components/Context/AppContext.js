@@ -26,7 +26,38 @@ export class AppContextProvider extends Component {
         //             name: 'ECONOMY SELECT DOMESTIC'
         //         }
         // ],
-        datitos: [],
+        colums: [
+            {
+              title: 'Desde',
+              dataIndex: 'desde',
+              editable: true,
+            },
+            {
+              title: 'Hasta',
+              dataIndex: 'hasta',
+              editable: true,
+            },
+            {
+              title: 'Subtotal Normal',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra Normal',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            },
+            {
+              title: 'Subtotal1',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra1',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            }
+          ],
         rutas: [
             new Ruta(
             1, 'code', 'name', 'created_at', 'updated_at', 'deleted_at', 'origin_zone_id','destination_zone_id', 'provider_service_id', new Area(1)),

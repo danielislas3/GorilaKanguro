@@ -14,10 +14,11 @@ export default class  NuevaTarifa extends React.Component {
     this.newTabIndex = 0;
     const panes = [
       //cada panel es una "Tarifa canguro que pertenecen a una covertura"
-      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false,  columns:this.props.columns , dataSource:this.props.precios},
+
+      { title: this.props.name, content: 'Content of Tab Pane 1', key: '1', closable:false,  columns:this.context.state.columns, dataSource:this.props.precios},
     ];
     this.state = {
-     
+
       activeKey: panes[0].key,
       panes,
       newName:'',
@@ -43,7 +44,7 @@ export default class  NuevaTarifa extends React.Component {
     const activeKey = `newTab${this.newTabIndex++}`;
     panes.push({ title: this.state.newName, content: 'New Tab Pane', key: activeKey, 
     //data para las nuevas tarifas
-    columns:this.props.columns , dataSource:this.props.precios
+    columns:this.context.state.columns , dataSource:this.props.precios
     });
     this.setState({ panes, activeKey,newName:'' });
   };

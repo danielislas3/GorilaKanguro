@@ -178,9 +178,11 @@ export default class TablaAnidada extends React.Component {
         <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
           Nuevo peso
         </Button>
+        
         {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
           Nueva Tarifa
         </Button> */}
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
