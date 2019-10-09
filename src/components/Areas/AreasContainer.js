@@ -59,7 +59,38 @@ export default class AreasContainer extends React.Component {
          
            {this.context.state.coberturas.map((area,i)=>(
              <TabPane tab={area.name} key={i} closable='false'  > 
-                  <NuevaTarifa name='Kanguro 1'  />
+                  <NuevaTarifa name='Kanguro 1' columns={[
+            {
+              title: 'Desde',
+              dataIndex: 'desde',
+              editable: true,
+            },
+            {
+              title: 'Hasta',
+              dataIndex: 'hasta',
+              editable: true,
+            },
+            {
+              title: 'Subtotal Normal',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra Normal',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            },
+            {
+              title: 'Subtotal1',
+              dataIndex: 'sub',
+              editable: true,
+            },
+            {
+              title: 'Precio/Kg extra1',
+              dataIndex: 'preKgExtra',
+              editable: true,
+            }
+          ]}  />
 
              </TabPane > 
            ))}
