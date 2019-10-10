@@ -115,6 +115,25 @@ export class AppContextProvider extends Component {
           }
         ]
       }
+    ],
+    coberturas2: [
+      {
+        nombre: "",
+        tarifas: [
+          {
+            nombre: "",
+            precios: [
+              {
+                desde: "1.01",
+                hasta: "2",
+                key: "1",
+                preKgExtra: "1",
+                sub: "94.85"
+              }
+            ]
+          }
+        ]
+      }
     ]
   };
 
@@ -136,12 +155,18 @@ export class AppContextProvider extends Component {
     });
     this.setState(prev => ({ coberturas: [...prev.coberturas, nameCob] }));
   };
-  saveDataSource=(dataSource)=>{
-    console.log('dataSource desde context')
-    console.log(dataSource)
-    //const newCob={}
-    //this.setState(prev=>({coberturas: [...prev.coberturas,newCob}))
-  }
+
+  saveDataSource = datosTarifas => {
+    console.log("datosTarifas desde context");
+    console.log(datosTarifas);
+
+    const newTarifa = {
+      nombre: datosTarifas.nameTarifa,
+      precios: datosTarifas.precios
+    };
+    this.setState( {
+        coberturas2: {...newTarifa} }) 
+  };
 
   render() {
     const {

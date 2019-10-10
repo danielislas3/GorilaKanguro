@@ -22,3 +22,23 @@ export default class Cobertura{
     this.tarifas.push(newTarifa)
   }
 }
+
+// coberturas: [
+//   {
+//     name: "Default",
+//     selected: null,
+//     precios: {
+//       desde: "",
+//       hasta: "",
+//       sub: "",
+//       extra: ""
+//     },
+//     tarifas: [
+//       {
+//         nombre: "",
+//         sub: "",
+//         extra: ""
+//       }
+//     ]
+//   }
+// ]

@@ -149,7 +149,7 @@ export default class TablaAnidada extends React.Component {
      console.log('this.state.dataSource')
      console.log(this.state.dataSource)
     //algo como 
-    this.context.saveDataSource({Precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
+    this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
 
 
   }
