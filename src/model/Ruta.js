@@ -11,6 +11,7 @@ export default class Ruta {
         destination_zone_id,
         provider_service_id,
         origen=null
+        
     ) {
         this.id = id
         this.code = code

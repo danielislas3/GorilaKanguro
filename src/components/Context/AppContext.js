@@ -136,6 +136,12 @@ export class AppContextProvider extends Component {
     });
     this.setState(prev => ({ coberturas: [...prev.coberturas, nameCob] }));
   };
+  saveDataSource=(dataSource)=>{
+    console.log('dataSource desde context')
+    console.log(dataSource)
+    //const newCob={}
+    //this.setState(prev=>({coberturas: [...prev.coberturas,newCob}))
+  }
 
   render() {
     const {
@@ -143,8 +149,10 @@ export class AppContextProvider extends Component {
       addToDatitos,
       toggleTarifas,
       addCobertura,
+      saveDataSource,
       state
     } = this;
+
     return (
       <Provider
         value={{
@@ -152,7 +160,8 @@ export class AppContextProvider extends Component {
           addServices,
           addToDatitos,
           toggleTarifas,
-          addCobertura
+          addCobertura,
+          saveDataSource
         }}
       >
         {this.props.children}

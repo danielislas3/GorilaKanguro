@@ -9,5 +9,4 @@ export default class Peso extends Tarifa{
     this.kgExtra=kgExtra
   }
 
-
 }

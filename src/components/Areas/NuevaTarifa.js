@@ -57,6 +57,7 @@ export default class NuevaTarifa extends React.Component {
   };
 
   remove = targetKey => {
+
     let { activeKey } = this.state;
     let lastIndex;
     this.state.panes.forEach((pane, i) => {
@@ -115,7 +116,7 @@ export default class NuevaTarifa extends React.Component {
 
               <TablaAnidada
                 columns={pane.columns}
-                data="data"
+                data={pane}
                 //estos dataosurce son los que se heredan en la tabla anidada para cada tarifa. hay que migrarlos al contexto.
                 dataSource={this.props.coberturas}
               />
