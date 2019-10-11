@@ -142,7 +142,7 @@ export default class TablaAnidada extends React.Component {
     };
   }
   //aqui guardare los datos hacia el context
-  shouldComponentUpdate(prevProps){
+  UNSAFE_componentWillMount(prevProps){
     // console.log('prevProps')
     // console.log(prevProps)
     const tarifas = this.state.dataSource
@@ -151,9 +151,13 @@ export default class TablaAnidada extends React.Component {
      console.log(this.context)
     //algo como 
     this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
-    
 
-
+  }
+  sendData=()=>{
+    const tarifas = this.state.dataSource
+    //algo como 
+    this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
+    console.log(this.context)
   }
 
 
@@ -240,6 +244,14 @@ export default class TablaAnidada extends React.Component {
           style={{ marginBottom: 16 }}
         >
           Nuevo peso
+        </Button>
+
+        <Button
+          onClick={this.sendData}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
+          Enviar datos
         </Button>
 
         {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>

@@ -164,9 +164,7 @@ export class AppContextProvider extends Component {
       nombre: datosTarifas.nameTarifa,
       precios: datosTarifas.precios
     };
-    this.setState({
-      coberturas2: { ...newTarifa }
-    });
+    this.setState(prev => ({ coberturas2: [...prev.coberturas, newTarifa] }));
   };
   render() {
     const {
