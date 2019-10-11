@@ -139,7 +139,7 @@ export class AppContextProvider extends Component {
 
   addServices = servicios => {
     this.setState(prev => ({ servicios: [...prev.servicios, servicios] }));
-  };
+  }; 
   addToDatitos = datito => {
     this.setState(prev => ({ datitos: [datito] }));
   };
@@ -164,15 +164,14 @@ export class AppContextProvider extends Component {
       nombre: datosTarifas.nameTarifa,
       precios: datosTarifas.precios
     };
-    this.setState( {
-        coberturas2: {...newTarifa} }) 
+    this.setState({
+      coberturas2: { ...newTarifa }
+    });
   };
-
   render() {
     const {
       addServices,
       addToDatitos,
-      toggleTarifas,
       addCobertura,
       saveDataSource,
       state
@@ -184,7 +183,6 @@ export class AppContextProvider extends Component {
           state: state,
           addServices,
           addToDatitos,
-          toggleTarifas,
           addCobertura,
           saveDataSource
         }}

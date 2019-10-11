@@ -142,14 +142,16 @@ export default class TablaAnidada extends React.Component {
     };
   }
   //aqui guardare los datos hacia el context
-  componentDidUpdate(prevProps){
+  shouldComponentUpdate(prevProps){
     // console.log('prevProps')
     // console.log(prevProps)
     const tarifas = this.state.dataSource
      console.log('this.state.dataSource')
      console.log(this.state.dataSource)
+     console.log(this.context)
     //algo como 
     this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
+    
 
 
   }
@@ -203,6 +205,7 @@ export default class TablaAnidada extends React.Component {
   };
 
   render() {
+    
     const { dataSource } = this.state;
     const components = {
       body: {
