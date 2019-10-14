@@ -98,49 +98,54 @@ class EditableCell extends React.Component {
 
 export default class TablaAnidada extends React.Component {
   static contextType = AppContextConsumer;
-  constructor(props) {
-    super(props);
+  constructor(props,context) {
+    super(props,context);
 
     this.state = {
+
+      data:this.context.state.coberturas[this.props.index.indexCobertura].tarifas[this.props.index.indexTarifa].precios,
+
       dataProvs: props,
-      dataSource:
-        //this.props.dataSource,
+
+      dataSource: 
+      this.context.state.coberturas[this.props.index.indexCobertura].tarifas[this.props.index.indexTarifa].precios,
         //SE IMPRIME COMO UN ARREGO DE PRECIOS
-       [
-            {
-              key: "0",
-              desde: "0",
-              hasta: "1",
-              sub: "86.81",
-              preKgExtra: "0"
-            },
-            {
-              key: "1",
-              desde: "1.01",
-              hasta: "2",
-              sub: "94.85",
-              preKgExtra: "1"
-            },
-            {
-              key: "2",
-              desde: "1.01",
-              hasta: "2",
-              sub: "94.85",
-              preKgExtra: "1"
-            },
-            {
-            key: "3",
-            desde: "1.01",
-            hasta: "2",
-            sub: "94.85",
-            preKgExtra: "1"
-            }
-        ],
+      //  [
+      //       {
+      //         key: "0",
+      //         desde: "0",
+      //         hasta: "1",
+      //         sub: "86.81",
+      //         preKgExtra: "0"
+      //       },
+      //       {
+      //         key: "1",
+      //         desde: "1.01",
+      //         hasta: "2",
+      //         sub: "94.85",
+      //         preKgExtra: "1"
+      //       },
+      //       {
+      //         key: "2",
+      //         desde: "1.01",
+      //         hasta: "2",
+      //         sub: "94.85",
+      //         preKgExtra: "1"
+      //       },
+      //       {
+      //       key: "3",
+      //       desde: "1.01",
+      //       hasta: "2",
+      //       sub: "94.85",
+      //       preKgExtra: "1"
+      //       }
+      //   ],
       columns: this.props.columns,
       count: 2,
       sub: 94.85
     };
   }
+
   //aqui guardare los datos hacia el context
   UNSAFE_componentWillMount(prevProps) {
     // console.log('prevProps')
@@ -162,7 +167,9 @@ export default class TablaAnidada extends React.Component {
       precios: this.state.dataSource,
       nameTarifa: this.state.dataProvs.data.title
     });
-    console.log(this.context);
+    
+    console.log(this.state.data)
+
 
   };
 
@@ -241,7 +248,8 @@ export default class TablaAnidada extends React.Component {
       };
     });
     // console.log('this.state.dataSource');
-     console.log(this.props.index);
+    console.log('****datacontext****')
+    console.log(this.state.data);
     return (
       <div>
         <Button
