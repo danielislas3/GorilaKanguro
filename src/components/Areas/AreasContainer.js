@@ -50,12 +50,12 @@ export default class AreasContainer extends React.Component {
 
            </TabPane> */}
 
-          {this.context.state.coberturas.map((area, i) => (
+          {this.context.state.coberturas.map((cobertura, i) => (
             
-            <TabPane tab={area.name} key={i} closable="false">
+            <TabPane tab={cobertura.name} key={i} closable="false">
               <NuevaTarifa
                 name="Kanguro 1"
-                coberturas={area.tarifas}
+                coberturas={cobertura.tarifas}
                 columns={[
                   {
                     title: "Desde",
@@ -88,6 +88,7 @@ export default class AreasContainer extends React.Component {
                     editable: true
                   }
                 ]}
+                indice={i}
               />
             </TabPane>
           ))}

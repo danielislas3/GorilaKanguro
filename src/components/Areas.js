@@ -137,9 +137,7 @@ export default class Areas extends Component {
     ruta[field] = e.target.value;
     console.log(e.target.value, field, ruta);
   };
-  // add=(name,precios,tarifas)=>{
-  // 	//context.addCobertura(name,precios,tarifas)
-  // }
+
 
   render() {
     return (

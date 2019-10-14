@@ -106,35 +106,35 @@ export default class TablaAnidada extends React.Component {
       dataSource:
         //this.props.dataSource,
         //SE IMPRIME COMO UN ARREGO DE PRECIOS
-        [
-          {
-            key: "0",
-            desde: "0",
-            hasta: "1",
-            sub: "86.81",
-            preKgExtra: "0"
-          },
-          {
-            key: "1",
-            desde: "1.01",
-            hasta: "2",
-            sub: "94.85",
-            preKgExtra: "1"
-          },
-          {
-            key: "2",
-            desde: "1.01",
-            hasta: "2",
-            sub: "94.85",
-            preKgExtra: "1"
-          },
-          {
+       [
+            {
+              key: "0",
+              desde: "0",
+              hasta: "1",
+              sub: "86.81",
+              preKgExtra: "0"
+            },
+            {
+              key: "1",
+              desde: "1.01",
+              hasta: "2",
+              sub: "94.85",
+              preKgExtra: "1"
+            },
+            {
+              key: "2",
+              desde: "1.01",
+              hasta: "2",
+              sub: "94.85",
+              preKgExtra: "1"
+            },
+            {
             key: "3",
             desde: "1.01",
             hasta: "2",
             sub: "94.85",
             preKgExtra: "1"
-          }
+            }
         ],
       columns: this.props.columns,
       count: 2,
