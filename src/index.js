@@ -14,7 +14,7 @@ ReactDOM.render(
         <AppContextConsumer>
             {
                 (cx) => {
-                    console.log(cx)
+                    console.log(cx.state)
                     return (
                         <>
                         </>

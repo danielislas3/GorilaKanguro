@@ -1,9 +1,8 @@
 import React from "react";
 import { Table, Tabs, Input, Button, Popconfirm, Form } from "antd";
-import {AppContextConsumer} from '../Context/AppContext.js'
+import { AppContextConsumer } from "../Context/AppContext.js";
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
-
 
 //context
 const EditableRow = ({ form, index, ...props }) => (
@@ -103,38 +102,39 @@ export default class TablaAnidada extends React.Component {
     super(props);
 
     this.state = {
-        dataProvs:props,
-       dataSource:
-       //this.props.dataSource,
-      //SE IMPRIME COMO UN ARREGO DE PRECIOS
-          [{
-            key: '0',
-            desde: '0',
-            hasta: '1',
-            sub: '86.81',
-            preKgExtra:'0',
+      dataProvs: props,
+      dataSource:
+        //this.props.dataSource,
+        //SE IMPRIME COMO UN ARREGO DE PRECIOS
+        [
+          {
+            key: "0",
+            desde: "0",
+            hasta: "1",
+            sub: "86.81",
+            preKgExtra: "0"
           },
           {
-            key: '1',
-            desde: '1.01',
-            hasta: '2',
-            sub: '94.85',
-            preKgExtra:'1',
+            key: "1",
+            desde: "1.01",
+            hasta: "2",
+            sub: "94.85",
+            preKgExtra: "1"
           },
           {
-            key: '2',
-            desde: '1.01',
-            hasta: '2',
-            sub: '94.85',
-            preKgExtra:'1',
+            key: "2",
+            desde: "1.01",
+            hasta: "2",
+            sub: "94.85",
+            preKgExtra: "1"
           },
           {
-            key: '3',
-            desde: '1.01',
-            hasta: '2',
-            sub: '94.85',
-            preKgExtra:'1',
-          },
+            key: "3",
+            desde: "1.01",
+            hasta: "2",
+            sub: "94.85",
+            preKgExtra: "1"
+          }
         ],
       columns: this.props.columns,
       count: 2,
@@ -142,28 +142,32 @@ export default class TablaAnidada extends React.Component {
     };
   }
   //aqui guardare los datos hacia el context
-  UNSAFE_componentWillMount(prevProps){
+  UNSAFE_componentWillMount(prevProps) {
     // console.log('prevProps')
     // console.log(prevProps)
-    const tarifas = this.state.dataSource
-     console.log('this.state.dataSource')
-     console.log(this.state.dataSource)
-     console.log(this.context)
-    //algo como 
-    this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
-
+    const tarifas = this.state.dataSource;
+    console.log("this.state.dataSource");
+    console.log(this.state.dataSource);
+    console.log(this.context);
+    //algo como
+    this.context.saveDataSource({
+      precios: this.state.dataSource,
+      nameTarifa: this.state.dataProvs.data.title
+    });
   }
-  sendData=()=>{
-    const tarifas = this.state.dataSource
-    //algo como 
-    this.context.saveDataSource({precios:this.state.dataSource, nameTarifa:this.state.dataProvs.data.title})
-    console.log(this.context)
-  }
+  sendData = () => {
+    const tarifas = this.state.dataSource;
+    //algo como !
+    this.context.saveDataSource({
+      precios: this.state.dataSource,
+      nameTarifa: this.state.dataProvs.data.title
+    });
+    console.log(this.context);
 
+  };
 
   handleDelete = key => {
     const dataSource = [...this.state.dataSource];
-
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
 
@@ -176,7 +180,7 @@ export default class TablaAnidada extends React.Component {
       hasta: `${Number(count) + 1}`,
       sub: `${sub + 8.4}`,
       preKgExtra: "2"
-    };  
+    };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -192,7 +196,7 @@ export default class TablaAnidada extends React.Component {
       ...item,
       ...row
     });
-    this.setState({ dataSource: newData })
+    this.setState({ dataSource: newData });
   };
 
   handleEditable = col => {
@@ -202,14 +206,13 @@ export default class TablaAnidada extends React.Component {
         record,
         editable: col.editable,
         dataIndex: col.dataIndex,
-        title: col.title,         
+        title: col.title,
         handleSave: this.handleSave
       })
     };
   };
 
   render() {
-    
     const { dataSource } = this.state;
     const components = {
       body: {
@@ -231,7 +234,7 @@ export default class TablaAnidada extends React.Component {
           dataIndex: col.dataIndex,
           title: col.title,
           handleSave: this.handleSave
-        })   
+        })
       };
     });
     // console.log('this.state.dataSource');
