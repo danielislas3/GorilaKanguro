@@ -120,7 +120,7 @@ export default class NuevaTarifa extends React.Component {
             <TabPane
               tab={pane.title}
               key={pane.key}
-              key={i}
+              // key={i}
               closable={pane.closable}
             >
               
@@ -130,7 +130,7 @@ export default class NuevaTarifa extends React.Component {
               <TablaAnidada
                 columns={pane.columns}
                 data={pane}
-
+                index={{indexCobertura:this.props.indice, indexTarifa:i}}
                 dataSource={this.props.coberturas}
               />
             </TabPane>

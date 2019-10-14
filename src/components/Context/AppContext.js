@@ -105,21 +105,23 @@ export class AppContextProvider extends Component {
         new Area(3)
       )
     ],
-    coberturas: [{
-      name: "Default",
-      selected: null,
-      precios: {
-        desde: "",
-        hasta: "",
-        sub: "",
-        extra: ""
-      },
-      tarifas: [{
-        nombre: "",
-        sub: "",
-        extra: ""
-      }]
-    }],
+    coberturas: [
+      new Cobertura('DefaultI',undefined,new Tarifa('Kangurito 1',new Precios(0,0,1,23,34)))],
+    //   {
+    //   name: "Default",
+    //   selected: null,
+    //   precios: {
+    //     desde: "",
+    //     hasta: "",
+    //     sub: "",
+    //     extra: ""
+    //   },
+    //   tarifas: [{
+    //     nombre: "",
+    //     sub: "",
+    //     extra: ""
+    //   }]
+    // }],
 
     coberturas2: [
       {
@@ -160,7 +162,7 @@ export class AppContextProvider extends Component {
     //   preKgExtra: "",
     //   key: 0
     // });
-    const cob = new Cobertura(name,undefined,new Tarifa('tarifa1',new Precios(0,12,23,34,45)))
+    const cob = new Cobertura(name,undefined,new Tarifa('Kanguro 1',new Precios(0,12,23,34,45)))
 
     this.setState(prev => ({
       coberturas: [...prev.coberturas, cob]
@@ -168,13 +170,14 @@ export class AppContextProvider extends Component {
   };
 
   addTarifas=(i,tarifa)=>{
-    console.log('-----------------------')
-    console.log(i,tarifa)
-    console.log( this.state.coberturas[i])
-    
-    this.state.coberturas[i].newTarifa(tarifa)
+    this.state.coberturas[i+1].newTarifa(tarifa)
   }
-
+  addPeso=(indexCob,indexTar,precio)=>{
+    let {key,desde,hasta,sub,preKgExtra} =precio
+    console.log('******PRECIO******')
+    console.log(precio)
+    this.state.coberturas[indexCob].tarifas[indexTar].newPrecio(key,desde,hasta,sub,preKgExtra)
+  }
   saveDataSource = datosTarifas => {
 
     let stateCopy = {...this.state}
@@ -203,6 +206,7 @@ export class AppContextProvider extends Component {
       addCobertura,
       saveDataSource,
       addTarifas,
+      addPeso,
       state
     } = this;
 
@@ -213,7 +217,8 @@ export class AppContextProvider extends Component {
           addToDatitos,
           addCobertura,
           saveDataSource,
-          addTarifas
+          addTarifas,
+          addPeso
         }
       } >
       {

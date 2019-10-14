@@ -172,8 +172,9 @@ export default class TablaAnidada extends React.Component {
   };
 
   handleAdd = () => {
-    const { count, dataSource, sub } = this.state;
 
+    const { count, dataSource, sub } = this.state;
+    const {indexCobertura,indexTarifa}= this.props.index
     const newData = {
       key: count,
       desde: `${count}.01 `,
@@ -181,6 +182,8 @@ export default class TablaAnidada extends React.Component {
       sub: `${sub + 8.4}`,
       preKgExtra: "2"
     };
+    //instanciando precios 
+    this.context.addPeso(indexCobertura,indexTarifa,newData)
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -238,7 +241,7 @@ export default class TablaAnidada extends React.Component {
       };
     });
     // console.log('this.state.dataSource');
-    // console.log(this.state.dataSource);
+     console.log(this.props.index);
     return (
       <div>
         <Button
