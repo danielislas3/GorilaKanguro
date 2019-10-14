@@ -1,10 +1,10 @@
-import Tarifa from './Tarifa'
 
-export default class Peso extends Tarifa{
+export default class Peso {
   constructor(key,desde ,hasta, subTotal, kgExtra ){
 
-    super(desde,hasta)
     this.key=key
+    this.desde=desde
+    this.hasta=hasta
     this.subTotal=subTotal
     this.kgExtra=kgExtra
   }

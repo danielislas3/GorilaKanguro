@@ -5,6 +5,8 @@ import React, {
 import Ruta from "../../model/Ruta";
 import Area from "../../model/Area";
 import Cobertura from "../../model/Cobertura";
+import Tarifa from "../../model/Tarifa";
+import Precios from "../../model/Peso";
 export const AppContext = createContext();
 const {
   Provider,
@@ -149,16 +151,18 @@ export class AppContextProvider extends Component {
   };
 
   addCobertura = (name, precios, tarifas) => {
-    const nameCob = new Cobertura(name, undefined, 12, 32, 23, 11, {
-      desde: "",
-      hasta: "",
-      nombre: "",
-      sub: "",
-      preKgExtra: "",
-      key: 0
-    });
+
+    // const nameCob = new Cobertura(name, undefined, 12, 32, 23, 11, {
+    //   desde: "",
+    //   hasta: "",
+    //   nombre: "",
+    //   sub: "",
+    //   preKgExtra: "",
+    //   key: 0
+    // });
+    const cob = new Cobertura(name,undefined,new Tarifa('tarifa1',new Precios(0,12,23,34,45)))
     this.setState(prev => ({
-      coberturas: [...prev.coberturas, nameCob]
+      coberturas: [...prev.coberturas, cob]
     }));
   };
 

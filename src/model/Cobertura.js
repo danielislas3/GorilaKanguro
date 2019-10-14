@@ -1,21 +1,16 @@
+
 export default class Cobertura{
 
   constructor(
     name,
     selected=false,
-    desde,hasta,subTotal,kgExtra,
-    tarifas,
+    tarifas=null,
 
   ){
     this.name=name
     this.selected=selected
-    this.precios={
-      desde,
-      hasta,
-      subTotal,
-      kgExtra,
-    }
-  this.tarifas=[tarifas]
+    this.tarifas=[tarifas]
+
   }
 
   newTarifa(newTarifa){
@@ -27,17 +22,16 @@ export default class Cobertura{
 //   {
 //     name: "Default",
 //     selected: null,
-//     precios: {
-//       desde: "",
-//       hasta: "",
-//       sub: "",
-//       extra: ""
-//     },
+//    
 //     tarifas: [
 //       {
 //         nombre: "",
-//         sub: "",
-//         extra: ""
+//         precios: {
+    //       desde: "",
+    //       hasta: "",
+    //       sub: "",
+    //       extra: ""
+//     },
 //       }
 //     ]
 //   }
