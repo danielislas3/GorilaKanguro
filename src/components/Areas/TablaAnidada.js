@@ -207,9 +207,10 @@ export default class TablaAnidada extends React.Component {
       ...item,
       ...row
     });
-    
+
     //aqui mando los datos editados de los nuevos precios al contexto
     this.context.editPesos(newData,this.props.index)
+    //cuando termine la funcion de arriba cmento la de abajo
     this.setState({ dataSource: newData });
   };
 

@@ -11,6 +11,14 @@ export default class Tarifa {
   newPrecio(key,desde ,hasta, subTotal, kgExtra){
     this.precios.push(new Precio(key,desde,hasta,subTotal,kgExtra))
   }
+  
+  editPrecios(index,newData){
+   const newPrecios = newData.map(e => {
+      new Precio(e.key,e.desde,e.hasta,e.sub,e.preKgExtra)
+    });
+    
+    this.precios=newPrecios
+  }
 }
 
 /*

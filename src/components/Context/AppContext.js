@@ -197,10 +197,13 @@ export class AppContextProvider extends Component {
       coberturas2: [...prev.coberturas, newTarifa]
     }));
   };
-  editPesos=(newData,index)=>{
+
+  editPesos=(newData,index,precioIndex)=>{
     console.log('SAVE DATA desde context')
     console.log(newData)
     console.log(index)
+    
+    this.state.coberturas[index.indexCobertura].tarifas[index.indexTarifa].precios[precioIndex].edit()
   }
 
   render() {
