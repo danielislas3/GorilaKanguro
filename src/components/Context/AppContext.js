@@ -107,21 +107,6 @@ export class AppContextProvider extends Component {
     ],
     coberturas: [
       new Cobertura('DefaultI',undefined,new Tarifa('Kangurito 1',new Precios(1,"1.1","2","23","34")))],
-    //   {
-    //   name: "Default",
-    //   selected: null,
-    //   precios: {
-    //     desde: "",
-    //     hasta: "",
-    //     sub: "",
-    //     extra: ""
-    //   },
-    //   tarifas: [{
-    //     nombre: "",
-    //     sub: "",
-    //     extra: ""
-    //   }]
-    // }],
 
     coberturas2: [
       {
@@ -203,7 +188,7 @@ export class AppContextProvider extends Component {
     console.log(newData)
     console.log(index)
     
-    this.state.coberturas[index.indexCobertura].tarifas[index.indexTarifa].precios[precioIndex].edit()
+    this.state.coberturas[index.indexCobertura].tarifas[index.indexTarifa].editPrecios(newData)
   }
 
   render() {

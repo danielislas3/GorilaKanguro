@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Tabs, Input, Button, Popconfirm, Form } from "antd";
 import { AppContextConsumer } from "../Context/AppContext.js";
+import Precio from '../../model/Peso.js'
 const { TabPane } = Tabs;
 const EditableContext = React.createContext();
 
@@ -98,68 +99,23 @@ class EditableCell extends React.Component {
 
 export default class TablaAnidada extends React.Component {
   static contextType = AppContextConsumer;
-  constructor(props,context) {
-    super(props,context);
+
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
 
-      data:this.context.state.coberturas[this.props.index.indexCobertura].tarifas[this.props.index.indexTarifa].precios,
-
       dataProvs: props,
 
-      dataSource: 
-      this.context.state.coberturas[this.props.index.indexCobertura].tarifas[this.props.index.indexTarifa].precios,
-        //SE IMPRIME COMO UN ARREGO DE PRECIOS
-      //  [
-      //       {
-      //         key: "0",
-      //         desde: "0",
-      //         hasta: "1",
-      //         sub: "86.81",
-      //         preKgExtra: "0"
-      //       },
-      //       {
-      //         key: "1",
-      //         desde: "1.01",
-      //         hasta: "2",
-      //         sub: "94.85",
-      //         preKgExtra: "1"
-      //       },
-      //       {
-      //         key: "2",
-      //         desde: "1.01",
-      //         hasta: "2",
-      //         sub: "94.85",
-      //         preKgExtra: "1"
-      //       },
-      //       {
-      //       key: "3",
-      //       desde: "1.01",
-      //       hasta: "2",
-      //       sub: "94.85",
-      //       preKgExtra: "1"
-      //       }
-      //   ],
+      dataSource: this.context.state.coberturas[this.props.index.indexCobertura]
+        .tarifas[this.props.index.indexTarifa].precios,
       columns: this.props.columns,
       count: 2,
       sub: 94.85
     };
   }
 
-  //aqui guardare los datos hacia el context
-  // UNSAFE_componentWillMount(prevProps) {
-  //   // console.log('prevProps')
-  //   // console.log(prevProps)
-  //   const tarifas = this.state.dataSource;
-  //   console.log("this.state.dataSource");
-  //   console.log(this.state.dataSource);
-  //   console.log(this.context);
-  //   //algo como
-  //   this.context.saveDataSource({
-  //     precios: this.state.dataSource,
-  //     nameTarifa: this.state.dataProvs.data.title
-  //   });
-  // }
+
   sendData = () => {
     const tarifas = this.state.dataSource;
     //algo como !
@@ -167,10 +123,8 @@ export default class TablaAnidada extends React.Component {
       precios: this.state.dataSource,
       nameTarifa: this.state.dataProvs.data.title
     });
-    
-    console.log(this.state.data)
 
-
+    console.log(this.state.dataSource);
   };
 
   handleDelete = key => {
@@ -179,19 +133,20 @@ export default class TablaAnidada extends React.Component {
   };
 
   handleAdd = () => {
-
     const { count, dataSource, sub } = this.state;
-    const {indexCobertura,indexTarifa}= this.props.index
-    const newData = {
-      key: count,
-      desde: `${count}.01 `,
-      hasta: `${Number(count) + 1}`,
-      sub: `${sub + 8.4}`,
-      preKgExtra: "2"
-    };
-    //instanciando precios 
-    this.context.addPeso(indexCobertura,indexTarifa,newData)
-
+    const { indexCobertura, indexTarifa } = this.props.index;
+    const newData= new Precio(count,`${count}.01 `,`${Number(count) + 1}`,`${sub + 8.4}`,"2")
+    // const newData = {
+    //   key: count,
+    //   desde: `${count}.01 `,
+    //   hasta: `${Number(count) + 1}`,
+    //   sub: `${sub + 8.4}`,
+    //   preKgExtra: "2"
+    // };
+    
+    //instanciando precios
+    this.context.addPeso(indexCobertura, indexTarifa, newData);
+    
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -203,15 +158,17 @@ export default class TablaAnidada extends React.Component {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
     const item = newData[index];
+
     newData.splice(index, 1, {
       ...item,
       ...row
     });
 
     //aqui mando los datos editados de los nuevos precios al contexto
-    this.context.editPesos(newData,this.props.index)
+    this.context.editPesos(newData, this.props.index);
+
     //cuando termine la funcion de arriba cmento la de abajo
-    this.setState({ dataSource: newData });
+    //this.setState({ dataSource: newData });
   };
 
   handleEditable = col => {
@@ -253,8 +210,8 @@ export default class TablaAnidada extends React.Component {
       };
     });
     // console.log('this.state.dataSource');
-    console.log('****datacontext****')
-    console.log(this.state.data);
+    console.log("****datacontext****");
+    console.log(this.state.dataSource);
     return (
       <div>
         <Button
@@ -272,10 +229,6 @@ export default class TablaAnidada extends React.Component {
         >
           Enviar datos
         </Button>
-
-        {/* <Button onClick={this.handleAddColumn} type="primary" style={{ marginBottom: 16 }}>
-          Nueva Tarifa
-        </Button> */}
 
         <Table
           components={components}

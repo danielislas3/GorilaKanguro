@@ -2,8 +2,8 @@ import React from "react";
 import { Tabs, Button, Input } from "antd";
 import TablaAnidada from "../Areas/TablaAnidada";
 import { AppContextConsumer } from "../Context/AppContext";
-import Tarifa from '../../model/Tarifa'
-import Precios from '../../model/Peso'
+import Tarifa from "../../model/Tarifa";
+import Precios from "../../model/Peso";
 const { TabPane } = Tabs;
 
 export default class NuevaTarifa extends React.Component {
@@ -47,9 +47,8 @@ export default class NuevaTarifa extends React.Component {
     const { panes } = this.state;
     //aqui tengo que hacer la instancia de las nuevas tarifas
     const activeKey = `newTab${this.newTabIndex++}`;
-    
+
     panes.push({
-      
       title: this.state.newName,
       content: "New Tab Pane",
       key: activeKey,
@@ -57,17 +56,18 @@ export default class NuevaTarifa extends React.Component {
       columns: this.props.columns,
       dataSource: this.props.precios
     });
-    let indexCobertura= this.props.indice-1
-    console.log('indexCobertura')
-    console.log(indexCobertura)
-    this.context.addTarifas(indexCobertura,new Tarifa(this.state.newName,new Precios(1,0,2,34,45)))
-
+    let indexCobertura = this.props.indice - 1;
+    console.log("indexCobertura");
+    console.log(indexCobertura);
+    this.context.addTarifas(
+      indexCobertura,
+      new Tarifa(this.state.newName, new Precios(1, 0, 2, 34, 45))
+    );
 
     this.setState({ panes, activeKey, newName: "" });
   };
 
   remove = targetKey => {
-
     let { activeKey } = this.state;
     let lastIndex;
     this.state.panes.forEach((pane, i) => {
@@ -87,8 +87,8 @@ export default class NuevaTarifa extends React.Component {
   };
 
   render() {
-    console.log("COBERTURAS: TARIFAS ")
-    console.log(this.props.coberturas)
+    console.log("COBERTURAS: TARIFAS ");
+    console.log(this.props.coberturas);
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
@@ -108,7 +108,7 @@ export default class NuevaTarifa extends React.Component {
             value={this.state.newName}
           />
         </div>
-        
+
         <Tabs
           hideAdd={true}
           onChange={this.onChange}
@@ -123,14 +123,13 @@ export default class NuevaTarifa extends React.Component {
               // key={i}
               closable={pane.closable}
             >
-              
               {/* ESTOS DASTOS SON LOS QUE LLENAN LAS TARIFAS, VA A SER HEREDADOS DESDE EL CONTEXTO */}
               <p>Tabla anidada</p>
 
               <TablaAnidada
                 columns={pane.columns}
                 data={pane}
-                index={{indexCobertura:this.props.indice, indexTarifa:i}}
+                index={{ indexCobertura: this.props.indice, indexTarifa: i }}
                 dataSource={this.props.coberturas}
               />
             </TabPane>
