@@ -147,19 +147,19 @@ export default class TablaAnidada extends React.Component {
   }
 
   //aqui guardare los datos hacia el context
-  UNSAFE_componentWillMount(prevProps) {
-    // console.log('prevProps')
-    // console.log(prevProps)
-    const tarifas = this.state.dataSource;
-    console.log("this.state.dataSource");
-    console.log(this.state.dataSource);
-    console.log(this.context);
-    //algo como
-    this.context.saveDataSource({
-      precios: this.state.dataSource,
-      nameTarifa: this.state.dataProvs.data.title
-    });
-  }
+  // UNSAFE_componentWillMount(prevProps) {
+  //   // console.log('prevProps')
+  //   // console.log(prevProps)
+  //   const tarifas = this.state.dataSource;
+  //   console.log("this.state.dataSource");
+  //   console.log(this.state.dataSource);
+  //   console.log(this.context);
+  //   //algo como
+  //   this.context.saveDataSource({
+  //     precios: this.state.dataSource,
+  //     nameTarifa: this.state.dataProvs.data.title
+  //   });
+  // }
   sendData = () => {
     const tarifas = this.state.dataSource;
     //algo como !
@@ -191,6 +191,7 @@ export default class TablaAnidada extends React.Component {
     };
     //instanciando precios 
     this.context.addPeso(indexCobertura,indexTarifa,newData)
+
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
@@ -206,6 +207,9 @@ export default class TablaAnidada extends React.Component {
       ...item,
       ...row
     });
+    
+    //aqui mando los datos editados de los nuevos precios al contexto
+    this.context.editPesos(newData,this.props.index)
     this.setState({ dataSource: newData });
   };
 

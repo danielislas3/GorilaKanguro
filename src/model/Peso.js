@@ -9,4 +9,11 @@ export default class Peso {
     this.kgExtra=kgExtra
   }
 
+  edit(opc,value){
+    if(opc==='desde')this.desde=value
+    if(opc==='hasta')this.hasta=value
+    if(opc==='subTotal')this.subTotal=value
+    if(opc==='kgExtra')this.kgExtra=value
+  }
+
 }

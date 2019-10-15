@@ -106,7 +106,7 @@ export class AppContextProvider extends Component {
       )
     ],
     coberturas: [
-      new Cobertura('DefaultI',undefined,new Tarifa('Kangurito 1',new Precios(0,0,1,23,34)))],
+      new Cobertura('DefaultI',undefined,new Tarifa('Kangurito 1',new Precios(1,"1.1","2","23","34")))],
     //   {
     //   name: "Default",
     //   selected: null,
@@ -173,7 +173,7 @@ export class AppContextProvider extends Component {
     this.state.coberturas[i+1].newTarifa(tarifa)
   }
   addPeso=(indexCob,indexTar,precio)=>{
-    let {key,desde,hasta,sub,preKgExtra} =precio
+    let {key,desde,hasta,sub,preKgExtra} = precio
     console.log('******PRECIO******')
     console.log(precio)
     this.state.coberturas[indexCob].tarifas[indexTar].newPrecio(key,desde,hasta,sub,preKgExtra)
@@ -197,7 +197,11 @@ export class AppContextProvider extends Component {
       coberturas2: [...prev.coberturas, newTarifa]
     }));
   };
- 
+  editPesos=(newData,index)=>{
+    console.log('SAVE DATA desde context')
+    console.log(newData)
+    console.log(index)
+  }
 
   render() {
     const {
@@ -207,6 +211,7 @@ export class AppContextProvider extends Component {
       saveDataSource,
       addTarifas,
       addPeso,
+      editPesos,
       state
     } = this;
 
@@ -218,7 +223,8 @@ export class AppContextProvider extends Component {
           addCobertura,
           saveDataSource,
           addTarifas,
-          addPeso
+          addPeso,
+          editPesos
         }
       } >
       {
