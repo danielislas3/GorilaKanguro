@@ -60,13 +60,13 @@ export class AppContextProvider extends Component {
         editable: true
       },
       {
-        title: "Subtotal1",
-        dataIndex: "sub",
+        title: "Subtotal -1",
+        dataIndex: "subK",
         editable: true
       },
       {
         title: "Precio/Kg extra1",
-        dataIndex: "preKgExtra",
+        dataIndex: "preKgExtraK",
         editable: true
       }
     ],
@@ -152,7 +152,7 @@ export class AppContextProvider extends Component {
     //   preKgExtra: "",
     //   key: 0
     // });
-    const cob = new Cobertura(name,undefined,new Tarifa('Kanguro 1',new Precios(0,12,23,34,45)))
+    const cob = new Cobertura(name,undefined,new Tarifa('Kanguro 2',new Precios(0,12,23,34,45)))
 
     this.setState(prev => ({
       coberturas: [...prev.coberturas, cob]
@@ -163,10 +163,10 @@ export class AppContextProvider extends Component {
     this.state.coberturas[i+1].newTarifa(tarifa)
   }
   addPeso=(indexCob,indexTar,precio)=>{
-    let {key,desde,hasta,sub,preKgExtra} = precio
+    let {key,desde,hasta,subK,preKgExtraK} = precio
     console.log('******PRECIO******')
     console.log(precio)
-    this.state.coberturas[indexCob].tarifas[indexTar].newPrecio(key,desde,hasta,sub,preKgExtra)
+    this.state.coberturas[indexCob].tarifas[indexTar].newPrecio(key,desde,hasta,subK,preKgExtraK)
   }
   saveDataSource = datosTarifas => {
 

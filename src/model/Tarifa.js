@@ -13,7 +13,7 @@ export default class Tarifa {
 
   editPrecios( newData) {
     const newPrecios = newData.map(e => {
-     return new Precio(e.key, e.desde, e.hasta, e.sub, e.preKgExtra)
+     return new Precio(e.key, e.desde, e.hasta, e.subK, e.preKgExtraK)
     });
 
     this.precios = newPrecios
