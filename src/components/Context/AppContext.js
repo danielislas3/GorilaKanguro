@@ -14,6 +14,11 @@ const {
 } = AppContext;
 
 export class AppContextProvider extends Component {
+  componentDidMount(){
+    console.log('*****FETCH DE DATA****')
+    
+  }
+  
   state = {
     name: "CONTEXTO",
     // servicios: [
@@ -190,6 +195,7 @@ export class AppContextProvider extends Component {
     
     this.state.coberturas[index.indexCobertura].tarifas[index.indexTarifa].editPrecios(newData)
   }
+
 
   render() {
     const {
