@@ -155,6 +155,7 @@ export default class TablaAnidada extends React.Component {
 
     //instanciando precios
     this.context.addPeso(indexCobertura, indexTarifa, newData);
+    this.context.coutCobertura(count,indexCobertura);
     
     //*Esto es lo que hace que se duplique el primer peso agragado*/
     this.setState({

@@ -16,7 +16,7 @@ const {
 export class AppContextProvider extends Component {
   componentDidMount(){
     console.log('*****FETCH DE DATA****')
-    
+
   }
   
   state = {
@@ -51,12 +51,12 @@ export class AppContextProvider extends Component {
       },
       {
         title: "Subtotal Normal",
-        dataIndex: "sub",
+        dataIndex: "subT",
         editable: true
       },
       {
         title: "Precio/Kg extra Normal",
-        dataIndex: "preKgExtra",
+        dataIndex: "preKgExtraT",
         editable: true
       },
       {
@@ -128,30 +128,18 @@ export class AppContextProvider extends Component {
         }]
       }]
     }
-  ]
-  };
+    ]
+    };
 
   addServices = servicios => {
     this.setState(prev => ({
       servicios: [...prev.servicios, servicios]
     }));
   };
-  addToDatitos = datito => {
-    this.setState(prev => ({
-      datitos: [datito]
-    }));
-  };
 
-  addCobertura = (name, precios, tarifas) => {
 
-    // const nameCob = new Cobertura(name, undefined, 12, 32, 23, 11, {
-    //   desde: "",
-    //   hasta: "",
-    //   nombre: "",
-    //   sub: "",
-    //   preKgExtra: "",
-    //   key: 0
-    // });
+  addCobertura = (name) => {
+
     const cob = new Cobertura(name,undefined,new Tarifa('Kanguro 2',new Precios(0,12,23,34,45)))
 
     this.setState(prev => ({
@@ -160,6 +148,10 @@ export class AppContextProvider extends Component {
   };
 
   addTarifas=(i,tarifa)=>{
+    // i = 
+    console.log('**i**')
+    console.log(i+1)
+    
     this.state.coberturas[i+1].newTarifa(tarifa)
   }
   addPeso=(indexCob,indexTar,precio)=>{
@@ -172,9 +164,6 @@ export class AppContextProvider extends Component {
 
     let stateCopy = {...this.state}
     let {coberturas2} = stateCopy;
-
-    let oilSite = coberturas2[0]
-
     console.log("datosTarifas desde context");
     console.log(datosTarifas);
 
@@ -195,6 +184,9 @@ export class AppContextProvider extends Component {
     
     this.state.coberturas[index.indexCobertura].tarifas[index.indexTarifa].editPrecios(newData)
   }
+  coutCobertura=(count,index)=>{
+    this.state.coberturas[index].addDesdeHasta(count)
+  }
 
 
   render() {
@@ -206,6 +198,7 @@ export class AppContextProvider extends Component {
       addTarifas,
       addPeso,
       editPesos,
+      coutCobertura,
       state
     } = this;
 
@@ -218,7 +211,8 @@ export class AppContextProvider extends Component {
           saveDataSource,
           addTarifas,
           addPeso,
-          editPesos
+          editPesos,
+          coutCobertura
         }
       } >
       {

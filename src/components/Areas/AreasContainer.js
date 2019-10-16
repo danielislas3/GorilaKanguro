@@ -56,6 +56,7 @@ export default class AreasContainer extends React.Component {
               <NuevaTarifa
                 name={cobertura.tarifas[0].nombre}
                 coberturas={cobertura.tarifas}
+                
                 columns={[
                   {
                     title: "Desde",
@@ -69,12 +70,12 @@ export default class AreasContainer extends React.Component {
                   },
                   {
                     title: "Subtotal Normal",
-                    dataIndex: "sub",
+                    dataIndex: "subT",
                     editable: true
                   },
                   {
                     title: "Precio/Kg extra Normal",
-                    dataIndex: "preKgExtra",
+                    dataIndex: "preKgExtraT",
                     editable: true
                   },
                   {

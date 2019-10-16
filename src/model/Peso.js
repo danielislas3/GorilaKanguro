@@ -1,3 +1,4 @@
+
 export default class Peso {
   constructor(key, desde, hasta, subTotal, preKgExtraK) {
 
@@ -5,11 +6,13 @@ export default class Peso {
     this.desde = desde
     this.hasta = hasta
     this.subK = subTotal
-    this.subT = "subTotal"
+    this.subT = "4"
     this.preKgExtraT = "0"
     this.preKgExtraK = preKgExtraK
-  }
-
+    }
+    
+    
+    
   edit(opc, value) {
     if (opc === 'desde') this.desde = value
     if (opc === 'hasta') this.hasta = value

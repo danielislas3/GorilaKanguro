@@ -64,7 +64,7 @@ export default class NuevaTarifa extends React.Component {
       indexCobertura,
       new Tarifa(this.state.newName, new Precios(1, 0, 2, 33, 45))
     );
-
+      
     this.setState({ panes, activeKey, newName: "" });
   };
 
