@@ -104,9 +104,7 @@ export default class TablaAnidada extends React.Component {
     super(props, context);
 
     this.state = {
-
       dataProvs: props,
-
       dataSource: this.context.state.coberturas[this.props.index.indexCobertura]
         .tarifas[this.props.index.indexTarifa].precios,
       columns: this.props.columns,
@@ -118,7 +116,7 @@ export default class TablaAnidada extends React.Component {
 
   sendData = () => {
     // const tarifas = this.state.dataSource;
-    // //algo como !
+    // //algo como 
     // this.context.saveDataSource({
     //   precios: this.state.dataSource,
     //   nameTarifa: this.state.dataProvs.data.title
@@ -152,7 +150,7 @@ export default class TablaAnidada extends React.Component {
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
-      sub: sub + 8.4
+      subK: sub + 8.4
     });
   };
 
@@ -169,6 +167,7 @@ export default class TablaAnidada extends React.Component {
     //aqui mando los datos editados de los nuevos precios al contexto
     this.context.editPesos(newData, this.props.index);
 
+    this.sendData()
     //cuando termine la funcion de arriba cmento la de abajo
     //this.setState({ dataSource: newData });
   };

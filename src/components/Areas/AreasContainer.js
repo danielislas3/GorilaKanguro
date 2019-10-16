@@ -54,7 +54,7 @@ export default class AreasContainer extends React.Component {
             
             <TabPane tab={cobertura.name} key={i} closable="false">
               <NuevaTarifa
-                name="Kanguro 1"
+                name={cobertura.tarifas[0].nombre}
                 coberturas={cobertura.tarifas}
                 columns={[
                   {
@@ -79,12 +79,12 @@ export default class AreasContainer extends React.Component {
                   },
                   {
                     title: "Subtotal1",
-                    dataIndex: "sub",
+                    dataIndex: "subK",
                     editable: true
                   },
                   {
                     title: "Precio/Kg extra1",
-                    dataIndex: "preKgExtra",
+                    dataIndex: "preKgExtraK",
                     editable: true
                   }
                 ]}

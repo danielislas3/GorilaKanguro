@@ -17,8 +17,8 @@ export default class NuevaTarifa extends React.Component {
 
       {
         title: this.props.name,
-        content: "Content of Tab Pane 1",
-        key: "1",
+        content: `Content of Tab Pane ${this.props.indice}`,
+        key: this.props.indice,
         closable: false,
         columns: this.props.columns,
         dataSource: this.props.precios
@@ -56,12 +56,13 @@ export default class NuevaTarifa extends React.Component {
       columns: this.props.columns,
       dataSource: this.props.precios
     });
+    
     let indexCobertura = this.props.indice - 1;
     console.log("indexCobertura");
     console.log(indexCobertura);
     this.context.addTarifas(
       indexCobertura,
-      new Tarifa(this.state.newName, new Precios(1, 0, 2, 34, 45))
+      new Tarifa(this.state.newName, new Precios(1, 0, 2, 33, 45))
     );
 
     this.setState({ panes, activeKey, newName: "" });
