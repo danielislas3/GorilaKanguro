@@ -126,7 +126,7 @@ export default class TablaAnidada extends React.Component {
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
 
-  handleAdd = async () => {
+  handleAdd =  () => {
 
     const { count, dataSource, sub } = this.state;
     const { indexCobertura, indexTarifa } = this.props.index;
@@ -147,16 +147,18 @@ export default class TablaAnidada extends React.Component {
 
     //instanciando precios
     this.context.addPeso(indexCobertura, indexTarifa, newData);
-
-    this.context.coutCobertura(count,indexCobertura);
     
+    this.context.coutCobertura(count,indexCobertura);
+
     //*Esto es lo que hace que se duplique el primer peso agragado*/
     
-    // this.setState({
-    //   dataSource: [...dataSource, newData],
-    //   count: count + 1,
-    //   subK: sub + 8.4
-    // });
+    this.setState({
+      dataSource: [...dataSource, newData],
+      count: count + 1,
+      subK: sub + 8.4
+    });
+    this.sendData()
+
   };
 
   handleSave = row => {
