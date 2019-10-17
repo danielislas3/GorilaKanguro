@@ -114,19 +114,11 @@ export default class TablaAnidada extends React.Component {
   }
 
   sendData = () => {
-    // const tarifas = this.state.dataSource;
-    // //algo como 
-    // this.context.saveDataSource({
-    //   precios: this.state.dataSource,
-    //   nameTarifa: this.state.dataProvs.data.title
-    // });
-
-    // console.log(this.state.dataSource);
     this.setState({
       dataSource: this.context.state.coberturas[this.props.index.indexCobertura]
         .tarifas[this.props.index.indexTarifa].precios
     });
-    console.log(this.context.state.coberturas)
+    console.log(this.context.state)
   };
 
   handleDelete = key => {
@@ -134,7 +126,7 @@ export default class TablaAnidada extends React.Component {
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
   };
 
-  handleAdd = () => {
+  handleAdd = async () => {
 
     const { count, dataSource, sub } = this.state;
     const { indexCobertura, indexTarifa } = this.props.index;
@@ -155,14 +147,16 @@ export default class TablaAnidada extends React.Component {
 
     //instanciando precios
     this.context.addPeso(indexCobertura, indexTarifa, newData);
+
     this.context.coutCobertura(count,indexCobertura);
     
     //*Esto es lo que hace que se duplique el primer peso agragado*/
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
-      subK: sub + 8.4
-    });
+    
+    // this.setState({
+    //   dataSource: [...dataSource, newData],
+    //   count: count + 1,
+    //   subK: sub + 8.4
+    // });
   };
 
   handleSave = row => {
@@ -222,7 +216,7 @@ export default class TablaAnidada extends React.Component {
       };
     });
     // console.log('this.state.dataSource');
-    console.log("****datacontext****");
+    console.log("****datacontext-> **state.dataSource*");
     console.log(this.state.dataSource);
     return (
       <div>

@@ -109,7 +109,7 @@ export default class NuevaTarifa extends React.Component {
             value={this.state.newName}
           />
         </div>
-
+        
         <Tabs
           hideAdd={true}
           onChange={this.onChange}
@@ -120,7 +120,7 @@ export default class NuevaTarifa extends React.Component {
           {this.state.panes.map((pane, i) => (
             <TabPane
               tab={pane.title}
-              key={pane.key}
+              key={pane.key} 
               // key={i}
               closable={pane.closable}
             >
@@ -133,6 +133,7 @@ export default class NuevaTarifa extends React.Component {
                 index={{ indexCobertura: this.props.indice, indexTarifa: i }}
                 dataSource={this.props.coberturas}
               />
+
             </TabPane>
           ))}
         </Tabs>
