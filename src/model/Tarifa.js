@@ -20,4 +20,5 @@ export default class Tarifa {
     console.log('PRECIOS EN TARIFAS EDITADOS')
     console.log(this.precios )
   }
+  
 }

@@ -6,7 +6,7 @@ export default class Peso {
     this.desde = desde
     this.hasta = hasta
     this.subK = subTotal
-    this.subT = "4"
+    this.subT = "4" 
     this.preKgExtraT = "0"
     this.preKgExtraK = preKgExtraK
     }

@@ -220,6 +220,7 @@ export default class TablaAnidada extends React.Component {
     // console.log('this.state.dataSource');
     console.log("****datacontext-> **state.dataSource*");
     console.log(this.state.dataSource);
+    localStorage.setItem('coberturas',JSON.stringify(this.context.state.coberturas))
     return (
       <div>
         <Button
