@@ -7,6 +7,9 @@ import Area from "../../model/Area";
 import Cobertura from "../../model/Cobertura";
 import Tarifa from "../../model/Tarifa";
 import Precios from "../../model/Peso";
+import {
+  async
+} from "q";
 
 export const AppContext = createContext();
 const {
@@ -16,26 +19,48 @@ const {
 
 export class AppContextProvider extends Component {
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('*****FETCH DE DATA****')
+    const token = process.env.REACT_APP_TOKEN
 
-
-    console.log('*****FETCH DE DATA****',process.env)
-    const token =process.env.TOKEN
-
-
-
-   fetch(
+    fetch(
       'https://dev.envioskanguro.com/api/v1/provider_services', {
         'headers': {
           'Authorization': `bearer ${token}`,
           'Content-Type': ' application/json'
         }
       }
-    ).then((response) => {
-      console.log(response)
+    ).then(async (res)  => {
+      const data = await console.log(res.json())
+      const promise = Promise.all([data])
+       .then(data => {
+       console.log('Promise.all Resolved', data);
+  })
+    console.log(promise)
+      
     }).catch((error) => {
-      console.log(error) 
-    });
+      console.log(error)
+    })
+    // var myHeaders = new Headers({
+    //   "Content-Type": "application/javascript,application/json",
+    //   "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJjMjBjOGE5NTZiZjhjZGJjNWZiZWQ5NTkwZmZiZmI2YjM0MmQxZjUwZDUzZjhhYmRjNTQ5YWRhMWIyOGNiNTg3YjBjM2E3YWZlNjVhODBhIn0.eyJhdWQiOiIxIiwianRpIjoiMmMyMGM4YTk1NmJmOGNkYmM1ZmJlZDk1OTBmZmJmYjZiMzQyZDFmNTBkNTNmOGFiZGM1NDlhZGExYjI4Y2I1ODdiMGMzYTdhZmU2NWE4MGEiLCJpYXQiOjE1NzE0MjU1NjUsIm5iZiI6MTU3MTQyNTU2NSwiZXhwIjoxNjAzMDQ3OTY1LCJzdWIiOiI1Iiwic2NvcGVzIjpbInJlc3Qtb3JkZXJzIl19.gK2hMDxV81k1FAjMjlLOSBeONhDvzatU-GBQoBRYjpbAKXdYyNbL2ZZ_md61jFbXnH3J-7Et8WAnVCHDGJBfjKWRKpFHyMdt6KmJQ_viJmlyTsQ3vIWBD6y4bxSj_FSVNlL9UhzBWTqlbb7l03k4xlcDmFXAaEuFMmKzNAu4du09xqeiZcKvnZNrTHoRbA2QmHYyOd8IKBJXOdYZg_otNVgOB-bcuBUxM8n3IZQCyNDg1mL5jBoemXSSN8i683yvllRT4JyxRAPRTG99NML4R7-wihpYEEkn6hdf_hWJUnpvwU-1tQSIk6wVKAuEl71_r2rjcf3WlhQoJ0CfYHD3TsM8_z9gAa5HBxUAexwuzGkADAl4myLB_Hf5uh35YHQShweMCJjtQbzaAZZNBqo2KcHEUY9pCOGn_e4IcP61Jwh9od5JGu42RD29eouo5hkQVrvCdvFDnTrPCi8Q9bO4LspGy6B98XvqKk4pbFsQFRAkBgvSI4YyBbkpoqJ1pnwvIHv1sfqYyC-QYnKedVJ4GkxKRlNzZ9Qr3cN5WH4Ovzfbh1YCVGMJAypq3AbO-BQN1-UiucC48Ky-P6xLL9OWtTzxsvcyFU31IIkyFUSDAtKEp3brXTRB-dj5Hbfd3ED_0_vH0HwAVQzojqg-1rdLJD3Z-QwzN0ijI0lC1mn14k0",
+    //   "Accept": "*/*",
+    //   "Cache-Control": "no-cache",
+    //   "Host": "dev.envioskanguro.com",
+
+    // });
+    // const myInit = {
+    //   method: 'GET',
+    //   headers: myHeaders,
+    //   mode: 'cors',
+    //   cache: 'default'
+    // }
+    // let response = await fetch(`https://dev.envioskanguro.com/api/v1/provider_services`, myInit);
+    // let data = await console.log(response)
+
+
+
+
   }
 
   state = {
@@ -230,21 +255,21 @@ export class AppContextProvider extends Component {
     } = this;
 
     return ( < Provider value = {
-      {
-        state: state,
-        addServices,
-        addToDatitos,
-        addCobertura,
-        saveDataSource,
-        addTarifas,
-        addPeso,
-        editPesos,
-        coutCobertura
-      }
-    } > {
-      this.props.children
-    } < /Provider>);
+        {
+          state: state,
+          addServices,
+          addToDatitos,
+          addCobertura,
+          saveDataSource,
+          addTarifas,
+          addPeso,
+          editPesos,
+          coutCobertura
+        }
+      } > {
+        this.props.children
+      } < /Provider>);
+    }
   }
-}
 
-export const AppContextConsumer = Consumer;
+  export const AppContextConsumer = Consumer;
