@@ -6,6 +6,7 @@ import { Descriptions, Breadcrumb } from "antd";
 import AreasContainer from "./Areas/AreasContainer";
 //import Tabla from './Areas/Tabla';
 import { AppContextConsumer } from "./Context/AppContext";
+import UploadFile from "./UploadFile";
 //import { importDefaultSpecifier } from '@babel/types';
 //import Consumer from './Context/Context'
 
@@ -183,7 +184,10 @@ export default class Areas extends Component {
               //console.log(context)
               return (
                 <>
+                              
+        
                   <br />
+
                   <ul>
                     {context.state.rutas.map((ruta, i) => (
                       <input
@@ -195,6 +199,8 @@ export default class Areas extends Component {
                   </ul>
                   <br />
                   <h2>Tarifas</h2>
+                <UploadFile/>
+                  <br/>
                   <Button
                     icon="file-add"
                     type="primary"
