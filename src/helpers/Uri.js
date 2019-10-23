@@ -1,7 +1,16 @@
 import axios from 'axios'
 import _ from 'lodash';
-function Uri(uri, params = {}, includes = []) {
-  let newuri = uri;
+
+const base_url = 'https://dev.envioskanguro.com/api/v1/'
+const headersApp = {headers: {
+    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`,
+    "Content-Type": "application/json,application/json"
+    }
+  }
+
+function Uri(uri='', params = {}, includes = []) {
+
+  let newuri = base_url + uri;
   // Se revisa si existe algun parametro por reemplazar
   let parsedParams = [];
 
@@ -21,17 +30,17 @@ function Uri(uri, params = {}, includes = []) {
   //Si no existen reemplazos se agregara a la url los parametros
   let uriParams = [];
   _.forEach(params, (value, key) => {
-    if (_.indexOf(parsedParams, key) == -1) {
+    if (_.indexOf(parsedParams, key) === -1) {
       uriParams.push(key + '=' + value)
     }
   });
 
   // Verifica que existan includes y los agrega a la uri
-  if (includes.length != 0) {
+  if (includes.length !== 0) {
     uriParams.push('include=' + _.join(includes, ','))
   }
 
-  if (uriParams.length!=0) {
+  if (uriParams.length !== 0) {
     newuri += ('?' + _.join(uriParams, '&'));
   }
 
@@ -51,4 +60,9 @@ let CleanUri = (params = []) => {
   })
 }
 
-export { Uri , CleanUri }
+
+export {
+  Uri,
+  CleanUri,
+  headersApp
+}

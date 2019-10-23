@@ -7,29 +7,24 @@ import Area from "../../model/Area";
 import Cobertura from "../../model/Cobertura";
 import Tarifa from "../../model/Tarifa";
 import Precios from "../../model/Peso";
-import {Uri,CleanUri} from '../../helpers/Uri'
+import {Uri,headersApp} from '../../helpers/Uri'
 import axios from 'axios'
 
 export const AppContext = createContext();
-const {
-  Provider,
-  Consumer
-} = AppContext;
-const base_url = 'https://dev.envioskanguro.com'
+const {Provider,Consumer} = AppContext;
+
 export class AppContextProvider extends Component {
 
   async componentDidMount() {
-   console.log('*****FETCH DE DATA****') 
-    const res = await axios.get(Uri(`${base_url}/api/v1/ruta`,{page:'2', with:'destinationZone'}), {
-      headers: {
-        "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`,
-        "Content-Type": "application/json,application/json"
-      }
-    })
-    if (res.status !== 200) {
-      console.error('Error: ' + res.status)
-    }
-    console.log(res.data)
+    console.log('*****FETCH DE DATA****')
+    
+    // const res = await axios.get(Uri('provider_services', {
+    //   with: 'user'
+    // }),headersApp)
+    // if (res.status !== 200) {
+    //   console.error('Error: ' + res.status)
+    // }
+    // console.log(res.data)
   }
 
   state = {
