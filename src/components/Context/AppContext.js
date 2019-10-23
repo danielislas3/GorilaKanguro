@@ -16,23 +16,20 @@ const {
 } = AppContext;
 const base_url = 'https://dev.envioskanguro.com'
 export class AppContextProvider extends Component {
+
   async componentDidMount() {
-    console.log('*****FETCH DE DATA****')
-    const token = process.env.REACT_APP_TOKEN
+   // console.log('*****FETCH DE DATA****')
+    
     const res = await axios.get(`${base_url}/api/v1/ruta`, {
       headers: {
-        "Authorization": `Bearer ${token}`,
+        "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`,
         "Content-Type": "application/json,application/json"
       }
     })
-    if(res.status!==200){
-      console.error('Error: '+res.status)
+    if (res.status !== 200) {
+      console.error('Error: ' + res.status)
     }
     console.log(res.data)
-    console.log(res.data.data)
-   
-
-
   }
 
   state = {
@@ -240,7 +237,8 @@ export class AppContextProvider extends Component {
         }
       } > {
         this.props.children
-      } < /Provider>);
+      } </Provider>);
+
     }
   }
 
