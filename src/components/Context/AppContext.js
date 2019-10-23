@@ -7,6 +7,7 @@ import Area from "../../model/Area";
 import Cobertura from "../../model/Cobertura";
 import Tarifa from "../../model/Tarifa";
 import Precios from "../../model/Peso";
+import {Uri,CleanUri} from '../../helpers/Uri'
 import axios from 'axios'
 
 export const AppContext = createContext();
@@ -18,9 +19,8 @@ const base_url = 'https://dev.envioskanguro.com'
 export class AppContextProvider extends Component {
 
   async componentDidMount() {
-   // console.log('*****FETCH DE DATA****')
-    
-    const res = await axios.get(`${base_url}/api/v1/ruta`, {
+   console.log('*****FETCH DE DATA****') 
+    const res = await axios.get(Uri(`${base_url}/api/v1/ruta`,{page:'2', with:'destinationZone'}), {
       headers: {
         "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`,
         "Content-Type": "application/json,application/json"
