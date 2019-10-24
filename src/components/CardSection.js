@@ -9,8 +9,10 @@ export default function CardSection({
   desc,
   to,
   name,
-  rank
+  rank,
+  data
 }) {
+  console.log(data)
   return (
     <div>
       <Link to={to}>

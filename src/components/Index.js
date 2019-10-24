@@ -30,19 +30,20 @@ export default function Index() {
       <h1>Proveedores</h1>
 
       {providers.length ? (
-        console.log(providers),
         providers.map(prov => (
           <CardSection
             key={prov.id}
             src="https://s3.amazonaws.com/cdn.wp.m4ecmx/wp-content/uploads/2017/10/11100711/DHLlogo1200.jpg"
             name={prov.user.name}
             desc={prov.user.email}
-            to="dhl"
+            to={prov.user.id.toString()}
             rank={prov.user.ranking}
+            data={prov}
           />
         ))
+        
       ) : (
-        <Skeleton />
+        <Skeleton active/>
       )}
 
       {/* DHL */}

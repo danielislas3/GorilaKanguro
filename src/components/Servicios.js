@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Card } from 'antd';
 import CardSection from './CardSection';
-const { Meta } = Card;
+import {Uri,headersApp} from '../helpers/Uri'
+import axios from 'axios'
+const { Meta } = Card; 
 
-export default function Servicios() {
+export default function Servicios(props) {
+
+	const providerId=Number(props.match.params.id)
 	const services =
 		[
 			{
@@ -26,6 +30,7 @@ export default function Servicios() {
 	const [servicio, setServicio] = useState(0);
 	useEffect(() => {
 		// peticion API 
+
 	}, []);
 
 	return (

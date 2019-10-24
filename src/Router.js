@@ -10,9 +10,10 @@ export default function Router () {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Index}/>
-        <Route exact path="/fedex" component={Servicios}/>
+        <Route exact path="/:id" component={Servicios}/>
+        {/* <Route exact path="/fedex" component={Servicios}/>
         <Route exact path="/dhl" component={Servicios}/>
-        <Route exact path="/merq" component={Servicios}/>
+        <Route exact path="/merq" component={Servicios}/> */}
 
         <Route exact path="/dhl/10" component={Areas}/>
 
